@@ -1352,7 +1352,7 @@ textarea {
         <ol class="route" id="route">
           <li class="done">קלט נקרא</li>
           <li class="done">מצב נבחר</li>
-          <li>בחירה נקלטה</li>
+          <li>תוצאה מוכנה</li>
           <li>מחכה לאישור שלך</li>
         </ol>
         <button class="approve" id="approveBtn">אשר ידנית</button>
@@ -1366,7 +1366,7 @@ textarea {
 (function(){
   const modes={
     dkey:{label:"DKey",target:"GPT / any text field",intent:"DKey mode · choose action · approve manually",actions:["ASK","SHAPE","SHORTEN","SEND?"],output:t=>`DKey מכינה ניסוח מותאם: "${t}" — עם אישור ידני לפני שליחה.`},
-    dev:{label:"DEV",target:"GitHub / terminal / code",intent:"DEV mode · inspect → pick → build → verify",actions:["INSPECT","PICK","BUILD","VERIFY"],output:t=>`מסלול DEV: ניתוח → בחירת scope → שינוי קטן → בדיקה. קלט: "${t}"`},
+    dev:{label:"DEV",target:"GitHub / terminal / code",intent:"DEV mode · inspect → pick → build → verify",actions:["INSPECT","PICK","BUILD","VERIFY"],output:t=>`תוצאה מוכנה לשימוש. כוונה: "${t}"`},
     suno:{label:"SUNO",target:"music / lyrics / style",intent:"SUNO mode · idea → lyrics → style → export",actions:["IDEA","LYRICS","STYLE","EXPORT"],output:t=>`מסלול SUNO: רעיון → מילים → צבע מוזיקלי → פרומפט. נושא: "${t}"`},
     create:{label:"Create",target:"concept / image / story",intent:"Create mode · brief → concept → image → review",actions:["BRIEF","CONCEPT","IMAGE","REVIEW"],output:t=>`מסלול יצירה: בריף → קונספט → דימוי → בדיקה. בסיס: "${t}"`},
     safe:{label:"Safe",target:"privacy / approval / guard",intent:"Safe mode · privacy check → approve → send manually",actions:["CHECK","BLOCK","APPROVE","SEND?"],output:t=>`בדיקת פרטיות: אין שליחה אוטומטית. האדם מאשר ידנית. טקסט: "${t}"`}
@@ -1399,6 +1399,69 @@ textarea {
     }
   };
 
+
+  /* === REAL OUTPUT ENGINE v0.9 === */
+  function compactIntent(raw){
+    const t = (raw || "").trim();
+    if(!t) return "נדרש קלט קצר מהמשתמש";
+
+    if(/הכל|מלא|אינסוף|כולל הכל|לבנות את הכל/.test(t)){
+      return "בקשה רחבה זוהתה — DKey מצמצמת אותה לצעד ראשון ברור";
+    }
+
+    if(t.length > 74){
+      return t.slice(0,74).trim() + "…";
+    }
+
+    return t;
+  }
+
+  modes.dev.output = function(raw){
+    const intent = compactIntent(raw);
+    return "תוצאה מוכנה לשימוש:\n"
+      + "מצב: DEV\n"
+      + "כוונה: " + intent + "\n"
+      + "החלטה: בונים רק יחידה אחת עכשיו\n"
+      + "צעד הבא: תיקון קטן, בדיקה, ואז אישור ידני";
+  };
+
+  modes.suno.output = function(raw){
+    const intent = compactIntent(raw);
+    return "תוצאה מוכנה לשיר:\n"
+      + "רעיון: " + intent + "\n"
+      + "מבנה: בית קצר → הוק → פזמון נקי\n"
+      + "צבע: חם, ישראלי, פשוט\n"
+      + "שימוש: עריכה ואישור לפני יצוא";
+  };
+
+  modes.safe.output = function(raw){
+    const intent = compactIntent(raw);
+    return "תוצאה מוכנה לבדיקה:\n"
+      + "טקסט: " + intent + "\n"
+      + "פרטיות: לא לשלוח אוטומטית\n"
+      + "פעולה: בדיקה בלבד\n"
+      + "החלטה: האדם מאשר או עוצר";
+  };
+
+  modes.create.output = function(raw){
+    const intent = compactIntent(raw);
+    return "תוצאה מוכנה להצגה:\n"
+      + "כוונה: " + intent + "\n"
+      + "מסר: מוצר ברור, לא רעיון מפוזר\n"
+      + "תצוגה: טלפון, שכבות פעולה, תוצאה\n"
+      + "גבול: מעט מילים, הרבה בהירות";
+  };
+
+  modes.dkey.output = function(raw){
+    const intent = compactIntent(raw);
+    return "תוצאה מוכנה — בשליטה שלך:\n"
+      + "כוונה: " + intent + "\n"
+      + "DKey: מסדרת את הכוונה לפעולה\n"
+      + "שימוש: העתקה או המשך ידני\n"
+      + "כלל: שום דבר לא נשלח בלי אישור";
+  };
+
+
   let currentMode="dkey";
   let currentAction="";
 
@@ -1429,7 +1492,7 @@ textarea {
   function text(){return liveInput.value.trim()||"המשתמש עדיין לא כתב";}
   function updateOutput(){
     const base=modes[currentMode].output(text());
-    output.textContent=currentAction?`${base} בחירה נקלטה: ${currentAction}.`:base;
+    output.textContent=currentAction?`${base} תוצאה מוכנה: ${currentAction}.`:base;
   }
   function resetApproval(){
     beadApproval.textContent="ממתין";
