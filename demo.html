@@ -1871,6 +1871,16 @@ body:not([data-mode="safe"]) .mode[data-mode="safe"] {
   }
 }
 
+
+/* === CLEAN BRIEF OUTPUT PATCH v1 === */
+#preparedOutput {
+  letter-spacing: -0.01em;
+}
+
+.output small::after {
+  content: "READY" !important;
+}
+
 </style>
 </head>
 <body>
@@ -2036,9 +2046,12 @@ body:not([data-mode="safe"]) .mode[data-mode="safe"] {
     },
     create: {
       mode: "create",
-      action: "CONCEPT",
+      action: "BRIEF",
       text: "תבנה מסר מוצר קצר ל־DKey שיראה אמיתי, לא מצגת, ולא רעיון באוויר.",
-      final: "תוצאה מוכנה להצגה:\nDKey היא שכבת פעולה מעל המקלדת.\nהיא הופכת כתיבה טבעית למסלול עבודה.\nהמשתמש בוחר מצב, פעולה, ותוצאה.\nשום דבר לא נשלח בלי אישור."
+      final: "מסר מוכן להצגה:
+DKey היא שכבת פעולה מעל המקלדת.
+כותבים רגיל. בוחרים מצב. מקבלים תוצאה.
+השליטה נשארת אצלך — שום דבר לא נשלח בלי אישור."
     }
   };
 
@@ -2087,12 +2100,13 @@ body:not([data-mode="safe"]) .mode[data-mode="safe"] {
   };
 
   modes.create.output = function(raw){
-    const intent = compactIntent(raw);
-    return "תוצאה מוכנה להצגה:\n"
-      + "כוונה: " + intent + "\n"
-      + "מסר: מוצר ברור, לא רעיון מפוזר\n"
-      + "תצוגה: טלפון, שכבות פעולה, תוצאה\n"
-      + "גבול: מעט מילים, הרבה בהירות";
+    return "מסר מוכן להצגה:
+"
+      + "DKey היא שכבת פעולה מעל המקלדת.
+"
+      + "כותבים רגיל. בוחרים מצב. מקבלים תוצאה.
+"
+      + "השליטה נשארת אצלך — שום דבר לא נשלח בלי אישור.";
   };
 
   modes.dkey.output = function(raw){
@@ -2134,8 +2148,7 @@ body:not([data-mode="safe"]) .mode[data-mode="safe"] {
 
   function text(){return liveInput.value.trim()||"המשתמש עדיין לא כתב";}
   function updateOutput(){
-    const base=modes[currentMode].output(text());
-    output.textContent=currentAction?`${base} תוצאה מוכנה: ${currentAction}.`:base;
+    output.textContent = modes[currentMode].output(text());
   }
   function resetApproval(){
     beadApproval.textContent="ממתין";
