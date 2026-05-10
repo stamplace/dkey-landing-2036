@@ -1228,63 +1228,6 @@ textarea {
   }
 }
 
-
-/* === DKEY TEMPLATE LIBRARY PATCH v1.0 === */
-.scenarioPanel strong {
-  font-size: 17px !important;
-}
-
-.scenarioPanel strong::after {
-  content: " · תבניות עבודה אמיתיות";
-  color: #667085;
-  font-size: 12px;
-  font-weight: 800;
-  margin-inline-start: 6px;
-}
-
-.scenarioGrid {
-  grid-template-columns: repeat(4, minmax(0,1fr)) !important;
-}
-
-.scenario {
-  min-height: 52px !important;
-  font-size: 12px !important;
-}
-
-.scenario.active {
-  transform: translateY(-1px);
-}
-
-#preparedOutput {
-  font-size: 13px !important;
-  line-height: 1.52 !important;
-}
-
-@media(max-width:640px){
-  .scenarioGrid {
-    grid-template-columns: repeat(8, max-content) !important;
-    overflow-x: auto;
-    gap: 7px;
-    direction: ltr;
-    scrollbar-width: none;
-  }
-
-  .scenarioGrid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .scenario {
-    min-width: 86px !important;
-    min-height: 39px !important;
-    font-size: 11px !important;
-    padding-inline: 10px;
-  }
-
-  .scenarioPanel strong::after {
-    display: none;
-  }
-}
-
 </style>
 </head>
 <body>
@@ -1322,16 +1265,12 @@ textarea {
       </div>
 
       <div class="scenarioPanel">
-        <strong>בחר תבנית עבודה</strong>
+        <strong>בחר דוגמה אמיתית</strong>
         <div class="scenarioGrid" id="scenarioGrid">
           <button class="scenario active" data-scenario="dev">DEV</button>
-          <button class="scenario" data-scenario="dkey">DKEY</button>
-          <button class="scenario" data-scenario="song">SONG</button>
-          <button class="scenario" data-scenario="business">BUSINESS</button>
-          <button class="scenario" data-scenario="stam">STAM</button>
-          <button class="scenario" data-scenario="product">PRODUCT</button>
+          <button class="scenario" data-scenario="suno">SONG</button>
           <button class="scenario" data-scenario="safe">SAFE</button>
-          <button class="scenario" data-scenario="message">MESSAGE</button>
+          <button class="scenario" data-scenario="create">STORY</button>
         </div>
         <div class="productSignal">
           <span class="on" id="sigInput">Input</span>
@@ -1437,52 +1376,91 @@ textarea {
     dev: {
       mode: "dev",
       action: "BUILD",
-      text: "יפה מאוד. אני רוצה לבנות את הכל מלא — אבל להתחיל נכון, קטן ונקי.",
-      final: "תבנית DEV מוכנה:\nמצב: BUILD\nכוונה: לבנות הכל בלי להיכנס לכאוס\nהכרעה: מתחילים ביחידה אחת בלבד\nצעד הבא: שינוי קטן → בדיקה → אישור → המשך"
+      text: "תתקן את הדמו בלי להרוס את הכיוון. מעט, מדויק, יפה, ונבדק במובייל.",
+      final: "תוצאה מוכנה לשימוש:\nמצב: DEV\nמטרה: לשפר דמו בלי להעמיס\nפעולה: שינוי קטן ומדויק\nבדיקה: מובייל + דסקטופ\nגבול: לא להוסיף רעש, לא להריץ בלי אישור"
     },
-    dkey: {
-      mode: "dkey",
-      action: "SHAPE",
-      text: "תסדר לי את הדרך שלי לתבנית פעולה קבועה בכל כלי.",
-      final: "תבנית DKey מוכנה:\nקלט: רעיון חופשי של המשתמש\nעיבוד: הפיכה למצב + פעולה + תוצאה\nגבול: בלי auto-run ובלי auto-send\nתוצאה: שיטה אישית שחוזרת בכל מקום"
-    },
-    song: {
+    suno: {
       mode: "suno",
       action: "LYRICS",
-      text: "רעיון לשיר: תמיד אמא. חם, פשוט, ישראלי, בלי דרמה מוגזמת.",
-      final: "תבנית שיר מוכנה:\nשם: תמיד אמא\nרגש: חום, געגוע, תודה\nHook: תמיד אמא, גם כשאני רחוק\nStyle: Hebrew pop · warm vocal · clean mix"
-    },
-    business: {
-      mode: "create",
-      action: "BRIEF",
-      text: "תבנה לי הצעה עסקית קצרה, ברורה, לא מנופחת.",
-      final: "תבנית עסקית מוכנה:\nבעיה: כאב ברור של לקוח\nפתרון: מוצר פשוט להבנה\nערך: חיסכון בזמן / דיוק / שליטה\nסגירה: צעד הבא אחד, בלי לחץ"
-    },
-    stam: {
-      mode: "create",
-      action: "CONCEPT",
-      text: "סדר לי רעיון לסופר סת״ם או בדיקה תמה בצורה מכובדת ומדויקת.",
-      final: "תבנית סת״ם מוכנה:\nשפה: נקייה, מכובדת, לא שיווקית מדי\nמוקד: יראת שמים + דיוק + אחריות\nתוצאה: מסר ברור לסופר / בודק / לקוח\nגבול: בלי הבטחות הלכתיות לא מבוססות"
-    },
-    product: {
-      mode: "create",
-      action: "IMAGE",
-      text: "תנסח לי מוצר כמו DKey או מד קסת ברמה של סטארטאפ גלובלי.",
-      final: "תבנית מוצר מוכנה:\nשם: קצר וזכיר\nמשפט: מה זה עושה בשורה אחת\nדמו: לפני / אחרי / פעולה / תוצאה\nאמון: המשתמש שולט, המערכת מסייעת"
+      text: "רעיון לשיר: תמיד אמא. רגש חם, פשוט, ישראלי, בלי דרמה מוגזמת.",
+      final: "תוצאה מוכנה לשיר:\nשם: תמיד אמא\nהוק: תמיד אמא, גם כשאני רחוק\nבית: קול קטן חוזר אל הדלת\nסגנון: Hebrew pop, warm vocal, 90BPM, clean mix"
     },
     safe: {
       mode: "safe",
       action: "CHECK",
-      text: "בדוק את זה לפני שאני שולח. אל תשלח לבד.",
-      final: "תבנית בטיחות מוכנה:\nבדיקה: האם יש מידע רגיש\nפעולה: לא להריץ ולא לשלוח לבד\nהחלטה: המשתמש מאשר ידנית\nתוצאה: שימוש בטוח, רגוע ומבוקר"
+      text: "בדוק אם יש כאן משהו רגיש לפני שאני שולח. אל תשלח לבד.",
+      final: "תוצאה מוכנה לבדיקה:\nפרטיות: אין שליחה אוטומטית\nפעולה: בדיקה בלבד\nסיכון: מידע אישי/מפתח/API אם קיים\nאישור: המשתמש מחליט אם להמשיך"
     },
-    message: {
-      mode: "dkey",
-      action: "SHORTEN",
-      text: "תנסח לי הודעה אישית, אנושית, בלי חנופה ובלי כבדות.",
-      final: "תבנית הודעה מוכנה:\nפתיחה: פשוטה וישירה\nגוף: משפט אחד עם כוונה ברורה\nטון: אנושי, רגוע, לא מתאמץ\nסיום: פעולה אחת או שאלה אחת"
+    create: {
+      mode: "create",
+      action: "CONCEPT",
+      text: "תבנה מסר מוצר קצר ל־DKey שיראה אמיתי, לא מצגת, ולא רעיון באוויר.",
+      final: "תוצאה מוכנה להצגה:\nDKey היא שכבת פעולה מעל המקלדת.\nהיא הופכת כתיבה טבעית למסלול עבודה.\nהמשתמש בוחר מצב, פעולה, ותוצאה.\nשום דבר לא נשלח בלי אישור."
     }
   };
+
+
+  /* === REAL OUTPUT ENGINE v0.9 === */
+  function compactIntent(raw){
+    const t = (raw || "").trim();
+    if(!t) return "נדרש קלט קצר מהמשתמש";
+
+    if(/הכל|מלא|אינסוף|כולל הכל|לבנות את הכל/.test(t)){
+      return "בקשה רחבה זוהתה — DKey מצמצמת אותה לצעד ראשון ברור";
+    }
+
+    if(t.length > 74){
+      return t.slice(0,74).trim() + "…";
+    }
+
+    return t;
+  }
+
+  modes.dev.output = function(raw){
+    const intent = compactIntent(raw);
+    return "תוצאה מוכנה לשימוש:\n"
+      + "מצב: DEV\n"
+      + "כוונה: " + intent + "\n"
+      + "החלטה: בונים רק יחידה אחת עכשיו\n"
+      + "צעד הבא: תיקון קטן, בדיקה, ואז אישור ידני";
+  };
+
+  modes.suno.output = function(raw){
+    const intent = compactIntent(raw);
+    return "תוצאה מוכנה לשיר:\n"
+      + "רעיון: " + intent + "\n"
+      + "מבנה: בית קצר → הוק → פזמון נקי\n"
+      + "צבע: חם, ישראלי, פשוט\n"
+      + "שימוש: עריכה ואישור לפני יצוא";
+  };
+
+  modes.safe.output = function(raw){
+    const intent = compactIntent(raw);
+    return "תוצאה מוכנה לבדיקה:\n"
+      + "טקסט: " + intent + "\n"
+      + "פרטיות: לא לשלוח אוטומטית\n"
+      + "פעולה: בדיקה בלבד\n"
+      + "החלטה: האדם מאשר או עוצר";
+  };
+
+  modes.create.output = function(raw){
+    const intent = compactIntent(raw);
+    return "תוצאה מוכנה להצגה:\n"
+      + "כוונה: " + intent + "\n"
+      + "מסר: מוצר ברור, לא רעיון מפוזר\n"
+      + "תצוגה: טלפון, שכבות פעולה, תוצאה\n"
+      + "גבול: מעט מילים, הרבה בהירות";
+  };
+
+  modes.dkey.output = function(raw){
+    const intent = compactIntent(raw);
+    return "תוצאה מוכנה — בשליטה שלך:\n"
+      + "כוונה: " + intent + "\n"
+      + "DKey: מסדרת את הכוונה לפעולה\n"
+      + "שימוש: העתקה או המשך ידני\n"
+      + "כלל: שום דבר לא נשלח בלי אישור";
+  };
+
 
   let currentMode="dkey";
   let currentAction="";
