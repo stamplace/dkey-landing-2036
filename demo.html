@@ -1552,6 +1552,49 @@ body.showcase .useResultBtn {
   min-height: 34px !important;
 }
 
+
+/* === SOFT CTA BRAND POLISH v1 === */
+.useResultBtn,
+.useResultBtn.copied,
+.showcaseToggle,
+body.showcase .showcaseToggle {
+  background:
+    linear-gradient(135deg, #d9ffea 0%, #10c86d 58%, #14b8a6 100%) !important;
+  color: #052e1a !important;
+  border: 1px solid rgba(16,200,109,.28) !important;
+  box-shadow:
+    0 14px 34px rgba(16,200,109,.22),
+    inset 0 1px 0 rgba(255,255,255,.55) !important;
+}
+
+.useResultBtn {
+  font-weight: 950 !important;
+}
+
+.useResultBtn:active,
+.showcaseToggle:active {
+  transform: scale(.98);
+}
+
+body.showcase .showcaseToggle {
+  color: #052e1a !important;
+}
+
+.manualOnly {
+  color: #079455 !important;
+  background: rgba(255,255,255,.82) !important;
+  border-color: rgba(16,200,109,.18) !important;
+}
+
+@media(max-width:640px){
+  .useResultBtn,
+  .showcaseToggle {
+    box-shadow:
+      0 10px 24px rgba(16,200,109,.20),
+      inset 0 1px 0 rgba(255,255,255,.55) !important;
+  }
+}
+
 </style>
 </head>
 <body>
