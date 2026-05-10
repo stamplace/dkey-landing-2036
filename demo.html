@@ -994,6 +994,87 @@ textarea {
   }
 }
 
+
+/* === USE RESULT ACTION PATCH v0.7 === */
+.resultActions {
+  margin-top: 11px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.useResultBtn {
+  min-height: 38px;
+  border: 0;
+  border-radius: 15px;
+  background: linear-gradient(135deg,#101828,#1d2939);
+  color: #fff;
+  font-weight: 950;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(16,24,40,.14);
+}
+
+.useResultBtn.copied {
+  background: linear-gradient(135deg,#baffdc,var(--accent));
+  color: #052e1a;
+}
+
+.manualOnly {
+  min-height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(16,24,40,.08);
+  color: #667085;
+  font-size: 10px;
+  font-weight: 900;
+  direction: ltr;
+}
+
+.useToast {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%) translateY(20px);
+  opacity: 0;
+  z-index: 80;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: #101828;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: 0 18px 44px rgba(16,24,40,.22);
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.useToast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media(max-width:640px){
+  .resultActions {
+    margin-top: 8px;
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .useResultBtn {
+    min-height: 34px;
+    font-size: 12px;
+  }
+
+  .manualOnly {
+    min-height: 28px;
+    font-size: 9px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1077,6 +1158,10 @@ textarea {
               <small>תוצאה חיה ש־DKey מכינה לך</small>
               <p id="preparedOutput">בחר מצב ופעולה כדי לראות פלט מסודר.</p>
               <div class="payloadMeter" id="payloadMeter"><span class="on"></span><span></span><span></span><span></span></div>
+              <div class="resultActions">
+                <button class="useResultBtn" id="useResultBtn" type="button">השתמש בתוצאה</button>
+                <span class="manualOnly">manual only</span>
+              </div>
             </div>
           </section>
 
@@ -1289,5 +1374,48 @@ textarea {
   applyScenario("dev");
 })();
 </script>
+<div class="useToast" id="useToast">התוצאה הועתקה. השליחה בידיים שלך.</div>
+
+<script>
+(function(){
+  const btn = document.getElementById("useResultBtn");
+  const out = document.getElementById("preparedOutput");
+  const toast = document.getElementById("useToast");
+  const statusPill = document.getElementById("statusPill");
+
+  if(!btn || !out) return;
+
+  async function copyResult(){
+    const text = (out.innerText || out.textContent || "").trim();
+    if(!text) return;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.textContent = "הועתק ✓";
+    } catch(e) {
+      btn.textContent = "סמן והעתק ידנית";
+    }
+
+    btn.classList.add("copied");
+
+    if(statusPill){
+      statusPill.textContent = "Ready for manual use";
+    }
+
+    if(toast){
+      toast.classList.add("show");
+      setTimeout(()=>toast.classList.remove("show"), 1800);
+    }
+
+    setTimeout(()=>{
+      btn.textContent = "השתמש בתוצאה";
+      btn.classList.remove("copied");
+    }, 2200);
+  }
+
+  btn.addEventListener("click", copyResult);
+})();
+</script>
+
 </body>
 </html>
