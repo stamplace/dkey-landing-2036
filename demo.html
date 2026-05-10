@@ -129,6 +129,344 @@ textarea:focus{border-color:rgba(16,200,109,.45);box-shadow:0 0 0 4px rgba(16,20
 .approve.approved{background:var(--green);color:#052e1a}
 @media(max-width:1120px){.layout{grid-template-columns:1fr}.stage{min-height:720px}.panel{display:none}.principles{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.shell{width:min(100vw - 18px,1280px)}.pills span:not(:first-child){display:none}.layout{padding-top:42px}.story h1{font-size:52px}.lead{font-size:17px}.stage{min-height:610px}.phone{width:min(365px,94vw)}}
+
+/* === MOBILE PRODUCT-FIRST FIT PATCH v0.2 === */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.shell {
+  max-width: 100%;
+}
+
+.stage {
+  width: 100%;
+  justify-items: center;
+  overflow: visible;
+}
+
+.phone {
+  margin-inline: auto;
+  flex: 0 0 auto;
+}
+
+.screen,
+.keyboard,
+.app,
+.output,
+textarea {
+  max-width: 100%;
+}
+
+.tools,
+.modes,
+.actions,
+.keyRow {
+  direction: ltr;
+}
+
+.app,
+.output,
+textarea {
+  direction: rtl;
+}
+
+@media(max-width:640px){
+  body {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(16,200,109,.13), transparent 30%),
+      linear-gradient(180deg,#fff 0%,#f7f8fb 72%,#eef2f6 100%);
+  }
+
+  .shell {
+    width: 100%;
+    padding: 8px 10px 28px;
+  }
+
+  .top {
+    position: relative;
+    top: auto;
+    width: 100%;
+    min-height: 58px;
+    border-radius: 24px;
+    padding: 10px 12px;
+    margin: 0 auto;
+  }
+
+  .brand strong {
+    font-size: 20px;
+  }
+
+  .brand small {
+    font-size: 11px;
+  }
+
+  .logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 13px;
+  }
+
+  .pills span {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 26px 0 8px;
+    align-items: stretch;
+  }
+
+  .story {
+    text-align: right;
+    padding-inline: 2px;
+  }
+
+  .eyebrow {
+    margin-bottom: 12px;
+    font-size: 11px;
+  }
+
+  .story h1 {
+    font-size: clamp(40px, 12vw, 48px);
+    line-height: .92;
+    letter-spacing: -.075em;
+  }
+
+  .lead {
+    margin-top: 14px;
+    font-size: 15.5px;
+    line-height: 1.48;
+    max-width: none;
+  }
+
+  .legendRow {
+    margin-top: 16px;
+    gap: 7px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    flex-wrap: nowrap;
+    direction: ltr;
+    scrollbar-width: none;
+  }
+
+  .legendRow::-webkit-scrollbar {
+    display: none;
+  }
+
+  .legend {
+    flex: 0 0 auto;
+    min-height: 38px;
+    padding: 8px 11px;
+    font-size: 13px;
+  }
+
+  .principles {
+    margin-top: 14px;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    gap: 7px;
+  }
+
+  .principles article {
+    min-height: 78px;
+    border-radius: 18px;
+    padding: 10px 9px;
+  }
+
+  .principles strong {
+    font-size: 20px;
+  }
+
+  .principles span {
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .stage {
+    min-height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8px 0 0;
+  }
+
+  .stage:before {
+    width: min(92vw, 420px);
+    height: min(92vw, 420px);
+    top: 70px;
+  }
+
+  .phone {
+    width: min(352px, calc(100vw - 34px));
+    max-width: calc(100vw - 34px);
+    border-radius: 52px;
+    padding: 9px;
+    box-shadow: 0 30px 70px rgba(16,24,40,.21);
+  }
+
+  .screen {
+    border-radius: 43px;
+  }
+
+  .status {
+    height: 34px;
+    padding: 10px 19px 0;
+    font-size: 11px;
+  }
+
+  .camera {
+    top: 12px;
+    width: 13px;
+    height: 13px;
+  }
+
+  .app {
+    height: 42.5%;
+    padding: 25px 15px 0;
+  }
+
+  .appHead {
+    gap: 8px;
+  }
+
+  .miniLogo {
+    width: 34px;
+    height: 34px;
+  }
+
+  .appBrand strong {
+    font-size: 15px;
+  }
+
+  .appBrand small {
+    font-size: 10.5px;
+  }
+
+  .statusPill {
+    padding: 6px 8px;
+    font-size: 10.5px;
+  }
+
+  .inputLabel {
+    margin-top: 12px;
+    font-size: 11px;
+  }
+
+  textarea {
+    min-height: 66px;
+    border-radius: 18px;
+    padding: 11px;
+    font-size: 13.5px;
+  }
+
+  .output {
+    margin-top: 8px;
+    border-radius: 18px;
+    padding: 10px;
+  }
+
+  .output small {
+    font-size: 10px;
+  }
+
+  .output p {
+    font-size: 12px;
+    line-height: 1.32;
+  }
+
+  .keyboard {
+    height: 53%;
+    padding: 8px;
+    grid-template-rows: 38px 34px 22px 38px 1fr;
+    gap: 6px;
+  }
+
+  .tools,
+  .modes,
+  .actions {
+    gap: 5px;
+  }
+
+  .tools button,
+  .modes button,
+  .actions button {
+    border-radius: 13px;
+    font-size: 10px;
+  }
+
+  .modes {
+    grid-template-columns: 1fr .84fr .96fr 1.08fr .96fr;
+  }
+
+  .actions {
+    grid-template-columns: .62fr .78fr 1.1fr 1fr 1fr 1.08fr;
+  }
+
+  .actions .play {
+    font-size: 14px;
+  }
+
+  .intent {
+    height: 22px;
+    font-size: 9px;
+    padding-inline: 9px;
+  }
+
+  .keys {
+    gap: 5px;
+  }
+
+  .keyRow {
+    gap: 4px;
+  }
+
+  .keyRow.nine {
+    padding: 0 11px;
+  }
+
+  .keyRow.bottom {
+    grid-template-columns: 43px 43px 43px 1fr 43px 43px;
+  }
+
+  .keyRow span {
+    min-height: 38px;
+    border-radius: 11px;
+    font-size: 18px;
+  }
+
+  .keyRow.bottom span {
+    font-size: 12px;
+  }
+}
+
+@media(max-width:380px){
+  .phone {
+    width: min(338px, calc(100vw - 28px));
+  }
+
+  .story h1 {
+    font-size: 39px;
+  }
+
+  .principles {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+
+  .keyRow.bottom {
+    grid-template-columns: 39px 39px 39px 1fr 39px 39px;
+  }
+
+  .keyRow span {
+    min-height: 36px;
+    font-size: 17px;
+  }
+}
+
 </style>
 </head>
 <body>
