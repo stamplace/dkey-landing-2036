@@ -903,6 +903,97 @@ body {
   }
 }
 
+
+/* === TOUCH POLISH PATCH v0.6 === */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+textarea,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+.legend,
+.scenario,
+.mode,
+.actions button,
+.tools button,
+.approve {
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:focus,
+a:focus,
+textarea:focus {
+  outline: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent, #10c86d) 32%, transparent);
+  outline-offset: 3px;
+}
+
+.legend,
+.scenario,
+.mode,
+.actions button,
+.tools button,
+.approve {
+  transition:
+    transform .12s ease,
+    box-shadow .12s ease,
+    background .12s ease,
+    border-color .12s ease,
+    color .12s ease;
+}
+
+.legend:active,
+.scenario:active,
+.mode:active,
+.actions button:active,
+.tools button:active,
+.approve:active {
+  transform: scale(.97);
+}
+
+textarea {
+  caret-color: var(--accentDark, #079455);
+}
+
+.output small::after {
+  content: "LIVE RESULT" !important;
+}
+
+@media(max-width:640px){
+  .top,
+  .legend,
+  .scenario,
+  .mode,
+  .actions button,
+  .tools button,
+  .approve {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+
+  .scenario.active,
+  .legend.active,
+  .mode.active,
+  .actions button.active {
+    box-shadow:
+      0 8px 18px rgba(16,24,40,.08),
+      inset 0 0 0 2px color-mix(in srgb, var(--accent, #10c86d) 28%, transparent) !important;
+  }
+}
+
 </style>
 </head>
 <body>
