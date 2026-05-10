@@ -467,6 +467,149 @@ textarea {
   }
 }
 
+
+/* === LIVE SCENARIO ENGINE PATCH v0.3 === */
+.scenarioPanel {
+  margin-top: 22px;
+  padding: 16px;
+  border-radius: 26px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 28px rgba(16,24,40,.07);
+}
+
+.scenarioPanel strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.scenarioGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 9px;
+}
+
+.scenario {
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  color: #344054;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 7px 16px rgba(16,24,40,.05);
+}
+
+.scenario.active {
+  background: #ecfdf5;
+  color: var(--greenDark);
+  border-color: rgba(16,200,109,.28);
+}
+
+.output p {
+  min-height: 54px;
+}
+
+.productSignal {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 7px;
+}
+
+.productSignal span {
+  min-height: 32px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(16,24,40,.08);
+  display: grid;
+  place-items: center;
+  color: #475467;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.productSignal span.on {
+  color: var(--greenDark);
+  background: #ecfdf5;
+  border-color: rgba(16,200,109,.22);
+}
+
+.mode.active[data-mode="dev"],
+.legend.active[data-mode="dev"] {
+  color: var(--dev);
+  border-color: rgba(20,184,166,.28);
+  background: rgba(20,184,166,.10);
+}
+
+.mode.active[data-mode="suno"],
+.legend.active[data-mode="suno"] {
+  color: var(--suno);
+  border-color: rgba(245,158,11,.28);
+  background: rgba(245,158,11,.10);
+}
+
+.mode.active[data-mode="create"],
+.legend.active[data-mode="create"] {
+  color: var(--create);
+  border-color: rgba(139,92,246,.28);
+  background: rgba(139,92,246,.10);
+}
+
+.mode.active[data-mode="safe"],
+.legend.active[data-mode="safe"] {
+  color: var(--safe);
+  border-color: rgba(14,165,166,.28);
+  background: rgba(14,165,166,.10);
+}
+
+.actions button.active {
+  transform: translateY(-1px);
+}
+
+@media(max-width:640px){
+  .scenarioPanel {
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 22px;
+  }
+
+  .scenarioPanel strong {
+    font-size: 13px;
+  }
+
+  .scenarioGrid {
+    grid-template-columns: repeat(4, max-content);
+    overflow-x: auto;
+    direction: ltr;
+    gap: 7px;
+    scrollbar-width: none;
+  }
+
+  .scenarioGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scenario {
+    min-width: 82px;
+    min-height: 38px;
+    padding: 0 10px;
+    font-size: 12px;
+    flex: 0 0 auto;
+  }
+
+  .productSignal {
+    grid-template-columns: repeat(3,1fr);
+    gap: 6px;
+  }
+
+  .productSignal span {
+    min-height: 28px;
+    font-size: 10px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -499,6 +642,22 @@ textarea {
         <article><strong>03</strong><span>הפעולה שלך</span></article>
         <article><strong>04</strong><span>האישור שלך</span></article>
       </div>
+
+      <div class="scenarioPanel">
+        <strong>בחר תרחיש חי</strong>
+        <div class="scenarioGrid" id="scenarioGrid">
+          <button class="scenario active" data-scenario="dev">DEV</button>
+          <button class="scenario" data-scenario="suno">SUNO</button>
+          <button class="scenario" data-scenario="safe">SAFE</button>
+          <button class="scenario" data-scenario="create">CREATE</button>
+        </div>
+        <div class="productSignal">
+          <span class="on" id="sigInput">Input</span>
+          <span id="sigAction">Action</span>
+          <span id="sigApprove">Approve</span>
+        </div>
+      </div>
+
     </div>
 
     <div class="stage">
@@ -587,6 +746,33 @@ textarea {
     safe:{label:"Safe",target:"privacy / approval / guard",intent:"Safe mode · privacy check → approve → send manually",actions:["CHECK","BLOCK","APPROVE","SEND?"],output:t=>`בדיקת פרטיות: אין שליחה אוטומטית. האדם מאשר ידנית. טקסט: "${t}"`}
   };
 
+  const scenarios = {
+    dev: {
+      mode: "dev",
+      action: "BUILD",
+      text: "תפתח action, תבנה דרך GitHub, תוודא build ולא לשלוח בלי אישור.",
+      final: "DKey מכינה מסלול DEV: INSPECT → PICK → BUILD → VERIFY. שינוי קטן, בדיקה, ואז commit/push ידני."
+    },
+    suno: {
+      mode: "suno",
+      action: "LYRICS",
+      text: "רעיון לשיר: תמיד אמא. תן מילים, הוק, וסגנון קצר להטמעה.",
+      final: "DKey מכינה מסלול SUNO: רעיון → מילים → הוק → סגנון. הכל נשאר לעריכה ואישור לפני יצוא."
+    },
+    safe: {
+      mode: "safe",
+      action: "CHECK",
+      text: "אל תעתיק ממני. תבין אותי ותעשה מותאם אליי.",
+      final: "DKey מכינה בדיקת פרטיות: לא נשלח לבד, לא מורץ לבד, והמשתמש מאשר כל פעולה."
+    },
+    create: {
+      mode: "create",
+      action: "CONCEPT",
+      text: "בנה לי דמו מוצר ברור, בהיר, חי, שמראה שליטה ובדידים.",
+      final: "DKey מכינה קונספט: בריף → דימוי → שכבות פעולה → בדידים → תוצאה מוכנה להצגה."
+    }
+  };
+
   let currentMode="dkey";
   let currentAction="";
 
@@ -603,6 +789,10 @@ textarea {
   const approveBtn=document.getElementById("approveBtn");
   const approveHint=document.getElementById("approveHint");
   const routeItems=Array.from(document.querySelectorAll("#route li"));
+  const scenarioButtons=Array.from(document.querySelectorAll("#scenarioGrid .scenario"));
+  const sigInput=document.getElementById("sigInput");
+  const sigAction=document.getElementById("sigAction");
+  const sigApprove=document.getElementById("sigApprove");
 
   function text(){return liveInput.value.trim()||"המשתמש עדיין לא כתב";}
   function updateOutput(){
@@ -616,6 +806,7 @@ textarea {
     approveHint.textContent="אין auto-run. אין auto-send.";
     statusPill.textContent="Human in control";
     routeItems.forEach((item,i)=>item.classList.toggle("done",i<2));
+    if(sigApprove) sigApprove.classList.remove("on");
   }
   function chooseAction(action,btn){
     currentAction=action;
@@ -627,8 +818,32 @@ textarea {
     approveBtn.textContent="אשר ידנית";
     approveBtn.classList.remove("approved");
     approveHint.textContent="פעולה נבחרה. ממתין לאישור האדם.";
+    if(sigAction) sigAction.classList.add("on");
+    if(sigApprove) sigApprove.classList.remove("on");
     updateOutput();
   }
+
+  function pickActionByName(actionName){
+    const btn=Array.from(actionRow.querySelectorAll(".act")).find(b=>b.textContent===actionName);
+    if(btn) chooseAction(actionName,btn);
+  }
+
+  function applyScenario(name){
+    const sc=scenarios[name];
+    if(!sc) return;
+
+    scenarioButtons.forEach(btn=>btn.classList.toggle("active",btn.dataset.scenario===name));
+    liveInput.value=sc.text;
+    beadInput.textContent="טעון";
+    if(sigInput) sigInput.classList.add("on");
+    if(sigAction) sigAction.classList.remove("on");
+    if(sigApprove) sigApprove.classList.remove("on");
+
+    setMode(sc.mode);
+    pickActionByName(sc.action);
+    output.textContent=sc.final;
+  }
+
   function renderActions(){
     actionRow.innerHTML="";
     const clip=document.createElement("button"); clip.textContent="📋"; actionRow.appendChild(clip);
@@ -667,9 +882,13 @@ textarea {
     approveHint.textContent="עכשיו המשתמש יכול להעתיק/לשלוח ידנית.";
     statusPill.textContent="Approved by user";
     routeItems.forEach(i=>i.classList.add("done"));
+    if(sigApprove) sigApprove.classList.add("on");
   });
 
+  scenarioButtons.forEach(btn=>btn.addEventListener("click",()=>applyScenario(btn.dataset.scenario)));
+
   setMode("dkey");
+  applyScenario("dev");
 })();
 </script>
 </body>
