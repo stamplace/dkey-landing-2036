@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DKey Demo — Live Command Layer</title>
+  <meta name="description" content="דמו חי של DKey: כתיבה, בחירת מצב, בחירת פעולה, בדידים, ואישור אנושי." />
+  <link rel="stylesheet" href="assets/demo.css" />
+</head>
+<body>
+  <main class="demoShell">
+    <header class="demoTop">
+      <a class="brand" href="index.html">
+        <span class="logo"></span>
+        <span>
+          <strong>DKey</strong>
+          <small>Live Product Demo</small>
+        </span>
+      </a>
+
+      <div class="topPills">
+        <span>Tap once</span>
+        <span>Use everywhere</span>
+        <span>No auto-send</span>
+      </div>
+    </header>
+
+    <section class="heroDemo">
+      <div class="story">
+        <p class="eyebrow">LIVE PRODUCT · NOT A CONCEPT</p>
+        <h1>כתוב פעם אחת. הפעל בכל מקום.</h1>
+        <p class="lead">
+          זה הדמו של DKey: שכבת פעולה מעל המקלדת.
+          המשתמש כותב רגיל, בוחר מצב, בוחר פעולה, רואה בדידים ננעלים —
+          ורק אז מאשר.
+        </p>
+
+        <div class="modeLegend">
+          <button class="legend isActive" data-mode="dkey"><b></b>DKey</button>
+          <button class="legend" data-mode="dev"><b></b>DEV</button>
+          <button class="legend" data-mode="suno"><b></b>SUNO</button>
+          <button class="legend" data-mode="create"><b></b>Create</button>
+          <button class="legend" data-mode="safe"><b></b>Safe</button>
+        </div>
+
+        <div class="principles">
+          <article>
+            <strong>01</strong>
+            <span>הקלט שלך</span>
+          </article>
+          <article>
+            <strong>02</strong>
+            <span>המצב שלך</span>
+          </article>
+          <article>
+            <strong>03</strong>
+            <span>הפעולה שלך</span>
+          </article>
+          <article>
+            <strong>04</strong>
+            <span>האישור שלך</span>
+          </article>
+        </div>
+      </div>
+
+      <div class="liveStage">
+        <aside class="sidePanel rightPanel">
+          <div class="panelTitle">
+            <span class="dot"></span>
+            <strong>בדידים חיים</strong>
+          </div>
+
+          <div class="beads" id="beads">
+            <div class="bead on"><span>Input</span><b id="beadInput">טעון</b></div>
+            <div class="bead on"><span>Mode</span><b id="beadMode">DKey</b></div>
+            <div class="bead"><span>Action</span><b id="beadAction">בחר</b></div>
+            <div class="bead"><span>Approval</span><b id="beadApproval">ממתין</b></div>
+          </div>
+
+          <div class="miniNote">
+            בדיד הוא החלטה קטנה שננעלת:
+            הקשר, מצב, פעולה, אישור.
+          </div>
+        </aside>
+
+        <section class="phone" aria-label="DKey live phone demo">
+          <div class="screen">
+            <div class="camera"></div>
+            <div class="status"><span>22:21</span><span>5G 100%</span></div>
+
+            <section class="appArea">
+              <div class="appHeader">
+                <div class="appBrand">
+                  <span class="miniLogo"></span>
+                  <span>
+                    <strong>DKey Active</strong>
+                    <small id="targetLabel">GPT / any text field</small>
+                  </span>
+                </div>
+                <span class="statusPill" id="statusPill">Human in control</span>
+              </div>
+
+              <label class="inputLabel" for="liveInput">כתוב כאן כמו משתמש אמיתי</label>
+              <textarea id="liveInput" rows="3">אל תעתיק ממני. תבין אותי ותעשה מותאם אליי.</textarea>
+
+              <div class="outputCard" id="outputCard">
+                <small>מה DKey מכינה לשליחה ידנית</small>
+                <p id="preparedOutput">בחר מצב ופעולה כדי לראות פלט מסודר.</p>
+              </div>
+            </section>
+
+            <section class="keyboard">
+              <div class="toolsRow">
+                <button>···</button>
+                <button>⌕</button>
+                <button>MIC</button>
+                <button>HE</button>
+                <button>CLIP</button>
+                <button>✦</button>
+                <button>ABC</button>
+              </div>
+
+              <div class="modeRow" id="phoneModes">
+                <button class="mode dkey isActive" data-mode="dkey">DKey</button>
+                <button class="mode dev" data-mode="dev">DEV</button>
+                <button class="mode suno" data-mode="suno">SUNO</button>
+                <button class="mode create" data-mode="create">Create</button>
+                <button class="mode safe" data-mode="safe">Safe</button>
+              </div>
+
+              <div class="intentLine" id="intentLine">DKey mode · choose action · approve manually</div>
+
+              <div class="actionRow" id="actionRow"></div>
+
+              <div class="keyRows">
+                <div class="keyRow ten">
+                  <span>q</span><span>w</span><span>e</span><span>r</span><span>t</span><span>y</span><span>u</span><span>i</span><span>o</span><span>p</span>
+                </div>
+                <div class="keyRow ten">
+                  <span>a</span><span>s</span><span>d</span><span>f</span><span>g</span><span>h</span><span>j</span><span>k</span><span>l</span><span>⌫</span>
+                </div>
+                <div class="keyRow nine">
+                  <span>⇧</span><span>z</span><span>x</span><span>c</span><span>v</span><span>b</span><span>n</span><span>m</span><span>⌧</span>
+                </div>
+                <div class="keyRow bottom">
+                  <span>123</span><span>☺</span><span>,</span><span class="space">‹ English ›</span><span>.</span><span>↵</span>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <aside class="sidePanel leftPanel">
+          <div class="panelTitle">
+            <span class="dot"></span>
+            <strong>מסלול פעולה</strong>
+          </div>
+
+          <ol class="route" id="route">
+            <li class="done">קלט נקרא</li>
+            <li class="done">מצב נבחר</li>
+            <li>פעולה נבחרת</li>
+            <li>ממתין לאישור</li>
+          </ol>
+
+          <button class="approveBtn" id="approveBtn">אשר ידנית</button>
+          <p class="approveHint" id="approveHint">אין auto-run. אין auto-send.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/demo.js"></script>
+</body>
+</html>
