@@ -1552,6 +1552,94 @@ body.showcase .useResultBtn {
   min-height: 34px !important;
 }
 
+
+/* === PERFECT USE CASE PATCH v1 === */
+
+/* מצב הצגה: הכפתור לא צף על המקלדת */
+body.showcase .showcaseToggle {
+  position: static !important;
+  transform: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: max-content !important;
+  min-width: 150px !important;
+  margin: 18px auto 28px !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+/* כששולחים קישור #show — בלי כפתור בכלל, רק מוצר נקי */
+body.share-view .showcaseToggle {
+  display: none !important;
+}
+
+body.showcase .layout {
+  padding-bottom: 18px !important;
+}
+
+body.showcase .stage {
+  padding-bottom: 0 !important;
+}
+
+/* כרטיס תוצאה: נשימה, לא דחוס */
+.output {
+  padding: 14px !important;
+}
+
+#preparedOutput {
+  max-height: 68px !important;
+  font-size: 12.4px !important;
+  line-height: 1.43 !important;
+  font-weight: 760 !important;
+}
+
+/* כפתור העתקה תמיד ברור */
+.useResultBtn {
+  background: linear-gradient(135deg,#101828,#1d2939) !important;
+  color: #fff !important;
+  letter-spacing: .01em;
+}
+
+.useResultBtn.copied {
+  background: linear-gradient(135deg,#baffdc,var(--accent,#10c86d)) !important;
+  color: #052e1a !important;
+}
+
+/* פחות תחושת עומס בכרטיס */
+.output small {
+  margin-bottom: 2px !important;
+}
+
+.output small::after {
+  content: "READY" !important;
+}
+
+/* מובייל: שומר על תוצאה קצרה וכפתור גלוי */
+@media(max-width:640px){
+  body.showcase .showcaseToggle {
+    margin: 14px auto 24px !important;
+    min-height: 42px !important;
+  }
+
+  .output {
+    min-height: 132px !important;
+    max-height: 144px !important;
+  }
+
+  #preparedOutput {
+    max-height: 48px !important;
+    font-size: 11.1px !important;
+    line-height: 1.32 !important;
+  }
+
+  .useResultBtn {
+    min-height: 34px !important;
+    font-size: 12px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1635,11 +1723,11 @@ body.showcase .useResultBtn {
             <textarea id="liveInput">אל תעתיק ממני. תבין אותי ותעשה מותאם אליי.</textarea>
 
             <div class="output">
-              <small>תוצאה מוכנה — בשליטה שלך</small>
+              <small>תוצאה מוכנה בשליטה שלך</small>
               <p id="preparedOutput">בחר מצב ופעולה כדי לראות פלט מסודר.</p>
               <div class="payloadMeter" id="payloadMeter"><span class="on"></span><span></span><span></span><span></span></div>
               <div class="resultActions">
-                <button class="useResultBtn" id="useResultBtn" type="button">העתק תוצאה</button>
+                <button class="useResultBtn" id="useResultBtn" type="button">העתק</button>
                 <span class="manualOnly">manual only</span>
               </div>
             </div>
@@ -1701,7 +1789,11 @@ body.showcase .useResultBtn {
       mode: "dev",
       action: "BUILD",
       text: "תתקן את הדמו בלי להרוס את הכיוון. מעט, מדויק, יפה, ונבדק במובייל.",
-      final: "תוצאה מוכנה לשימוש:\nמצב: DEV\nמטרה: לשפר דמו בלי להעמיס\nפעולה: שינוי קטן ומדויק\nבדיקה: מובייל + דסקטופ\nגבול: לא להוסיף רעש, לא להריץ בלי אישור"
+      final: "תוצאה מוכנה לשימוש:
+מטרה: לשפר בלי להעמיס
+פעולה: שינוי קטן ומדויק
+בדיקה: מובייל + דסקטופ
+אישור: ידני בלבד"
     },
     suno: {
       mode: "suno",
@@ -1741,12 +1833,11 @@ body.showcase .useResultBtn {
   }
 
   modes.dev.output = function(raw){
-    const intent = compactIntent(raw);
     return "תוצאה מוכנה לשימוש:\n"
-      + "מצב: DEV\n"
-      + "כוונה: " + intent + "\n"
-      + "החלטה: בונים רק יחידה אחת עכשיו\n"
-      + "צעד הבא: תיקון קטן, בדיקה, ואז אישור ידני";
+      + "מטרה: לשפר בלי להעמיס\n"
+      + "פעולה: שינוי קטן ומדויק\n"
+      + "בדיקה: מובייל + דסקטופ\n"
+      + "אישור: ידני בלבד";
   };
 
   modes.suno.output = function(raw){
@@ -1778,7 +1869,7 @@ body.showcase .useResultBtn {
 
   modes.dkey.output = function(raw){
     const intent = compactIntent(raw);
-    return "תוצאה מוכנה — בשליטה שלך:\n"
+    return "תוצאה מוכנה בשליטה שלך:\n"
       + "כוונה: " + intent + "\n"
       + "DKey: מסדרת את הכוונה לפעולה\n"
       + "שימוש: העתקה או המשך ידני\n"
@@ -1951,7 +2042,7 @@ body.showcase .useResultBtn {
     }
 
     setTimeout(()=>{
-      btn.textContent = "העתק תוצאה";
+      btn.textContent = "העתק";
       btn.classList.remove("copied");
     }, 2200);
   }
