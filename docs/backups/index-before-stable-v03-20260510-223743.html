@@ -1,0 +1,983 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DKey — Tap once. Use everywhere.</title>
+<meta name="description" content="DKey היא שכבת פעולה מעל המקלדת. המשך טבעי לכל מודל וכל כלי — השליטה אצלך, הפרטיות אצלך." />
+<style>
+:root{
+  --bg:#f7f8fb;
+  --paper:#ffffff;
+  --ink:#101828;
+  --muted:#667085;
+  --soft:#eef2f6;
+  --line:rgba(16,24,40,.10);
+  --green:#10c86d;
+  --green-dark:#079455;
+  --green-soft:#e9fff3;
+  --blue:#2377ff;
+  --purple:#8b5cf6;
+  --orange:#f59e0b;
+  --shadow:0 28px 90px rgba(16,24,40,.13);
+  --shadow-soft:0 12px 36px rgba(16,24,40,.10);
+  --radius:32px;
+  --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:var(--font);
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 5%, rgba(16,200,109,.16), transparent 28%),
+    radial-gradient(circle at 88% 10%, rgba(139,92,246,.10), transparent 30%),
+    radial-gradient(circle at 50% 92%, rgba(35,119,255,.08), transparent 34%),
+    linear-gradient(180deg,#fff 0%,#f7f8fb 58%,#eef2f7 100%);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(rgba(16,24,40,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16,24,40,.035) 1px, transparent 1px);
+  background-size:48px 48px;
+  mask-image:radial-gradient(circle at center,black 0%,transparent 80%);
+  opacity:.55;
+  z-index:-2;
+}
+.noise{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.08;
+  mix-blend-mode:multiply;
+  z-index:-1;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+}
+a{color:inherit}
+.shell{
+  width:min(1240px,calc(100vw - 28px));
+  margin:0 auto;
+}
+.nav{
+  position:sticky;
+  top:14px;
+  z-index:30;
+  margin:14px auto 0;
+  width:min(1120px,calc(100vw - 28px));
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:12px 14px;
+  border:1px solid rgba(16,24,40,.08);
+  border-radius:28px;
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(24px);
+  box-shadow:0 14px 46px rgba(16,24,40,.10);
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  direction:ltr;
+}
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:15px;
+  background:linear-gradient(145deg,#22df82,#05a958);
+  position:relative;
+  box-shadow:0 14px 30px rgba(16,200,109,.26), inset 0 1px 0 rgba(255,255,255,.58);
+}
+.logo:before{
+  content:"";
+  position:absolute;
+  left:13px;
+  top:12px;
+  width:5px;
+  height:22px;
+  border-radius:5px;
+  background:#fff;
+  box-shadow:9px -5px 0 #fff,18px 4px 0 #fff;
+}
+.logo:after{
+  content:"";
+  position:absolute;
+  right:6px;
+  top:6px;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#fff;
+}
+.brand b{
+  font-size:22px;
+  letter-spacing:-.04em;
+}
+.brand span{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+  margin-top:1px;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.nav-links a{
+  text-decoration:none;
+  color:#475467;
+  font-size:14px;
+  padding:9px 12px;
+  border-radius:999px;
+}
+.nav-links a:hover{
+  background:#f2f4f7;
+}
+.nav-cta{
+  background:#101828!important;
+  color:white!important;
+  box-shadow:0 10px 24px rgba(16,24,40,.16);
+}
+.hero{
+  min-height:calc(100vh - 86px);
+  display:grid;
+  grid-template-columns:.92fr 1.08fr;
+  align-items:center;
+  gap:54px;
+  padding:68px 0 72px;
+}
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:9px 13px;
+  border-radius:999px;
+  border:1px solid rgba(16,200,109,.25);
+  background:rgba(16,200,109,.08);
+  color:var(--green-dark);
+  font-weight:800;
+  font-size:13px;
+  direction:ltr;
+}
+.kicker:before{
+  content:"";
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 0 7px rgba(16,200,109,.10);
+}
+.hero h1{
+  margin:22px 0 0;
+  font-size:clamp(54px,7vw,104px);
+  line-height:.9;
+  letter-spacing:-.085em;
+}
+.hero h1 .grad{
+  display:inline-block;
+  color:transparent;
+  background:linear-gradient(90deg,#101828,#079455 60%,#22c55e);
+  -webkit-background-clip:text;
+  background-clip:text;
+}
+.hero p{
+  margin:24px 0 0;
+  max-width:650px;
+  color:#344054;
+  font-size:clamp(18px,1.8vw,25px);
+  line-height:1.55;
+}
+.hero-actions{
+  margin-top:30px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:52px;
+  padding:14px 18px;
+  border-radius:18px;
+  border:1px solid rgba(16,24,40,.10);
+  text-decoration:none;
+  font-weight:850;
+  box-shadow:var(--shadow-soft);
+  background:white;
+}
+.btn.primary{
+  background:#101828;
+  color:white;
+  border-color:#101828;
+}
+.btn.green{
+  background:linear-gradient(135deg,#baffdc,#10c86d);
+  color:#052e1a;
+  border:0;
+}
+.trust-row{
+  margin-top:22px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+.trust{
+  padding:9px 12px;
+  border-radius:999px;
+  background:white;
+  border:1px solid rgba(16,24,40,.08);
+  color:#475467;
+  font-size:13px;
+  box-shadow:0 8px 20px rgba(16,24,40,.06);
+}
+.trust b{color:#079455}
+.visual{
+  min-height:760px;
+  position:relative;
+  display:grid;
+  place-items:center;
+}
+.halo{
+  position:absolute;
+  width:720px;
+  height:720px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(16,200,109,.18), transparent 42%),
+    conic-gradient(from 180deg, rgba(16,200,109,.18), rgba(139,92,246,.12), rgba(35,119,255,.10), rgba(16,200,109,.18));
+  filter:blur(10px);
+  opacity:.55;
+  animation:slowSpin 22s linear infinite;
+}
+@keyframes slowSpin{to{transform:rotate(360deg)}}
+.phone{
+  width:min(430px,88vw);
+  aspect-ratio:9/19.2;
+  border-radius:58px;
+  padding:10px;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.72),rgba(255,255,255,.06) 18%,rgba(0,0,0,.34) 72%),
+    linear-gradient(145deg,#151b25,#303948 50%,#05070b);
+  box-shadow:
+    0 46px 110px rgba(16,24,40,.28),
+    0 0 80px rgba(16,200,109,.13),
+    inset 0 0 0 1px rgba(255,255,255,.24);
+  position:relative;
+  transform:translateZ(0);
+  animation:floatPhone 7s ease-in-out infinite;
+}
+@keyframes floatPhone{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+}
+.screen{
+  position:relative;
+  width:100%;
+  height:100%;
+  border-radius:48px;
+  overflow:hidden;
+  background:#f8fafc;
+  box-shadow:inset 0 0 0 1px rgba(16,24,40,.08);
+}
+.camera{
+  position:absolute;
+  top:13px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:10;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#06070a;
+  box-shadow:0 0 0 3px rgba(0,0,0,.06);
+}
+.status{
+  height:38px;
+  padding:11px 22px 0;
+  display:flex;
+  justify-content:space-between;
+  direction:ltr;
+  font-size:12px;
+  color:#101828;
+  font-weight:850;
+  background:white;
+}
+.app{
+  height:41.5%;
+  background:linear-gradient(180deg,#fff,#f7f9fc);
+  padding:28px 18px 0;
+  border-bottom:1px solid rgba(16,24,40,.08);
+}
+.app-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  direction:ltr;
+}
+.app-id{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.mini-logo{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:linear-gradient(145deg,#22df82,#05a958);
+  position:relative;
+  box-shadow:0 8px 20px rgba(16,200,109,.18);
+}
+.mini-logo:before{
+  content:"";
+  position:absolute;
+  left:11px;
+  top:10px;
+  width:4px;
+  height:20px;
+  border-radius:5px;
+  background:#fff;
+  box-shadow:8px -4px 0 #fff,16px 4px 0 #fff;
+}
+.app-id b{
+  display:block;
+  color:#101828;
+  font-size:17px;
+  letter-spacing:-.03em;
+}
+.app-id span{
+  display:block;
+  color:#667085;
+  font-size:12px;
+}
+.active{
+  padding:7px 10px;
+  border-radius:999px;
+  background:#ecfdf5;
+  color:#079455;
+  border:1px solid rgba(16,200,109,.18);
+  font-size:12px;
+  font-weight:850;
+}
+.bubble{
+  margin-top:22px;
+  min-height:126px;
+  border-radius:24px;
+  background:#eafff3;
+  border:1px solid rgba(16,200,109,.22);
+  padding:18px;
+  color:#101828;
+  font-size:18px;
+  line-height:1.38;
+  box-shadow:0 12px 28px rgba(16,24,40,.07);
+}
+.cursor{
+  display:inline-block;
+  width:6px;
+  height:22px;
+  border-radius:3px;
+  background:#079455;
+  vertical-align:-4px;
+  animation:blink .8s steps(2,start) infinite;
+}
+@keyframes blink{50%{opacity:0}}
+.keyboard{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:54%;
+  background:#f7f8fa;
+  padding:9px;
+  display:grid;
+  grid-template-rows:42px 38px 24px 42px 1fr;
+  gap:7px;
+}
+.icons,.modes,.actions{display:grid;gap:6px}
+.icons{grid-template-columns:repeat(7,1fr)}
+.modes{grid-template-columns:1fr .85fr .95fr .95fr 1.1fr .95fr}
+.actions{grid-template-columns:.7fr .9fr 1.1fr 1.35fr 1.1fr .8fr}
+.icon,.mode,.action,.key{
+  min-width:0;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.icon{
+  border-radius:14px;
+  background:white;
+  color:#101828;
+  display:grid;
+  place-items:center;
+  font-size:12px;
+  font-weight:850;
+  box-shadow:0 4px 10px rgba(16,24,40,.08);
+}
+.mode{
+  border-radius:13px;
+  background:#edf0f4;
+  color:#667085;
+  display:grid;
+  place-items:center;
+  font-size:11px;
+  font-weight:900;
+}
+.mode.dkey{color:#079455}
+.mode.on{
+  background:white;
+  color:#079455;
+  box-shadow:0 0 0 2px rgba(16,200,109,.18);
+}
+.mode.sun{color:#d97706}
+.intent-line{
+  height:24px;
+  border-radius:999px;
+  background:#06170f;
+  color:#bcf7d2;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:0 10px;
+  direction:ltr;
+  font-size:10px;
+  overflow:hidden;
+}
+.intent-line span{
+  opacity:.88;
+  white-space:nowrap;
+}
+.action{
+  border-radius:14px;
+  background:#ecfdf5;
+  color:#079455;
+  display:grid;
+  place-items:center;
+  font-size:11px;
+  font-weight:900;
+  border:1px solid rgba(16,200,109,.16);
+}
+.action.play{
+  background:#10c86d;
+  color:white;
+  font-size:16px;
+  box-shadow:0 10px 22px rgba(16,200,109,.25);
+}
+.action.sel{
+  background:white;
+  color:#079455;
+  box-shadow:0 0 0 2px rgba(16,200,109,.22);
+}
+.keys{
+  display:grid;
+  gap:6px;
+}
+.row{display:grid;gap:5px}
+.r1,.r2{grid-template-columns:repeat(10,1fr)}
+.r3{grid-template-columns:repeat(9,1fr);padding:0 14px}
+.r4{grid-template-columns:48px 48px 48px 1fr 48px 48px}
+.key{
+  border-radius:12px;
+  background:white;
+  min-height:42px;
+  display:grid;
+  place-items:center;
+  color:#101828;
+  font-size:20px;
+  box-shadow:0 4px 9px rgba(16,24,40,.10);
+}
+.key.small{font-size:13px;font-weight:850}
+.key.space{font-size:13px;color:#344054}
+.float{
+  position:absolute;
+  width:230px;
+  border-radius:26px;
+  padding:16px;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:blur(22px);
+  border:1px solid rgba(16,24,40,.08);
+  box-shadow:0 20px 70px rgba(16,24,40,.12);
+}
+.float h3{
+  margin:0 0 7px;
+  font-size:17px;
+  letter-spacing:-.03em;
+}
+.float p{
+  margin:0;
+  color:#667085;
+  font-size:13px;
+  line-height:1.45;
+}
+.f1{top:110px;right:0}
+.f2{bottom:150px;left:0}
+.f3{bottom:20px;right:18px}
+.tool-strip{
+  margin-top:18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+}
+.tool{
+  padding:9px 12px;
+  border-radius:999px;
+  background:white;
+  border:1px solid rgba(16,24,40,.08);
+  color:#475467;
+  font-size:13px;
+  box-shadow:0 8px 20px rgba(16,24,40,.06);
+}
+.section{
+  padding:104px 0;
+}
+.section h2{
+  margin:0;
+  font-size:clamp(40px,5.4vw,78px);
+  line-height:.96;
+  letter-spacing:-.07em;
+}
+.lead{
+  margin:18px 0 0;
+  max-width:840px;
+  color:#475467;
+  font-size:21px;
+  line-height:1.6;
+}
+.cards{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.card{
+  min-height:270px;
+  padding:26px;
+  border-radius:34px;
+  background:white;
+  border:1px solid rgba(16,24,40,.08);
+  box-shadow:var(--shadow-soft);
+  position:relative;
+  overflow:hidden;
+}
+.card:after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  left:-70px;
+  bottom:-80px;
+  background:rgba(16,200,109,.09);
+}
+.card b{
+  display:inline-flex;
+  margin-bottom:18px;
+  color:#079455;
+  font-size:13px;
+  font-weight:950;
+  direction:ltr;
+}
+.card h3{
+  margin:0 0 12px;
+  font-size:27px;
+  letter-spacing:-.04em;
+}
+.card p{
+  margin:0;
+  color:#667085;
+  line-height:1.6;
+}
+.flow{
+  display:grid;
+  gap:14px;
+  margin-top:36px;
+}
+.flow-step{
+  display:grid;
+  grid-template-columns:104px 1fr;
+  gap:18px;
+  align-items:center;
+  padding:18px;
+  border-radius:30px;
+  background:white;
+  border:1px solid rgba(16,24,40,.08);
+  box-shadow:0 12px 32px rgba(16,24,40,.06);
+}
+.num{
+  height:76px;
+  border-radius:22px;
+  background:#101828;
+  color:white;
+  display:grid;
+  place-items:center;
+  font-weight:950;
+  font-size:26px;
+  direction:ltr;
+}
+.flow-step h3{
+  margin:0 0 7px;
+  font-size:24px;
+  letter-spacing:-.03em;
+}
+.flow-step p{
+  margin:0;
+  color:#667085;
+  line-height:1.55;
+}
+.compare{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:36px;
+}
+.compare-box{
+  padding:28px;
+  border-radius:34px;
+  border:1px solid rgba(16,24,40,.08);
+  box-shadow:var(--shadow-soft);
+}
+.compare-box.old{
+  background:#f2f4f7;
+}
+.compare-box.new{
+  background:#ecfdf5;
+  border-color:rgba(16,200,109,.20);
+}
+.compare-box h3{
+  margin:0 0 14px;
+  font-size:28px;
+  letter-spacing:-.04em;
+}
+.compare-box ul{
+  margin:0;
+  padding:0 22px 0 0;
+  color:#475467;
+  line-height:1.9;
+}
+.final{
+  padding:110px 0 132px;
+  text-align:center;
+}
+.final-box{
+  border-radius:46px;
+  padding:76px 34px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(16,200,109,.16), transparent 42%),
+    white;
+  border:1px solid rgba(16,24,40,.08);
+  box-shadow:var(--shadow);
+}
+.final h2{
+  margin:0;
+  font-size:clamp(44px,6vw,88px);
+  line-height:.95;
+  letter-spacing:-.075em;
+}
+.final p{
+  margin:22px auto 0;
+  max-width:850px;
+  color:#475467;
+  font-size:22px;
+  line-height:1.58;
+}
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+.reveal.on{
+  opacity:1;
+  transform:translateY(0);
+}
+@media(max-width:1020px){
+  .hero{grid-template-columns:1fr;gap:22px;padding-top:52px}
+  .visual{min-height:700px}
+  .float{display:none}
+  .cards{grid-template-columns:1fr}
+  .compare{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .nav-links a:not(.nav-cta){display:none}
+  .shell{width:min(100vw - 18px,1240px)}
+  .hero h1{font-size:54px}
+  .hero p{font-size:17px}
+  .visual{min-height:610px}
+  .phone{width:min(365px,94vw);animation:none}
+  .halo{width:500px;height:500px}
+  .section{padding:72px 0}
+  .flow-step{grid-template-columns:1fr}
+  .nav{top:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .phone,.halo,.cursor{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+
+<header class="nav">
+  <div class="brand">
+    <div class="logo"></div>
+    <div>
+      <b>DKey</b>
+      <span>private command layer</span>
+    </div>
+  </div>
+  <nav class="nav-links">
+    <a href="#why">למה</a>
+    <a href="#layers">השכבות</a>
+    <a href="#flow">איך עובד</a>
+    <a class="nav-cta" href="#final">Tap once</a>
+  </nav>
+</header>
+
+<main class="shell">
+  <section class="hero">
+    <div class="reveal">
+      <div class="kicker">TAP ONCE · USE EVERYWHERE</div>
+      <h1>המשך טבעי לכל מודל. <span class="grad">השליטה אצלך.</span></h1>
+      <p>
+        DKey היא שכבת פעולה מעל המקלדת.  
+        לא משנה אם אתה עובד עם GPT, מודל אחר, יוטיוב, וואטסאפ, קוד, מוזיקה או עסק —
+        אתה כותב רגיל, בוחר פעולה, מאשר, ומשתמש באותה שיטת עבודה בכל מקום.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn green" href="#layers">לראות את שכבת הפעולה</a>
+        <a class="btn primary" href="#flow">איך זה עובד</a>
+      </div>
+
+      <div class="trust-row">
+        <div class="trust"><b>Privacy</b> אצלך</div>
+        <div class="trust"><b>No auto-send</b></div>
+        <div class="trust"><b>No auto-run</b></div>
+        <div class="trust"><b>Human approval</b></div>
+      </div>
+
+      <div class="tool-strip">
+        <div class="tool">GPT</div>
+        <div class="tool">Claude</div>
+        <div class="tool">Gemini</div>
+        <div class="tool">WhatsApp</div>
+        <div class="tool">YouTube</div>
+        <div class="tool">GitHub</div>
+        <div class="tool">Suno</div>
+        <div class="tool">Any text field</div>
+      </div>
+    </div>
+
+    <div class="visual reveal">
+      <div class="halo"></div>
+
+      <div class="phone" aria-label="DKey product mockup">
+        <div class="screen">
+          <div class="camera"></div>
+          <div class="status"><span>22:21</span><span>5G 100%</span></div>
+
+          <div class="app">
+            <div class="app-top">
+              <div class="app-id">
+                <div class="mini-logo"></div>
+                <div>
+                  <b>DKey Active</b>
+                  <span>one layer · any tool</span>
+                </div>
+              </div>
+              <div class="active">You choose</div>
+            </div>
+
+            <div class="bubble">
+              <span id="typed"></span><span class="cursor"></span>
+            </div>
+          </div>
+
+          <div class="keyboard">
+            <div class="icons">
+              <div class="icon">⋯</div>
+              <div class="icon">⌕</div>
+              <div class="icon">MIC</div>
+              <div class="icon">HE</div>
+              <div class="icon">CLIP</div>
+              <div class="icon">✦</div>
+              <div class="icon">ABC</div>
+            </div>
+
+            <div class="modes">
+              <div class="mode dkey">DKey</div>
+              <div class="mode on">DEV</div>
+              <div class="mode sun">SUNO</div>
+              <div class="mode">HE+</div>
+              <div class="mode">Create</div>
+              <div class="mode">Safe</div>
+            </div>
+
+            <div class="intent-line"><span>רצף טעון מוכן · select mode → choose action → approve</span></div>
+
+            <div class="actions">
+              <div class="action">📋</div>
+              <div class="action play">▶</div>
+              <div class="action sel">INSPECT</div>
+              <div class="action">PICK</div>
+              <div class="action">BUILD</div>
+              <div class="action">VERIFY</div>
+            </div>
+
+            <div class="keys">
+              <div class="row r1"><div class="key">q</div><div class="key">w</div><div class="key">e</div><div class="key">r</div><div class="key">t</div><div class="key">y</div><div class="key">u</div><div class="key">i</div><div class="key">o</div><div class="key">p</div></div>
+              <div class="row r2"><div class="key">a</div><div class="key">s</div><div class="key">d</div><div class="key">f</div><div class="key">g</div><div class="key">h</div><div class="key">j</div><div class="key">k</div><div class="key">l</div><div class="key">⌫</div></div>
+              <div class="row r3"><div class="key">⇧</div><div class="key">z</div><div class="key">x</div><div class="key">c</div><div class="key">v</div><div class="key">b</div><div class="key">n</div><div class="key">m</div><div class="key">⌧</div></div>
+              <div class="row r4"><div class="key small">123</div><div class="key small">☺</div><div class="key">,</div><div class="key space">‹ English ›</div><div class="key">.</div><div class="key small">↵</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float f1"><h3>לא תלוי במודל</h3><p>המודל יכול להשתנות. שיטת העבודה שלך נשארת ביד שלך.</p></div>
+      <div class="float f2"><h3>Tap once</h3><p>מצב, פעולה ואישור — בלי לחפש פרומפטים מחדש בכל כלי.</p></div>
+      <div class="float f3"><h3>Private by design</h3><p>אין שליחה אוטומטית. אין הרצה עיוורת. האדם במרכז.</p></div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="why">
+    <h2>אני לא מוכר עוד מקלדת. אני מוכר דרך עבודה.</h2>
+    <p class="lead">
+      במשך שנה של עבודה עם מודלים, התברר דבר פשוט:
+      מי שמחזיק את שפת ההפעלה — מחזיק את התוצאה.
+      DKey לוקחת את השפה הזאת ומכניסה אותה למקום הכי טבעי: המקלדת.
+    </p>
+
+    <div class="compare">
+      <div class="compare-box old">
+        <h3>לפני</h3>
+        <ul>
+          <li>כל כלי דורש ניסוח מחדש</li>
+          <li>המשתמש קופץ בין אפליקציות</li>
+          <li>פרומפטים הולכים לאיבוד</li>
+          <li>אין שיטה קבועה בין תחומים</li>
+        </ul>
+      </div>
+      <div class="compare-box new">
+        <h3>עם DKey</h3>
+        <ul>
+          <li>אותה שפה בכל מקום</li>
+          <li>מצבים ופעולות מעל המקלדת</li>
+          <li>השליטה והפרטיות אצל המשתמש</li>
+          <li>תוצאות עקביות בקוד, מוזיקה, יצירה ועסק</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="layers">
+    <h2>שלוש שכבות מעל המקשים.</h2>
+    <p class="lead">
+      החידוש לא נמצא באותיות. הוא נמצא במה שמופיע מעליהן:
+      שכבת כלים, שכבת מצבים, ושכבת פעולות שהופכות מחשבה למסלול עבודה.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <b>LAYER 01</b>
+        <h3>שורת כלי־על</h3>
+        <p>חיפוש, קול, שפה, לוח, ניצוץ, ABC. כל מה שנדרש כדי להתחיל פעולה בלי לעזוב את המקלדת.</p>
+      </div>
+      <div class="card">
+        <b>LAYER 02</b>
+        <h3>שורת מצבים</h3>
+        <p>DKey, DEV, SUNO, עברית+, יצירה, פרטיות. כל מצב משנה את שפת העבודה ואת הפעולות.</p>
+      </div>
+      <div class="card">
+        <b>LAYER 03</b>
+        <h3>שורת פעולות</h3>
+        <p>Inspect, Pick, Build, Verify או Idea, Lyrics, Style. הפעולות משתנות לפי התחום.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="flow">
+    <h2>Tap once. Use everywhere.</h2>
+    <p class="lead">
+      זה לא משנה איפה אתה נמצא. אם יש שדה טקסט — DKey יכולה להיות שם כשכבת ההפעלה שלך.
+    </p>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="num">01</div>
+        <div><h3>כתוב טבעי</h3><p>כמו שאתה רגיל. בעברית, באנגלית, בקוד, בשיר, ברעיון או בהודעה.</p></div>
+      </div>
+      <div class="flow-step">
+        <div class="num">02</div>
+        <div><h3>בחר מצב</h3><p>DEV לקוד, SUNO למוזיקה, Create ליצירה, Safe לפרטיות, DKey לשיטה האישית.</p></div>
+      </div>
+      <div class="flow-step">
+        <div class="num">03</div>
+        <div><h3>בחר פעולה</h3><p>לא מחפש פרומפט מחדש. אתה בוחר פעולה מוכנה שמתאימה למצב.</p></div>
+      </div>
+      <div class="flow-step">
+        <div class="num">04</div>
+        <div><h3>אשר ידנית</h3><p>אין auto-send. אין auto-run. הכל עובר דרך האדם.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final reveal" id="final">
+    <div class="final-box">
+      <h2>DKey היא לא כלי AI. היא הגשר שלך לכל כלי AI.</h2>
+      <p>
+        המודל יכול להיות GPT, Claude, Gemini או כל דבר אחר.
+        הכלי יכול להיות צ׳אט, דפדפן, קוד, מוזיקה או עסק.
+        השיטה נשארת שלך: כתוב, בחר, אשר, השתמש בכל מקום.
+      </p>
+      <div class="hero-actions" style="justify-content:center">
+        <a class="btn green" href="#top">DKey 2036</a>
+        <a class="btn primary" href="#layers">לראות את השכבות</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+const typed = document.getElementById("typed");
+const phrases = [
+  "אל תעתיק ממני. תבין אותי ותעשה מותאם אליי.",
+  "Inspect → Pick → Build → Verify.",
+  "רעיון לשיר. סגנון. מילים. בלי לשלוח לפני אישור.",
+  "השליטה אצלי. הפרטיות אצלי."
+];
+let pi=0, ci=0, del=false, last=0;
+
+function typeLoop(t){
+  const s=phrases[pi];
+  if(t-last>(del?22:46)){
+    if(!del){
+      ci++;
+      if(ci>=s.length){del=true;last=t+1150;}
+    }else{
+      ci--;
+      if(ci<=0){del=false;pi=(pi+1)%phrases.length;last=t+240;}
+    }
+    typed.textContent=s.slice(0,ci);
+    last=t;
+  }
+  requestAnimationFrame(typeLoop);
+}
+requestAnimationFrame(typeLoop);
+
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting)e.target.classList.add("on");
+  });
+},{threshold:.14});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
