@@ -1228,6 +1228,118 @@ textarea {
   }
 }
 
+
+/* === SHOWCASE MODE PATCH v1 === */
+.showcaseToggle {
+  position: fixed;
+  z-index: 100;
+  left: 16px;
+  bottom: 16px;
+  min-height: 46px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg,#101828,#1d2939);
+  color: #fff;
+  font-weight: 950;
+  box-shadow: 0 18px 44px rgba(16,24,40,.24);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body.showcase {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(16,200,109,.18), transparent 34%),
+    linear-gradient(180deg,#ffffff 0%,#f8fbff 70%,#eef5f3 100%) !important;
+}
+
+body.showcase .top {
+  position: relative;
+  top: auto;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+body.showcase .pills,
+body.showcase .story,
+body.showcase .panel {
+  display: none !important;
+}
+
+body.showcase .layout {
+  display: block !important;
+  padding: 28px 0 36px !important;
+}
+
+body.showcase .stage {
+  min-height: calc(100vh - 130px) !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+body.showcase .stage:before {
+  width: min(760px, 96vw) !important;
+  height: min(760px, 96vw) !important;
+  top: auto !important;
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--accent, #10c86d) 18%, transparent), transparent 62%) !important;
+}
+
+body.showcase .phone {
+  width: min(470px, calc(100vw - 34px)) !important;
+  box-shadow:
+    0 46px 110px rgba(16,24,40,.22),
+    0 0 110px color-mix(in srgb, var(--accent, #10c86d) 18%, transparent) !important;
+}
+
+body.showcase .brand small {
+  font-size: 0;
+}
+
+body.showcase .brand small::after {
+  content: "Showcase Mode";
+  font-size: 12px;
+}
+
+body.showcase .showcaseToggle {
+  background: linear-gradient(135deg,#baffdc,var(--accent, #10c86d));
+  color: #052e1a;
+}
+
+@media(max-width:640px){
+  .showcaseToggle {
+    left: 12px;
+    bottom: 12px;
+    min-height: 42px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
+  body.showcase .shell {
+    padding: 8px 8px 24px !important;
+  }
+
+  body.showcase .top {
+    min-height: 54px;
+    border-radius: 22px;
+  }
+
+  body.showcase .layout {
+    padding-top: 14px !important;
+  }
+
+  body.showcase .stage {
+    min-height: calc(100vh - 92px) !important;
+  }
+
+  body.showcase .phone {
+    width: min(390px, calc(100vw - 18px)) !important;
+    max-width: calc(100vw - 18px) !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1633,6 +1745,34 @@ textarea {
   }
 
   btn.addEventListener("click", copyResult);
+})();
+</script>
+
+<button class="showcaseToggle" id="showcaseToggle" type="button">מצב הצגה</button>
+
+<script>
+(function(){
+  const btn = document.getElementById("showcaseToggle");
+  if(!btn) return;
+
+  function setShowcase(on){
+    document.body.classList.toggle("showcase", on);
+    btn.textContent = on ? "חזור לדמו" : "מצב הצגה";
+
+    try {
+      localStorage.setItem("dkey-showcase", on ? "1" : "0");
+    } catch(e) {}
+  }
+
+  try {
+    if(localStorage.getItem("dkey-showcase") === "1"){
+      setShowcase(true);
+    }
+  } catch(e) {}
+
+  btn.addEventListener("click", () => {
+    setShowcase(!document.body.classList.contains("showcase"));
+  });
 })();
 </script>
 
