@@ -673,7 +673,7 @@ body[data-mode="safe"] {
 }
 
 .output small::after {
-  content: "LIVE RESULT";
+  content: "READY";
   direction: ltr;
   font-size: 9px;
   letter-spacing: .04em;
@@ -809,7 +809,7 @@ body {
 }
 
 .output small::after {
-  content: "LIVE RESULT" !important;
+  content: "READY" !important;
   background: var(--accentSoft) !important;
   color: var(--accentDark) !important;
   border-color: color-mix(in srgb, var(--accent) 28%, transparent) !important;
@@ -970,7 +970,7 @@ textarea {
 }
 
 .output small::after {
-  content: "LIVE RESULT" !important;
+  content: "READY" !important;
 }
 
 @media(max-width:640px){
@@ -1075,6 +1075,159 @@ textarea {
   }
 }
 
+
+/* === REAL CONTENT SYSTEM PATCH v0.8 === */
+.story h1 {
+  max-width: 760px;
+  letter-spacing: -0.07em !important;
+}
+
+.lead {
+  max-width: 700px !important;
+  font-size: clamp(17px,1.55vw,21px) !important;
+  line-height: 1.58 !important;
+}
+
+.eyebrow {
+  color: #087a48 !important;
+}
+
+.principles article {
+  min-height: 92px;
+  background:
+    linear-gradient(180deg,#ffffff,#fbfcff) !important;
+}
+
+.principles strong {
+  font-size: 24px !important;
+}
+
+.scenarioPanel {
+  margin-top: 22px !important;
+  padding: 18px !important;
+  border-radius: 30px !important;
+}
+
+.scenarioPanel strong {
+  font-size: 16px !important;
+  margin-bottom: 12px !important;
+}
+
+.scenarioGrid {
+  grid-template-columns: repeat(4, minmax(0,1fr)) !important;
+}
+
+.scenario {
+  min-height: 56px !important;
+  font-size: 13px !important;
+  letter-spacing: .01em;
+}
+
+.output {
+  min-height: 164px !important;
+  padding: 14px !important;
+}
+
+#preparedOutput {
+  font-size: 13.2px !important;
+  line-height: 1.55 !important;
+  font-weight: 760 !important;
+  color: #101828 !important;
+}
+
+.resultActions {
+  margin-top: 10px !important;
+}
+
+.useResultBtn {
+  min-height: 40px !important;
+}
+
+.manualOnly {
+  background: rgba(255,255,255,.82) !important;
+}
+
+.inputLabel {
+  color: #475467 !important;
+}
+
+textarea {
+  font-weight: 560;
+}
+
+.mode,
+.actions button,
+.tools button {
+  letter-spacing: .01em;
+}
+
+@media(max-width:640px){
+  .layout {
+    gap: 14px !important;
+  }
+
+  .story h1 {
+    font-size: clamp(38px,11vw,45px) !important;
+    line-height: .94 !important;
+  }
+
+  .lead {
+    font-size: 14.8px !important;
+    line-height: 1.5 !important;
+  }
+
+  .principles {
+    grid-template-columns: repeat(4,minmax(0,1fr)) !important;
+  }
+
+  .principles article {
+    min-height: 74px !important;
+    padding: 9px 7px !important;
+  }
+
+  .principles strong {
+    font-size: 19px !important;
+  }
+
+  .principles span {
+    font-size: 10.2px !important;
+  }
+
+  .scenarioPanel {
+    padding: 12px !important;
+    border-radius: 24px !important;
+  }
+
+  .scenarioGrid {
+    grid-template-columns: repeat(4, max-content) !important;
+  }
+
+  .scenario {
+    min-width: 84px !important;
+    min-height: 40px !important;
+    font-size: 11.5px !important;
+  }
+
+  .output {
+    min-height: 132px !important;
+  }
+
+  #preparedOutput {
+    font-size: 11.3px !important;
+    line-height: 1.42 !important;
+  }
+
+  .useResultBtn {
+    min-height: 34px !important;
+  }
+}
+
+@media(max-width:380px){
+  .principles {
+    grid-template-columns: repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1090,8 +1243,11 @@ textarea {
   <section class="layout">
     <div class="story">
       <p class="eyebrow">LIVE PRODUCT · NOT A CONCEPT</p>
-      <h1>כתוב פעם אחת. הפעל בכל מקום.</h1>
-      <p class="lead">הדגמה חיה של DKey: קלט → מצב → פעולה → בדידים → אישור אנושי. לא חצי רעיון, אלא מבנה מוצר ברור.</p>
+      <h1>DKey. שכבת פעולה מעל המקלדת.</h1>
+      <p class="lead">
+        לא עוד כלי. לא עוד מודל. DKey היא הדרך שלך לעבוד עם כל מודל וכל אפליקציה:
+        כתיבה טבעית, בחירת מצב, פעולה מדויקת, תוצאה מוכנה — ואישור שלך לפני כל שימוש.
+      </p>
 
       <div class="legendRow">
         <button class="legend active" data-mode="dkey"><i></i>DKey</button>
@@ -1102,19 +1258,19 @@ textarea {
       </div>
 
       <div class="principles">
-        <article><strong>01</strong><span>הקלט שלך</span></article>
-        <article><strong>02</strong><span>המצב שלך</span></article>
-        <article><strong>03</strong><span>הפעולה שלך</span></article>
-        <article><strong>04</strong><span>האישור שלך</span></article>
+        <article><strong>01</strong><span>כותבים טבעי</span></article>
+        <article><strong>02</strong><span>בוחרים מצב</span></article>
+        <article><strong>03</strong><span>מקבלים תוצאה</span></article>
+        <article><strong>04</strong><span>מאשרים ידנית</span></article>
       </div>
 
       <div class="scenarioPanel">
-        <strong>בחר תרחיש חי</strong>
+        <strong>בחר דוגמה אמיתית</strong>
         <div class="scenarioGrid" id="scenarioGrid">
           <button class="scenario active" data-scenario="dev">DEV</button>
-          <button class="scenario" data-scenario="suno">SUNO</button>
+          <button class="scenario" data-scenario="suno">SONG</button>
           <button class="scenario" data-scenario="safe">SAFE</button>
-          <button class="scenario" data-scenario="create">CREATE</button>
+          <button class="scenario" data-scenario="create">STORY</button>
         </div>
         <div class="productSignal">
           <span class="on" id="sigInput">Input</span>
@@ -1148,14 +1304,14 @@ textarea {
                 <span class="miniLogo"></span>
                 <span><strong>DKey Active</strong><small id="targetLabel">GPT / any text field</small></span>
               </div>
-              <span class="statusPill" id="statusPill">Human in control</span>
+              <span class="statusPill" id="statusPill">Human decides</span>
             </div>
 
             <label class="inputLabel" for="liveInput">כתוב כאן כמו משתמש אמיתי</label>
             <textarea id="liveInput">אל תעתיק ממני. תבין אותי ותעשה מותאם אליי.</textarea>
 
             <div class="output">
-              <small>תוצאה חיה ש־DKey מכינה לך</small>
+              <small>תוצאה מוכנה — בשליטה שלך</small>
               <p id="preparedOutput">בחר מצב ופעולה כדי לראות פלט מסודר.</p>
               <div class="payloadMeter" id="payloadMeter"><span class="on"></span><span></span><span></span><span></span></div>
               <div class="resultActions">
@@ -1220,26 +1376,26 @@ textarea {
     dev: {
       mode: "dev",
       action: "BUILD",
-      text: "תפתח action, תבנה דרך GitHub, תוודא build ולא לשלוח בלי אישור.",
-      final: "DKey הכינה לך מסלול DEV נקי:\n1. בדיקה קצרה\n2. שינוי קטן\n3. אימות\n4. שליחה רק אחרי אישור"
+      text: "תתקן את הדמו בלי להרוס את הכיוון. מעט, מדויק, יפה, ונבדק במובייל.",
+      final: "תוצאה מוכנה לשימוש:\nמצב: DEV\nמטרה: לשפר דמו בלי להעמיס\nפעולה: שינוי קטן ומדויק\nבדיקה: מובייל + דסקטופ\nגבול: לא להוסיף רעש, לא להריץ בלי אישור"
     },
     suno: {
       mode: "suno",
       action: "LYRICS",
-      text: "רעיון לשיר: תמיד אמא. תן מילים, הוק, וסגנון קצר להטמעה.",
-      final: "DKey הכינה התחלה לשיר:\nשם: תמיד אמא\nHook: תמיד אמא, גם כשאני רחוק\nצבע: Hebrew pop · warm · clear vocal"
+      text: "רעיון לשיר: תמיד אמא. רגש חם, פשוט, ישראלי, בלי דרמה מוגזמת.",
+      final: "תוצאה מוכנה לשיר:\nשם: תמיד אמא\nהוק: תמיד אמא, גם כשאני רחוק\nבית: קול קטן חוזר אל הדלת\nסגנון: Hebrew pop, warm vocal, 90BPM, clean mix"
     },
     safe: {
       mode: "safe",
       action: "CHECK",
-      text: "אל תעתיק ממני. תבין אותי ותעשה מותאם אליי.",
-      final: "DKey עצרה לבדיקה:\nאין שליחה אוטומטית\nאין הרצה עיוורת\nהטקסט נשאר אצלך עד אישור ידני"
+      text: "בדוק אם יש כאן משהו רגיש לפני שאני שולח. אל תשלח לבד.",
+      final: "תוצאה מוכנה לבדיקה:\nפרטיות: אין שליחה אוטומטית\nפעולה: בדיקה בלבד\nסיכון: מידע אישי/מפתח/API אם קיים\nאישור: המשתמש מחליט אם להמשיך"
     },
     create: {
       mode: "create",
       action: "CONCEPT",
-      text: "בנה לי דמו מוצר ברור, בהיר, חי, שמראה שליטה ובדידים.",
-      final: "DKey הכינה דמו להצגה:\nמוצר במרכז\nשכבות פעולה מעל המקלדת\nבדידים שמראים שליטה ואישור"
+      text: "תבנה מסר מוצר קצר ל־DKey שיראה אמיתי, לא מצגת, ולא רעיון באוויר.",
+      final: "תוצאה מוכנה להצגה:\nDKey היא שכבת פעולה מעל המקלדת.\nהיא הופכת כתיבה טבעית למסלול עבודה.\nהמשתמש בוחר מצב, פעולה, ותוצאה.\nשום דבר לא נשלח בלי אישור."
     }
   };
 
@@ -1281,7 +1437,7 @@ textarea {
     approveBtn.classList.remove("approved");
     approveHint.textContent="אין auto-run. אין auto-send.";
     approveHint.classList.remove("ready");
-    statusPill.textContent="Human in control";
+    statusPill.textContent="Human decides";
     routeItems.forEach((item,i)=>item.classList.toggle("done",i<2));
     if(sigApprove) sigApprove.classList.remove("on");
   }
@@ -1290,7 +1446,7 @@ textarea {
     actionRow.querySelectorAll(".act").forEach(b=>b.classList.toggle("active",b===btn));
     beadAction.textContent=action;
     routeItems.forEach((item,i)=>item.classList.toggle("done",i<3));
-    statusPill.textContent="Waiting approval";
+    statusPill.textContent="Waiting for you";
     beadApproval.textContent="ממתין";
     approveBtn.textContent="אשר ידנית";
     approveBtn.classList.remove("approved");
@@ -1360,8 +1516,8 @@ textarea {
     beadApproval.textContent="מאושר";
     approveBtn.textContent="מאושר ✓";
     approveBtn.classList.add("approved");
-    approveHint.textContent="עכשיו המשתמש יכול להעתיק/לשלוח ידנית.";
-    statusPill.textContent="Approved by user";
+    approveHint.textContent="התוצאה מוכנה. אתה מחליט אם להשתמש.";
+    statusPill.textContent="Approved manually";
     routeItems.forEach(i=>i.classList.add("done"));
     if(sigApprove) sigApprove.classList.add("on");
     approveHint.classList.add("ready");
@@ -1374,7 +1530,7 @@ textarea {
   applyScenario("dev");
 })();
 </script>
-<div class="useToast" id="useToast">התוצאה הועתקה. השליחה בידיים שלך.</div>
+<div class="useToast" id="useToast">הועתק. השימוש נשאר בידיים שלך.</div>
 
 <script>
 (function(){
@@ -1399,7 +1555,7 @@ textarea {
     btn.classList.add("copied");
 
     if(statusPill){
-      statusPill.textContent = "Ready for manual use";
+      statusPill.textContent = "Ready · manual only";
     }
 
     if(toast){
