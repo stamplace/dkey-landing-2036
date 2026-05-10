@@ -1426,6 +1426,47 @@ body.showcase .showcaseToggle {
   }
 }
 
+
+/* === SHARE VIEW PATCH v1 === */
+body.share-view .showcaseToggle {
+  opacity: .92;
+}
+
+body.share-view .showcaseToggle::after {
+  content: "";
+}
+
+.shareLinkHint {
+  position: fixed;
+  z-index: 90;
+  right: 16px;
+  bottom: 16px;
+  min-height: 42px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(16,24,40,.10);
+  color: #475467;
+  font-size: 12px;
+  font-weight: 900;
+  display: none;
+  place-items: center;
+  box-shadow: 0 14px 34px rgba(16,24,40,.12);
+}
+
+body.share-view .shareLinkHint {
+  display: grid;
+}
+
+@media(max-width:640px){
+  .shareLinkHint {
+    right: 12px;
+    bottom: 68px;
+    min-height: 36px;
+    font-size: 11px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1859,6 +1900,26 @@ body.showcase .showcaseToggle {
   btn.addEventListener("click", () => {
     setShowcase(!document.body.classList.contains("showcase"));
   });
+})();
+</script>
+
+<div class="shareLinkHint" id="shareLinkHint">share view</div>
+
+<script>
+(function(){
+  function enableShareViewFromHash(){
+    if(location.hash === "#show"){
+      document.body.classList.add("share-view");
+      document.body.classList.add("showcase");
+
+      const btn = document.getElementById("showcaseToggle");
+      if(btn) btn.textContent = "דמו מלא";
+    }
+  }
+
+  enableShareViewFromHash();
+
+  window.addEventListener("hashchange", enableShareViewFromHash);
 })();
 </script>
 
