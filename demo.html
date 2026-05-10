@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DKey Live Demo</title>
+<style>
+:root{
+  --bg:#f7f8fb;--paper:#fff;--ink:#101828;--muted:#667085;--line:rgba(16,24,40,.1);
+  --green:#10c86d;--greenDark:#079455;--dev:#14b8a6;--suno:#f59e0b;--create:#8b5cf6;--safe:#0ea5a6;
+  --shadow:0 22px 70px rgba(16,24,40,.12);--soft:0 10px 28px rgba(16,24,40,.08);
+  --font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:var(--font);color:var(--ink)}
+body{
+  background:
+    radial-gradient(circle at 14% 0%,rgba(16,200,109,.14),transparent 28%),
+    radial-gradient(circle at 86% 4%,rgba(139,92,246,.1),transparent 30%),
+    linear-gradient(180deg,#fff 0%,#f7f8fb 70%,#eef2f6 100%);
+  overflow-x:hidden;
+}
+button,textarea{font:inherit}
+a{text-decoration:none;color:inherit}
+.shell{width:min(1260px,calc(100vw - 24px));margin:0 auto;padding:14px 0 44px}
+.top{
+  position:sticky;top:10px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 14px;border:1px solid var(--line);border-radius:26px;background:rgba(255,255,255,.94);box-shadow:var(--soft)
+}
+.brand{display:flex;align-items:center;gap:12px;direction:ltr}
+.logo,.miniLogo{position:relative;background:linear-gradient(145deg,#22df82,#05a958);box-shadow:0 12px 24px rgba(16,200,109,.22)}
+.logo{width:42px;height:42px;border-radius:14px}
+.logo:before,.miniLogo:before{content:"";position:absolute;background:#fff;border-radius:5px}
+.logo:before{left:12px;top:11px;width:5px;height:22px;box-shadow:9px -5px 0 #fff,18px 4px 0 #fff}
+.logo:after,.miniLogo:after{content:"";position:absolute;border-radius:50%;background:#fff}
+.logo:after{right:6px;top:6px;width:8px;height:8px}
+.brand strong{display:block;font-size:22px;line-height:1;letter-spacing:-.04em}
+.brand small{display:block;margin-top:3px;color:var(--muted);font-size:12px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.pills span{padding:8px 11px;border-radius:999px;background:#f2f4f7;color:#475467;font-size:13px;font-weight:800}
+.layout{display:grid;grid-template-columns:.8fr 1.2fr;align-items:center;gap:38px;padding:54px 0 20px}
+.eyebrow{margin:0 0 18px;color:var(--greenDark);font-size:13px;font-weight:950;direction:ltr}
+h1{margin:0;font-size:clamp(50px,6.6vw,96px);line-height:.9;letter-spacing:-.085em}
+.lead{margin:24px 0 0;color:#344054;font-size:clamp(18px,1.7vw,23px);line-height:1.56;max-width:640px}
+.legendRow{margin-top:28px;display:flex;flex-wrap:wrap;gap:9px}
+.legend{
+  min-height:42px;display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border-radius:999px;
+  border:1px solid var(--line);background:#fff;box-shadow:0 8px 18px rgba(16,24,40,.06);
+  color:#475467;font-weight:850;cursor:pointer
+}
+.legend i{width:10px;height:10px;border-radius:50%;background:var(--green)}
+.legend[data-mode=dev] i{background:var(--dev)}
+.legend[data-mode=suno] i{background:var(--suno)}
+.legend[data-mode=create] i{background:var(--create)}
+.legend[data-mode=safe] i{background:var(--safe)}
+.legend.active{color:#101828;border-color:rgba(16,200,109,.24);background:#ecfdf5}
+.principles{margin-top:26px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.principles article{background:#fff;border:1px solid var(--line);border-radius:22px;padding:14px;box-shadow:0 8px 22px rgba(16,24,40,.06)}
+.principles strong{display:block;color:var(--greenDark);direction:ltr;font-size:22px}
+.principles span{display:block;margin-top:5px;color:#475467;font-size:13px}
+.stage{position:relative;min-height:760px;display:grid;place-items:center}
+.stage:before{content:"";position:absolute;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,rgba(16,200,109,.12),transparent 62%);z-index:-1}
+.phone{
+  width:min(430px,88vw);aspect-ratio:9/19.2;border-radius:58px;padding:10px;position:relative;
+  background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(255,255,255,.08) 18%,rgba(0,0,0,.34) 72%),linear-gradient(145deg,#151b25,#303948 50%,#05070b);
+  box-shadow:0 46px 110px rgba(16,24,40,.24)
+}
+.screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:48px;background:#f8fafc}
+.camera{position:absolute;z-index:8;top:13px;left:50%;transform:translateX(-50%);width:14px;height:14px;border-radius:50%;background:#06070a}
+.status{height:38px;padding:11px 22px 0;display:flex;justify-content:space-between;direction:ltr;color:#101828;font-size:12px;font-weight:850;background:#fff}
+.app{height:43%;background:linear-gradient(180deg,#fff,#f7f9fc);border-bottom:1px solid rgba(16,24,40,.08);padding:28px 18px 0}
+.appHead{display:flex;align-items:center;justify-content:space-between;gap:10px;direction:ltr}
+.appBrand{display:flex;align-items:center;gap:10px}
+.miniLogo{width:38px;height:38px;border-radius:12px}
+.miniLogo:before{left:11px;top:10px;width:4px;height:20px;box-shadow:8px -4px 0 #fff,16px 4px 0 #fff}
+.miniLogo:after{right:6px;top:6px;width:7px;height:7px}
+.appBrand strong{display:block;color:#101828;font-size:17px;line-height:1.1;letter-spacing:-.03em}
+.appBrand small{display:block;margin-top:3px;color:#667085;font-size:12px}
+.statusPill{flex:0 0 auto;padding:7px 10px;border-radius:999px;background:#ecfdf5;border:1px solid rgba(16,200,109,.18);color:var(--greenDark);font-size:12px;font-weight:850}
+.inputLabel{display:block;margin-top:16px;color:#667085;font-size:12px;font-weight:850}
+textarea{
+  margin-top:7px;width:100%;min-height:74px;border:1px solid rgba(16,24,40,.1);border-radius:20px;resize:none;outline:none;
+  background:#fff;color:#101828;padding:13px;font-size:15px;line-height:1.45;box-shadow:0 8px 18px rgba(16,24,40,.05)
+}
+textarea:focus{border-color:rgba(16,200,109,.45);box-shadow:0 0 0 4px rgba(16,200,109,.1)}
+.output{margin-top:11px;border-radius:20px;background:#ecfdf5;border:1px solid rgba(16,200,109,.18);padding:12px}
+.output small{display:block;color:var(--greenDark);font-weight:900;font-size:11px}
+.output p{margin:5px 0 0;color:#101828;font-size:13px;line-height:1.38}
+.keyboard{
+  position:absolute;left:0;right:0;bottom:0;height:52%;background:#f7f8fa;padding:9px;
+  display:grid;grid-template-rows:42px 38px 24px 42px 1fr;gap:7px
+}
+.tools,.modes,.actions{display:grid;gap:6px}
+.tools{grid-template-columns:repeat(7,1fr)}
+.modes{grid-template-columns:1fr .85fr .95fr 1.1fr .95fr}
+.actions{grid-template-columns:.7fr .85fr 1.22fr 1fr 1fr 1.16fr}
+.tools button,.modes button,.actions button{
+  min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;border:0;border-radius:14px;font-size:11px;font-weight:900
+}
+.tools button{background:#fff;color:#101828;box-shadow:0 4px 10px rgba(16,24,40,.08)}
+.mode{background:#edf0f4;color:#667085}
+.mode[data-mode=dkey]{color:var(--greenDark)}
+.mode[data-mode=dev]{color:var(--dev)}
+.mode[data-mode=suno]{color:var(--suno)}
+.mode[data-mode=create]{color:var(--create)}
+.mode[data-mode=safe]{color:var(--safe)}
+.mode.active{background:#fff;box-shadow:0 0 0 2px rgba(16,200,109,.18)}
+.intent{height:24px;border-radius:999px;background:#06170f;color:#bcf7d2;display:flex;align-items:center;padding:0 10px;direction:ltr;font-size:10px;overflow:hidden;white-space:nowrap}
+.actions button{background:#ecfdf5;color:var(--greenDark);border:1px solid rgba(16,200,109,.16)}
+.actions .play{background:var(--green);color:#fff;font-size:16px;border:0}
+.actions .active{background:#fff;box-shadow:0 0 0 2px rgba(16,200,109,.22)}
+.keys{display:grid;gap:6px}
+.keyRow{display:grid;gap:5px}
+.keyRow.ten{grid-template-columns:repeat(10,1fr)}
+.keyRow.nine{grid-template-columns:repeat(9,1fr);padding:0 14px}
+.keyRow.bottom{grid-template-columns:48px 48px 48px 1fr 48px 48px}
+.keyRow span{min-height:42px;border-radius:12px;background:#fff;display:grid;place-items:center;color:#101828;font-size:20px;box-shadow:0 4px 9px rgba(16,24,40,.09)}
+.keyRow.bottom span{font-size:13px;font-weight:850}.space{color:#344054}
+.panel{position:absolute;width:230px;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:28px;padding:18px;box-shadow:var(--soft)}
+.panel.right{right:0;top:118px}.panel.left{left:0;bottom:118px}
+.panelTitle{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 0 7px rgba(16,200,109,.1)}
+.beads{display:grid;gap:9px}
+.bead{display:flex;align-items:center;justify-content:space-between;gap:8px;border-radius:18px;padding:10px 11px;background:#f2f4f7;color:#667085}
+.bead.on{background:#ecfdf5;color:#079455}.bead span,.bead b{font-size:12px}.bead span{font-weight:850}
+.note,.hint{margin:14px 0 0;color:#667085;font-size:13px;line-height:1.45}
+.route{margin:0;padding:0 19px 0 0;color:#667085;line-height:1.9}.route li.done{color:#079455;font-weight:850}
+.approve{width:100%;min-height:46px;margin-top:16px;border:0;border-radius:16px;background:#101828;color:#fff;font-weight:950;cursor:pointer}
+.approve.approved{background:var(--green);color:#052e1a}
+@media(max-width:1120px){.layout{grid-template-columns:1fr}.stage{min-height:720px}.panel{display:none}.principles{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.shell{width:min(100vw - 18px,1280px)}.pills span:not(:first-child){display:none}.layout{padding-top:42px}.story h1{font-size:52px}.lead{font-size:17px}.stage{min-height:610px}.phone{width:min(365px,94vw)}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <header class="top">
+    <a class="brand" href="index.html">
+      <span class="logo"></span>
+      <span><strong>DKey</strong><small>Live Product Demo</small></span>
+    </a>
+    <div class="pills"><span>Tap once</span><span>Use everywhere</span><span>No auto-send</span></div>
+  </header>
+
+  <section class="layout">
+    <div class="story">
+      <p class="eyebrow">LIVE PRODUCT · NOT A CONCEPT</p>
+      <h1>כתוב פעם אחת. הפעל בכל מקום.</h1>
+      <p class="lead">הדגמה חיה של DKey: קלט → מצב → פעולה → בדידים → אישור אנושי. לא חצי רעיון, אלא מבנה מוצר ברור.</p>
+
+      <div class="legendRow">
+        <button class="legend active" data-mode="dkey"><i></i>DKey</button>
+        <button class="legend" data-mode="dev"><i></i>DEV</button>
+        <button class="legend" data-mode="suno"><i></i>SUNO</button>
+        <button class="legend" data-mode="create"><i></i>Create</button>
+        <button class="legend" data-mode="safe"><i></i>Safe</button>
+      </div>
+
+      <div class="principles">
+        <article><strong>01</strong><span>הקלט שלך</span></article>
+        <article><strong>02</strong><span>המצב שלך</span></article>
+        <article><strong>03</strong><span>הפעולה שלך</span></article>
+        <article><strong>04</strong><span>האישור שלך</span></article>
+      </div>
+    </div>
+
+    <div class="stage">
+      <aside class="panel right">
+        <div class="panelTitle"><span class="dot"></span><strong>בדידים חיים</strong></div>
+        <div class="beads">
+          <div class="bead on"><span>Input</span><b id="beadInput">טעון</b></div>
+          <div class="bead on"><span>Mode</span><b id="beadMode">DKey</b></div>
+          <div class="bead"><span>Action</span><b id="beadAction">בחר</b></div>
+          <div class="bead"><span>Approval</span><b id="beadApproval">ממתין</b></div>
+        </div>
+        <p class="note">בדיד הוא החלטה קטנה שננעלת: הקשר, מצב, פעולה, אישור.</p>
+      </aside>
+
+      <section class="phone">
+        <div class="screen">
+          <div class="camera"></div>
+          <div class="status"><span>22:21</span><span>5G 100%</span></div>
+
+          <section class="app">
+            <div class="appHead">
+              <div class="appBrand">
+                <span class="miniLogo"></span>
+                <span><strong>DKey Active</strong><small id="targetLabel">GPT / any text field</small></span>
+              </div>
+              <span class="statusPill" id="statusPill">Human in control</span>
+            </div>
+
+            <label class="inputLabel" for="liveInput">כתוב כאן כמו משתמש אמיתי</label>
+            <textarea id="liveInput">אל תעתיק ממני. תבין אותי ותעשה מותאם אליי.</textarea>
+
+            <div class="output">
+              <small>מה DKey מכינה לשליחה ידנית</small>
+              <p id="preparedOutput">בחר מצב ופעולה כדי לראות פלט מסודר.</p>
+            </div>
+          </section>
+
+          <section class="keyboard">
+            <div class="tools">
+              <button>···</button><button>⌕</button><button>MIC</button><button>HE</button><button>CLIP</button><button>✦</button><button>ABC</button>
+            </div>
+
+            <div class="modes" id="phoneModes">
+              <button class="mode active" data-mode="dkey">DKey</button>
+              <button class="mode" data-mode="dev">DEV</button>
+              <button class="mode" data-mode="suno">SUNO</button>
+              <button class="mode" data-mode="create">Create</button>
+              <button class="mode" data-mode="safe">Safe</button>
+            </div>
+
+            <div class="intent" id="intentLine">DKey mode · choose action · approve manually</div>
+            <div class="actions" id="actionRow"></div>
+
+            <div class="keys">
+              <div class="keyRow ten"><span>q</span><span>w</span><span>e</span><span>r</span><span>t</span><span>y</span><span>u</span><span>i</span><span>o</span><span>p</span></div>
+              <div class="keyRow ten"><span>a</span><span>s</span><span>d</span><span>f</span><span>g</span><span>h</span><span>j</span><span>k</span><span>l</span><span>⌫</span></div>
+              <div class="keyRow nine"><span>⇧</span><span>z</span><span>x</span><span>c</span><span>v</span><span>b</span><span>n</span><span>m</span><span>⌧</span></div>
+              <div class="keyRow bottom"><span>123</span><span>☺</span><span>,</span><span class="space">‹ English ›</span><span>.</span><span>↵</span></div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <aside class="panel left">
+        <div class="panelTitle"><span class="dot"></span><strong>מסלול פעולה</strong></div>
+        <ol class="route" id="route">
+          <li class="done">קלט נקרא</li>
+          <li class="done">מצב נבחר</li>
+          <li>פעולה נבחרת</li>
+          <li>ממתין לאישור</li>
+        </ol>
+        <button class="approve" id="approveBtn">אשר ידנית</button>
+        <p class="hint" id="approveHint">אין auto-run. אין auto-send.</p>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const modes={
+    dkey:{label:"DKey",target:"GPT / any text field",intent:"DKey mode · choose action · approve manually",actions:["ASK","SHAPE","SHORTEN","SEND?"],output:t=>`DKey מכינה ניסוח מותאם: "${t}" — עם אישור ידני לפני שליחה.`},
+    dev:{label:"DEV",target:"GitHub / terminal / code",intent:"DEV mode · inspect → pick → build → verify",actions:["INSPECT","PICK","BUILD","VERIFY"],output:t=>`מסלול DEV: ניתוח → בחירת scope → שינוי קטן → בדיקה. קלט: "${t}"`},
+    suno:{label:"SUNO",target:"music / lyrics / style",intent:"SUNO mode · idea → lyrics → style → export",actions:["IDEA","LYRICS","STYLE","EXPORT"],output:t=>`מסלול SUNO: רעיון → מילים → צבע מוזיקלי → פרומפט. נושא: "${t}"`},
+    create:{label:"Create",target:"concept / image / story",intent:"Create mode · brief → concept → image → review",actions:["BRIEF","CONCEPT","IMAGE","REVIEW"],output:t=>`מסלול יצירה: בריף → קונספט → דימוי → בדיקה. בסיס: "${t}"`},
+    safe:{label:"Safe",target:"privacy / approval / guard",intent:"Safe mode · privacy check → approve → send manually",actions:["CHECK","BLOCK","APPROVE","SEND?"],output:t=>`בדיקת פרטיות: אין שליחה אוטומטית. האדם מאשר ידנית. טקסט: "${t}"`}
+  };
+
+  let currentMode="dkey";
+  let currentAction="";
+
+  const liveInput=document.getElementById("liveInput");
+  const output=document.getElementById("preparedOutput");
+  const actionRow=document.getElementById("actionRow");
+  const intentLine=document.getElementById("intentLine");
+  const targetLabel=document.getElementById("targetLabel");
+  const statusPill=document.getElementById("statusPill");
+  const beadInput=document.getElementById("beadInput");
+  const beadMode=document.getElementById("beadMode");
+  const beadAction=document.getElementById("beadAction");
+  const beadApproval=document.getElementById("beadApproval");
+  const approveBtn=document.getElementById("approveBtn");
+  const approveHint=document.getElementById("approveHint");
+  const routeItems=Array.from(document.querySelectorAll("#route li"));
+
+  function text(){return liveInput.value.trim()||"המשתמש עדיין לא כתב";}
+  function updateOutput(){
+    const base=modes[currentMode].output(text());
+    output.textContent=currentAction?`${base} פעולה נבחרת: ${currentAction}.`:base;
+  }
+  function resetApproval(){
+    beadApproval.textContent="ממתין";
+    approveBtn.textContent="אשר ידנית";
+    approveBtn.classList.remove("approved");
+    approveHint.textContent="אין auto-run. אין auto-send.";
+    statusPill.textContent="Human in control";
+    routeItems.forEach((item,i)=>item.classList.toggle("done",i<2));
+  }
+  function chooseAction(action,btn){
+    currentAction=action;
+    actionRow.querySelectorAll(".act").forEach(b=>b.classList.toggle("active",b===btn));
+    beadAction.textContent=action;
+    routeItems.forEach((item,i)=>item.classList.toggle("done",i<3));
+    statusPill.textContent="Waiting approval";
+    beadApproval.textContent="ממתין";
+    approveBtn.textContent="אשר ידנית";
+    approveBtn.classList.remove("approved");
+    approveHint.textContent="פעולה נבחרה. ממתין לאישור האדם.";
+    updateOutput();
+  }
+  function renderActions(){
+    actionRow.innerHTML="";
+    const clip=document.createElement("button"); clip.textContent="📋"; actionRow.appendChild(clip);
+    const play=document.createElement("button"); play.textContent="▶"; play.className="play"; actionRow.appendChild(play);
+    modes[currentMode].actions.forEach((name,i)=>{
+      const b=document.createElement("button");
+      b.textContent=name;
+      b.className="act"+(i===0?" active":"");
+      b.addEventListener("click",()=>chooseAction(name,b));
+      actionRow.appendChild(b);
+      if(i===0) currentAction=name;
+    });
+    beadAction.textContent=currentAction;
+  }
+  function setMode(mode){
+    currentMode=mode;
+    document.querySelectorAll("[data-mode]").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));
+    beadMode.textContent=modes[mode].label;
+    targetLabel.textContent=modes[mode].target;
+    intentLine.textContent=modes[mode].intent;
+    resetApproval();
+    renderActions();
+    updateOutput();
+  }
+
+  document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>setMode(b.dataset.mode)));
+  liveInput.addEventListener("input",()=>{
+    beadInput.textContent=liveInput.value.trim()?"טעון":"ריק";
+    resetApproval();
+    updateOutput();
+  });
+  approveBtn.addEventListener("click",()=>{
+    beadApproval.textContent="מאושר";
+    approveBtn.textContent="מאושר ✓";
+    approveBtn.classList.add("approved");
+    approveHint.textContent="עכשיו המשתמש יכול להעתיק/לשלוח ידנית.";
+    statusPill.textContent="Approved by user";
+    routeItems.forEach(i=>i.classList.add("done"));
+  });
+
+  setMode("dkey");
+})();
+</script>
+</body>
+</html>
