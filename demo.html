@@ -611,7 +611,7 @@ textarea {
 }
 
 
-/* === PAYLOAD POLISH PATCH v0.4 === */
+/* === RESULT POLISH PATCH v0.4 === */
 :root {
   --accent: var(--green);
   --accentDark: var(--greenDark);
@@ -673,7 +673,7 @@ body[data-mode="safe"] {
 }
 
 .output small::after {
-  content: "READY PAYLOAD";
+  content: "LIVE RESULT";
   direction: ltr;
   font-size: 9px;
   letter-spacing: .04em;
@@ -735,6 +735,171 @@ body[data-mode="safe"] {
   .payloadMeter {
     margin-top: 7px;
     gap: 5px;
+  }
+}
+
+
+/* === COLOR EXPERIENCE PATCH v0.5 === */
+body {
+  background:
+    radial-gradient(circle at 50% -8%, rgba(16,200,109,.20), transparent 30%),
+    radial-gradient(circle at 92% 10%, rgba(139,92,246,.13), transparent 32%),
+    radial-gradient(circle at 8% 36%, rgba(245,158,11,.11), transparent 26%),
+    linear-gradient(180deg,#ffffff 0%,#f8fbff 64%,#eef5f3 100%) !important;
+}
+
+.story h1 {
+  background: linear-gradient(90deg,#101828,#079455 58%,#10c86d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lead {
+  color: #344054;
+  font-weight: 520;
+}
+
+.scenarioPanel {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(16,200,109,.13), transparent 38%),
+    radial-gradient(circle at 94% 16%, rgba(139,92,246,.10), transparent 34%),
+    #ffffff !important;
+  border: 1px solid rgba(16,24,40,.08) !important;
+}
+
+.scenario {
+  position: relative;
+  overflow: hidden;
+  min-height: 54px !important;
+  border: 0 !important;
+  background: #fff !important;
+  color: #344054 !important;
+}
+
+.scenario::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .12;
+  background: var(--accent);
+}
+
+.scenario.active {
+  color: #101828 !important;
+  box-shadow: 0 12px 26px rgba(16,24,40,.10), inset 0 0 0 2px color-mix(in srgb, var(--accent) 34%, transparent) !important;
+}
+
+.productSignal {
+  display: none !important;
+}
+
+.output {
+  min-height: 150px !important;
+  background:
+    radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 42%),
+    linear-gradient(180deg,#ffffff,#f7fffb) !important;
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent) !important;
+  box-shadow: 0 16px 34px rgba(16,24,40,.08) !important;
+}
+
+.output small {
+  color: var(--accentDark) !important;
+  font-size: 12px !important;
+}
+
+.output small::after {
+  content: "LIVE RESULT" !important;
+  background: var(--accentSoft) !important;
+  color: var(--accentDark) !important;
+  border-color: color-mix(in srgb, var(--accent) 28%, transparent) !important;
+}
+
+#preparedOutput {
+  color: #101828;
+  font-weight: 780 !important;
+  font-size: 13.5px !important;
+  line-height: 1.45 !important;
+}
+
+.payloadMeter {
+  display: none !important;
+}
+
+.bead {
+  background: #fff !important;
+  box-shadow: 0 8px 18px rgba(16,24,40,.06);
+}
+
+.bead.on {
+  background: var(--accentSoft) !important;
+  color: var(--accentDark) !important;
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.intent {
+  background: linear-gradient(90deg,#07150e,#0d2f20) !important;
+  color: #c7ffe0 !important;
+}
+
+.actions button {
+  background: color-mix(in srgb, var(--accent) 10%, #ffffff) !important;
+  color: var(--accentDark) !important;
+  border-color: color-mix(in srgb, var(--accent) 20%, transparent) !important;
+}
+
+.actions .play {
+  background: var(--accent) !important;
+  color: #fff !important;
+}
+
+.actions .active {
+  background: #fff !important;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 32%, transparent), 0 10px 20px rgba(16,24,40,.08) !important;
+}
+
+.statusPill {
+  background: var(--accentSoft) !important;
+  color: var(--accentDark) !important;
+}
+
+.approve {
+  background: linear-gradient(135deg,#101828,#1d2939) !important;
+}
+
+.approve.approved {
+  background: linear-gradient(135deg,#baffdc,var(--accent)) !important;
+  color: #052e1a !important;
+}
+
+.top {
+  background: rgba(255,255,255,.96) !important;
+}
+
+.phone {
+  box-shadow:
+    0 46px 110px rgba(16,24,40,.22),
+    0 0 0 1px rgba(255,255,255,.45),
+    0 0 90px color-mix(in srgb, var(--accent) 14%, transparent) !important;
+}
+
+.stage:before {
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--accent) 15%, transparent), transparent 62%) !important;
+}
+
+@media(max-width:640px){
+  .scenario {
+    min-height: 42px !important;
+  }
+
+  .output {
+    min-height: 126px !important;
+  }
+
+  #preparedOutput {
+    font-size: 12px !important;
+    line-height: 1.38 !important;
   }
 }
 
@@ -818,7 +983,7 @@ body[data-mode="safe"] {
             <textarea id="liveInput">אל תעתיק ממני. תבין אותי ותעשה מותאם אליי.</textarea>
 
             <div class="output">
-              <small>מה DKey מכינה לשליחה ידנית</small>
+              <small>תוצאה חיה ש־DKey מכינה לך</small>
               <p id="preparedOutput">בחר מצב ופעולה כדי לראות פלט מסודר.</p>
               <div class="payloadMeter" id="payloadMeter"><span class="on"></span><span></span><span></span><span></span></div>
             </div>
@@ -851,12 +1016,12 @@ body[data-mode="safe"] {
       </section>
 
       <aside class="panel left">
-        <div class="panelTitle"><span class="dot"></span><strong>מסלול פעולה</strong></div>
+        <div class="panelTitle"><span class="dot"></span><strong>מה קורה עכשיו</strong></div>
         <ol class="route" id="route">
           <li class="done">קלט נקרא</li>
           <li class="done">מצב נבחר</li>
-          <li>פעולה נבחרת</li>
-          <li>ממתין לאישור</li>
+          <li>בחירה נקלטה</li>
+          <li>מחכה לאישור שלך</li>
         </ol>
         <button class="approve" id="approveBtn">אשר ידנית</button>
         <p class="hint" id="approveHint">אין auto-run. אין auto-send.</p>
@@ -880,25 +1045,25 @@ body[data-mode="safe"] {
       mode: "dev",
       action: "BUILD",
       text: "תפתח action, תבנה דרך GitHub, תוודא build ולא לשלוח בלי אישור.",
-      final: "DEV PAYLOAD\nINSPECT: בדוק branch/status\nPICK: נעל scope קטן\nBUILD: שנה רק מה שנדרש\nVERIFY: בדיקה לפני commit/push"
+      final: "DKey הכינה לך מסלול DEV נקי:\n1. בדיקה קצרה\n2. שינוי קטן\n3. אימות\n4. שליחה רק אחרי אישור"
     },
     suno: {
       mode: "suno",
       action: "LYRICS",
       text: "רעיון לשיר: תמיד אמא. תן מילים, הוק, וסגנון קצר להטמעה.",
-      final: "SUNO PAYLOAD\nשם: תמיד אמא\nHook: תמיד אמא, גם כשאני רחוק\nStyle: Hebrew pop · warm vocal · 90BPM\nExport: אישור ידני בלבד"
+      final: "DKey הכינה התחלה לשיר:\nשם: תמיד אמא\nHook: תמיד אמא, גם כשאני רחוק\nצבע: Hebrew pop · warm · clear vocal"
     },
     safe: {
       mode: "safe",
       action: "CHECK",
       text: "אל תעתיק ממני. תבין אותי ותעשה מותאם אליי.",
-      final: "SAFE PAYLOAD\nPrivacy: אין סוד/API key\nAction: לא להריץ לבד\nSend: לא לשלוח לבד\nApproval: ממתין לאדם"
+      final: "DKey עצרה לבדיקה:\nאין שליחה אוטומטית\nאין הרצה עיוורת\nהטקסט נשאר אצלך עד אישור ידני"
     },
     create: {
       mode: "create",
       action: "CONCEPT",
       text: "בנה לי דמו מוצר ברור, בהיר, חי, שמראה שליטה ובדידים.",
-      final: "CREATE PAYLOAD\nBrief: דמו מוצר חי\nVisual: טלפון + שכבות פעולה\nBeads: Input / Mode / Action / Approval\nResult: מוכן להצגה"
+      final: "DKey הכינה דמו להצגה:\nמוצר במרכז\nשכבות פעולה מעל המקלדת\nבדידים שמראים שליטה ואישור"
     }
   };
 
@@ -932,7 +1097,7 @@ body[data-mode="safe"] {
   function text(){return liveInput.value.trim()||"המשתמש עדיין לא כתב";}
   function updateOutput(){
     const base=modes[currentMode].output(text());
-    output.textContent=currentAction?`${base} פעולה נבחרת: ${currentAction}.`:base;
+    output.textContent=currentAction?`${base} בחירה נקלטה: ${currentAction}.`:base;
   }
   function resetApproval(){
     beadApproval.textContent="ממתין";
@@ -953,7 +1118,7 @@ body[data-mode="safe"] {
     beadApproval.textContent="ממתין";
     approveBtn.textContent="אשר ידנית";
     approveBtn.classList.remove("approved");
-    approveHint.textContent="פעולה נבחרה. ממתין לאישור האדם.";
+    approveHint.textContent="פעולה נבחרה. מחכה לאישור שלך האדם.";
     if(sigAction) sigAction.classList.add("on");
     if(sigApprove) sigApprove.classList.remove("on");
     setPayloadStep(3);
