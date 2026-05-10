@@ -1595,6 +1595,137 @@ body.showcase .showcaseToggle {
   }
 }
 
+
+/* === EYE COMFORT COLOR PATCH v1 === */
+:root {
+  --green:#0fa86a;
+  --greenDark:#087a54;
+  --dev:#14958f;
+  --suno:#b7791f;
+  --create:#7257c8;
+  --safe:#168f91;
+  --accent:#0fa86a;
+  --accentDark:#087a54;
+  --accentSoft:#eefaf4;
+}
+
+/* רקע רגוע יותר, פחות זוהר */
+body {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(15,168,106,.08), transparent 34%),
+    radial-gradient(circle at 88% 12%, rgba(114,87,200,.055), transparent 30%),
+    linear-gradient(180deg,#ffffff 0%,#f8faf9 68%,#eef4f2 100%) !important;
+}
+
+/* מצב צבע — רמזים רכים בלבד */
+body[data-mode="dev"] {
+  --accent:#14958f;
+  --accentDark:#0f6f6a;
+  --accentSoft:#edf8f7;
+}
+
+body[data-mode="suno"] {
+  --accent:#b7791f;
+  --accentDark:#8a5a12;
+  --accentSoft:#fff7e8;
+}
+
+body[data-mode="create"] {
+  --accent:#7257c8;
+  --accentDark:#5842a2;
+  --accentSoft:#f4f1ff;
+}
+
+body[data-mode="safe"] {
+  --accent:#168f91;
+  --accentDark:#0f6f70;
+  --accentSoft:#edf9f9;
+}
+
+/* בלי גרדיאנטים חדים בכפתורים */
+.useResultBtn,
+.useResultBtn.copied,
+.showcaseToggle,
+body.showcase .showcaseToggle {
+  background: #f7fffb !important;
+  color: #075c43 !important;
+  border: 1px solid rgba(15,168,106,.22) !important;
+  box-shadow:
+    0 10px 24px rgba(16,24,40,.08),
+    inset 0 1px 0 rgba(255,255,255,.75) !important;
+}
+
+/* כפתור play לא צועק */
+.actions .play {
+  background: #e8f8f1 !important;
+  color: #087a54 !important;
+  border: 1px solid rgba(15,168,106,.20) !important;
+}
+
+/* מצב פעיל — עדין, לא זוהר */
+.mode.active,
+.legend.active,
+.scenario.active,
+.actions button.active,
+.statusPill,
+.output {
+  background: var(--accentSoft) !important;
+  color: var(--accentDark) !important;
+  border-color: color-mix(in srgb, var(--accent) 22%, transparent) !important;
+}
+
+/* כרטיס התוצאה פחות צהוב/ירוק חזק */
+.output {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.96), var(--accentSoft)) !important;
+  box-shadow: 0 12px 28px rgba(16,24,40,.065) !important;
+}
+
+/* שורת מצב כהה נשארת, אבל פחות כבדה */
+.intent {
+  background: #0b3326 !important;
+  color: #d8f7e9 !important;
+}
+
+/* כפתורי פעולה רגועים */
+.actions button {
+  background: rgba(255,255,255,.84) !important;
+  color: var(--accentDark) !important;
+  border-color: color-mix(in srgb, var(--accent) 18%, transparent) !important;
+  box-shadow: 0 5px 12px rgba(16,24,40,.045) !important;
+}
+
+/* הפחתת זוהר כללי */
+.phone {
+  box-shadow:
+    0 34px 86px rgba(16,24,40,.18),
+    0 0 58px rgba(15,168,106,.07) !important;
+}
+
+.stage:before {
+  background:
+    radial-gradient(circle, rgba(15,168,106,.08), transparent 64%) !important;
+}
+
+.logo,
+.miniLogo {
+  box-shadow: 0 10px 22px rgba(15,168,106,.14) !important;
+}
+
+/* במובייל עוד יותר רך */
+@media(max-width:640px){
+  .useResultBtn,
+  .showcaseToggle {
+    box-shadow:
+      0 8px 18px rgba(16,24,40,.07),
+      inset 0 1px 0 rgba(255,255,255,.75) !important;
+  }
+
+  .output {
+    box-shadow: 0 10px 22px rgba(16,24,40,.055) !important;
+  }
+}
+
 </style>
 </head>
 <body>
