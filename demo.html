@@ -1726,6 +1726,151 @@ body.showcase .showcaseToggle {
   }
 }
 
+
+/* === TRUE GREEN CALM PALETTE PATCH v1 === */
+:root {
+  /* DKey brand: green, not turquoise */
+  --green:#04b84d;
+  --greenDark:#067a3b;
+  --dev:#2f8f6b;
+  --suno:#b98225;
+  --create:#775fc2;
+  --safe:#16898c;
+
+  --accent:#04b84d;
+  --accentDark:#067a3b;
+  --accentSoft:#f1faf4;
+}
+
+/* DKey background: almost white, very low saturation */
+body {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(4,184,77,.055), transparent 34%),
+    radial-gradient(circle at 88% 12%, rgba(119,95,194,.035), transparent 30%),
+    linear-gradient(180deg,#ffffff 0%,#fafcfb 68%,#f0f5f2 100%) !important;
+}
+
+/* Mode colors: separated, softer, not all turquoise */
+body[data-mode="dkey"] {
+  --accent:#04b84d;
+  --accentDark:#067a3b;
+  --accentSoft:#f1faf4;
+}
+
+body[data-mode="dev"] {
+  --accent:#2f8f6b;
+  --accentDark:#246b51;
+  --accentSoft:#f1f8f5;
+}
+
+body[data-mode="suno"] {
+  --accent:#b98225;
+  --accentDark:#855914;
+  --accentSoft:#fff8ec;
+}
+
+body[data-mode="create"] {
+  --accent:#775fc2;
+  --accentDark:#57449a;
+  --accentSoft:#f6f3ff;
+}
+
+body[data-mode="safe"] {
+  --accent:#16898c;
+  --accentDark:#0d696b;
+  --accentSoft:#eff9f9;
+}
+
+/* Logo keeps the living green, but with less glow */
+.logo,
+.miniLogo {
+  background: linear-gradient(145deg,#16c96b,#04b84d) !important;
+  box-shadow: 0 10px 22px rgba(4,184,77,.14) !important;
+}
+
+/* General CTAs: calm green, no neon, no heavy black */
+.useResultBtn,
+.useResultBtn.copied,
+.showcaseToggle,
+body.showcase .showcaseToggle {
+  background: #f7fffa !important;
+  color: #075c34 !important;
+  border: 1px solid rgba(4,184,77,.20) !important;
+  box-shadow:
+    0 10px 24px rgba(16,24,40,.075),
+    inset 0 1px 0 rgba(255,255,255,.75) !important;
+}
+
+/* Active state: only a quiet hint */
+.mode.active,
+.legend.active,
+.scenario.active,
+.actions button.active,
+.statusPill,
+.output {
+  background: var(--accentSoft) !important;
+  color: var(--accentDark) !important;
+  border-color: color-mix(in srgb, var(--accent) 18%, transparent) !important;
+}
+
+/* Action buttons: white first, color second */
+.actions button {
+  background: rgba(255,255,255,.88) !important;
+  color: var(--accentDark) !important;
+  border-color: color-mix(in srgb, var(--accent) 16%, transparent) !important;
+  box-shadow: 0 5px 12px rgba(16,24,40,.045) !important;
+}
+
+/* Play button: no loud turquoise */
+.actions .play {
+  background: #eefaf3 !important;
+  color: #067a3b !important;
+  border: 1px solid rgba(4,184,77,.18) !important;
+}
+
+/* Result card: softer, less colored */
+.output {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.98), var(--accentSoft)) !important;
+  box-shadow: 0 12px 28px rgba(16,24,40,.055) !important;
+}
+
+/* Dark intent bar: less black, more deep green */
+.intent {
+  background: #123d2b !important;
+  color: #e3f6ec !important;
+}
+
+/* Reduce ambient glow */
+.phone {
+  box-shadow:
+    0 34px 86px rgba(16,24,40,.17),
+    0 0 46px rgba(4,184,77,.045) !important;
+}
+
+.stage:before {
+  background:
+    radial-gradient(circle, rgba(4,184,77,.055), transparent 64%) !important;
+}
+
+/* Safe is allowed to be turquoise, but only when Safe is active */
+body:not([data-mode="safe"]) .mode[data-mode="safe"] {
+  color:#16898c !important;
+}
+
+@media(max-width:640px){
+  .output {
+    box-shadow: 0 10px 22px rgba(16,24,40,.05) !important;
+  }
+
+  .useResultBtn,
+  .showcaseToggle {
+    box-shadow:
+      0 8px 18px rgba(16,24,40,.065),
+      inset 0 1px 0 rgba(255,255,255,.75) !important;
+  }
+}
+
 </style>
 </head>
 <body>
