@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>DKey Live Demo</title>
+<title>DKey — שכבת עבודה מעל המקלדת</title>
 <style>
 :root{
   --bg:#f7f8fb;--paper:#fff;--ink:#101828;--muted:#667085;--line:rgba(16,24,40,.1);
@@ -1728,19 +1728,21 @@ body.readingStory .showcaseToggle {
   <header class="top">
     <a class="brand" href="index.html">
       <span class="logo"></span>
-      <span><strong>DKey</strong><small>Live Product Demo</small></span>
+      <span>$1שכבת עבודה מעל המקלדת$2</span>
     </a>
-    <div class="pills"><span>Tap once</span><span>Use everywhere</span><span>No auto-send</span></div>
+    <div class="pills">
+      <span>האדם במרכז</span>
+      <span>אין שליחה אוטומטית</span>
+      <span>אין הרצה אוטומטית</span>
+      <span>עובד איפה שכותבים</span>
+    </div>
   </header>
 
   <section class="layout">
     <div class="story">
-      <p class="eyebrow">LIVE PRODUCT · NOT A CONCEPT</p>
-      <h1>DKey. שכבת פעולה מעל המקלדת.</h1>
-      <p class="lead">
-        לא עוד כלי. לא עוד מודל. DKey היא הדרך שלך לעבוד עם כל מודל וכל אפליקציה:
-        כתיבה טבעית, בחירת מצב, פעולה מדויקת, תוצאה מוכנה — ואישור שלך לפני כל שימוש.
-      </p>
+      $1DKEY · HUMAN FIRST KEYBOARD LAYER$2
+      <h1>המקלדת שמחזירה לך את הסדר לפני הפעולה.</h1>
+      $1DKey עוזרת להפוך כל רעיון, ניסוח, פקודה או בקשה לתוצאה ברורה ומוכנה — אבל עוצרת לפני השימוש. אתה רואה, מבין, מאשר, ורק אז ממשיך.$2
 
       <div class="legendRow">
         <button class="legend active" data-mode="dkey"><i></i>DKey</button>
@@ -1751,14 +1753,13 @@ body.readingStory .showcaseToggle {
       </div>
 
       <div class="principles">
-        <article><strong>01</strong><span>כותבים טבעי</span></article>
-        <article><strong>02</strong><span>בוחרים מצב</span></article>
-        <article><strong>03</strong><span>מקבלים תוצאה</span></article>
-        <article><strong>04</strong><span>מאשרים ידנית</span></article>
-      </div>
+      <article><strong>01</strong><span>כותבים טבעי. לא צריך פרומפט מושלם.</span></article>
+      <article><strong>02</strong><span>בוחרים מצב ברור לפי ההקשר שלך.</span></article>
+      <article><strong>03</strong><span>מקבלים תוצאה מוכנה לקריאה ובדיקה.</span></article>
+      <article><strong>04</strong><span>מאשרים ידנית. שום דבר לא רץ לבד.</span></article>
+    </div>
 
-      <div class="scenarioPanel">
-        <strong>בחר דוגמה אמיתית</strong>
+      $1בחר רגע עבודה אמיתי$2
         <div class="scenarioGrid" id="scenarioGrid">
           <button class="scenario active" data-scenario="dev">DEV</button>
           <button class="scenario" data-scenario="suno">SONG</button>
@@ -1800,11 +1801,10 @@ body.readingStory .showcaseToggle {
               <span class="statusPill" id="statusPill">Human decides</span>
             </div>
 
-            <label class="inputLabel" for="liveInput">כתוב כאן כמו משתמש אמיתי</label>
+            $1כתוב כאן כמו שאתה חושב$2
             <textarea id="liveInput">אל תעתיק ממני. תבין אותי ותעשה מותאם אליי.</textarea>
 
-            <div class="output">
-              <small>תוצאה מוכנה — בשליטה שלך</small>
+            $1תוצאה מוכנה לבדיקה$2
               <p id="preparedOutput">בחר מצב ופעולה כדי לראות פלט מסודר.</p>
               <div class="payloadMeter" id="payloadMeter"><span class="on"></span><span></span><span></span><span></span></div>
               <div class="resultActions">
@@ -1848,8 +1848,8 @@ body.readingStory .showcaseToggle {
           <li>תוצאה מוכנה</li>
           <li>מחכה לאישור שלך</li>
         </ol>
-        <button class="approve" id="approveBtn">אשר ידנית</button>
-        <p class="hint" id="approveHint">אין auto-run. אין auto-send.</p>
+        $1אשר שימוש$2
+        $1שום דבר לא נשלח ולא רץ בלי החלטה שלך.$2
       </aside>
     </div>
   </section>
