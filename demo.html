@@ -1669,6 +1669,58 @@ body.showcase .useResultBtn {
   }
 }
 
+
+/* === LANDING READING COMFORT PATCH v1 === */
+
+/* כשקוראים את דף הנחיתה — לא מסתירים תוכן עם כפתור צף */
+body.readingStory .showcaseToggle {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateX(-50%) translateY(18px) !important;
+}
+
+/* יותר אוויר בסוף הסקשנים כדי שלא יהיה חיתוך במובייל */
+.storySections {
+  padding-bottom: clamp(80px, 12vh, 140px);
+}
+
+/* מובייל: כותרות חזקות אבל פחות חונקות */
+@media(max-width:760px){
+  .storyBlock {
+    border-radius: 30px !important;
+    padding: 24px 22px !important;
+  }
+
+  .storyBlock h2 {
+    font-size: clamp(34px, 10.5vw, 54px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -.055em !important;
+  }
+
+  .storyBlock p {
+    font-size: 18px !important;
+    line-height: 1.58 !important;
+  }
+
+  .storyMiniGrid {
+    gap: 10px !important;
+  }
+
+  .storyMini {
+    box-shadow: 0 8px 20px rgba(16,24,40,.045) !important;
+  }
+}
+
+@media(max-width:420px){
+  .storyBlock h2 {
+    font-size: clamp(32px, 10vw, 46px) !important;
+  }
+
+  .storyBlock p {
+    font-size: 17px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2481,6 +2533,26 @@ body.showcase .useResultBtn {
   input.addEventListener("input", update);
 
   applyMode(currentMode, true);
+})();
+</script>
+
+
+<script>
+/* === LANDING READING COMFORT JS v1 === */
+(function(){
+  const story = document.getElementById("landing-story");
+  const btn = document.getElementById("showcaseToggle");
+  if(!story || !btn) return;
+
+  function syncReadingState(){
+    const r = story.getBoundingClientRect();
+    const inStory = r.top < window.innerHeight * 0.82 && r.bottom > 120;
+    document.body.classList.toggle("readingStory", inStory);
+  }
+
+  syncReadingState();
+  window.addEventListener("scroll", syncReadingState, {passive:true});
+  window.addEventListener("resize", syncReadingState);
 })();
 </script>
 
