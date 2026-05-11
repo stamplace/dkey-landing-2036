@@ -1552,6 +1552,123 @@ body.showcase .useResultBtn {
   min-height: 34px !important;
 }
 
+
+/* === LANDING STORY SECTIONS PATCH v1 === */
+.storySections {
+  width: min(1120px, calc(100vw - 24px));
+  margin: 44px auto 20px;
+  display: grid;
+  gap: 18px;
+}
+
+.storyBlock {
+  border: 1px solid rgba(16,24,40,.09);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(16,200,109,.10), transparent 34%),
+    linear-gradient(180deg, rgba(255,255,255,.96), rgba(248,251,255,.96));
+  box-shadow: 0 18px 54px rgba(16,24,40,.08);
+  padding: clamp(22px, 4vw, 46px);
+}
+
+.storyBlock.kicker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.storyBlock h2 {
+  margin: 0;
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: .96;
+  letter-spacing: -.06em;
+  color: #101828;
+}
+
+.storyBlock p {
+  margin: 18px 0 0;
+  color: #344054;
+  font-size: clamp(17px, 2vw, 23px);
+  line-height: 1.55;
+  max-width: 760px;
+}
+
+.storyMiniGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.storyMini {
+  min-height: 148px;
+  border-radius: 26px;
+  background: #fff;
+  border: 1px solid rgba(16,24,40,.08);
+  padding: 18px;
+  box-shadow: 0 10px 24px rgba(16,24,40,.055);
+}
+
+.storyMini strong {
+  display: block;
+  font-size: 18px;
+  color: #101828;
+}
+
+.storyMini span {
+  display: block;
+  margin-top: 10px;
+  color: #667085;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.trustLine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.trustLine span {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(16,24,40,.08);
+  color: #344054;
+  font-weight: 850;
+  box-shadow: 0 8px 18px rgba(16,24,40,.05);
+}
+
+@media(max-width:760px){
+  .storySections {
+    margin-top: 28px;
+  }
+
+  .storyBlock.kicker {
+    grid-template-columns: 1fr;
+  }
+
+  .storyMiniGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .storyMini {
+    min-height: 126px;
+    padding: 14px;
+    border-radius: 22px;
+  }
+
+  .storyMini strong {
+    font-size: 16px;
+  }
+
+  .storyMini span {
+    font-size: 13px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1684,6 +1801,74 @@ body.showcase .useResultBtn {
       </aside>
     </div>
   </section>
+
+<section class="storySections" id="landing-story">
+  <article class="storyBlock">
+    <h2>הבעיה היא לא שאין כלים. הבעיה היא שאין שכבת עבודה אחת.</h2>
+    <p>
+      כל מודל, כל אתר, כל אפליקציה וכל כלי AI מבקשים ממך לעבוד אחרת.
+      DKey מחזירה את הסדר: אתה כותב רגיל, בוחר מצב, בוחר פעולה,
+      מקבל תוצאה מוכנה — ומשתמש בה רק אחרי אישור שלך.
+    </p>
+    <div class="trustLine">
+      <span>Human approval</span>
+      <span>No auto-send</span>
+      <span>No auto-run</span>
+      <span>Works anywhere you type</span>
+    </div>
+  </article>
+
+  <article class="storyBlock kicker">
+    <div>
+      <h2>לא מודל נוסף. שכבת פיקוד.</h2>
+      <p>
+        DKey לא באה להחליף את GPT, Gemini, Grok, Suno או כל כלי אחר.
+        היא יושבת מעל המקלדת והופכת את הדרך שלך לשיטה:
+        מצב, פעולה, תוצאה, בדיקה ואישור.
+      </p>
+    </div>
+    <div>
+      <h2>אותה דרך בכל מקום.</h2>
+      <p>
+        כתיבה, פיתוח, מוזיקה, מסר מוצר, פרטיות, הודעות, תכנון ויצירה.
+        במקום להתחיל כל פעם מחדש — אתה עובד מתוך שכבת פעולה אישית אחת.
+      </p>
+    </div>
+  </article>
+
+  <article class="storyBlock">
+    <h2>למי זה בנוי?</h2>
+    <div class="storyMiniGrid">
+      <div class="storyMini">
+        <strong>למפתח</strong>
+        <span>INSPECT → PICK → BUILD → VERIFY בלי לרוץ קדימה ובלי לשבור.</span>
+      </div>
+      <div class="storyMini">
+        <strong>ליוצר</strong>
+        <span>רעיון → קונספט → תמונה → סקירה. פחות כאוס, יותר צורה.</span>
+      </div>
+      <div class="storyMini">
+        <strong>למוזיקאי</strong>
+        <span>רעיון לשיר → מילים → סגנון → יצוא ידני ומבוקר.</span>
+      </div>
+      <div class="storyMini">
+        <strong>לאדם עובד</strong>
+        <span>הודעה, ניסוח, קיצור, בדיקה ושליחה — תמיד עם אישור.</span>
+      </div>
+    </div>
+  </article>
+
+  <article class="storyBlock">
+    <h2>המשפט שאדם צריך להבין בדף הזה:</h2>
+    <p>
+      DKey היא שכבת פעולה מעל המקלדת.
+      היא לא מחליפה אותך ולא שולחת במקומך.
+      היא מסדרת את הכוונה שלך לתוצאה מוכנה,
+      ואתה מחליט מה לעשות איתה.
+    </p>
+  </article>
+</section>
+
 </main>
 
 <script>
