@@ -2008,5 +2008,296 @@ body.showcase .useResultBtn {
 })();
 </script>
 
+
+<script>
+/* === REAL LANDING CONTENT ENGINE v1 === */
+(function(){
+  const input = document.querySelector("textarea");
+  const output = document.getElementById("preparedOutput") || document.querySelector(".output p");
+  const statusPill = document.querySelector(".statusPill");
+  const appSub = document.querySelector(".appBrand small");
+  const inputLabel = document.querySelector(".inputLabel");
+  const intent = document.querySelector(".intent");
+
+  if(!input || !output) return;
+
+  const workflows = {
+    dkey: {
+      platform: "Every model / any text field",
+      label: "כתוב טבעי. DKey מסדרת לפעולה.",
+      defaultInput: "יש לי רעיון מבולגן ואני רוצה להפוך אותו לצעד ברור.",
+      actions: ["ASK","SHAPE","SHORT","SEND?"],
+      intent: "DKey mode · choose action · approve manually",
+      outputs: {
+        "ASK": [
+          "כוונה: להבין מה המשתמש באמת רוצה",
+          "DKey: שואלת רק מה שחסר",
+          "תוצאה: ניסוח קצר + פעולה אחת",
+          "כלל: לא לשלוח בלי אישור"
+        ],
+        "SHAPE": [
+          "כוונה: להפוך רעיון חופשי למסלול עבודה",
+          "מבנה: מצב → פעולה → תוצאה",
+          "תוצאה: טקסט מוכן לשימוש",
+          "כלל: האדם בוחר את הצעד הבא"
+        ],
+        "SHORT": [
+          "כוונה: לקצר בלי לאבד עומק",
+          "פעולה: להסיר רעש ולשמור מסר",
+          "תוצאה: ניסוח חד, אנושי וברור",
+          "כלל: לא להפוך את זה לרובוטי"
+        ],
+        "SEND?": [
+          "בדיקה לפני שימוש:",
+          "האם המסר ברור?",
+          "האם אין מידע רגיש?",
+          "האם המשתמש אישר ידנית?"
+        ]
+      }
+    },
+
+    dev: {
+      platform: "GitHub / terminal / code",
+      label: "עבודה טכנית בלי לרוץ קדימה.",
+      defaultInput: "תתקן את הדמו בלי להרוס את הכיוון. מעט, מדויק, יפה, ונבדק במובייל.",
+      actions: ["INSPECT","PICK","BUILD","VERIFY"],
+      intent: "DEV mode · inspect → pick → build → verify",
+      outputs: {
+        "INSPECT": [
+          "בודקים לפני שינוי:",
+          "branch, status, קבצים פתוחים",
+          "מה עובד עכשיו ומה נשבר",
+          "אין בנייה לפני מקור אמת"
+        ],
+        "PICK": [
+          "בחירת scope:",
+          "יחידה אחת בלבד עכשיו",
+          "שינוי קטן, הפיך, מוגדר",
+          "לא פותחים עוד חזית"
+        ],
+        "BUILD": [
+          "ביצוע:",
+          "שינוי אחד שמעלה איכות",
+          "בלי refactor גדול",
+          "בלי להריץ פעולה לא מאושרת"
+        ],
+        "VERIFY": [
+          "בדיקה:",
+          "מובייל + דסקטופ",
+          "כפתורים, טקסט, גלילה",
+          "רק אחרי זה commit"
+        ]
+      }
+    },
+
+    suno: {
+      platform: "Suno / lyrics / style",
+      label: "רעיון לשיר הופך למסלול מוזיקלי.",
+      defaultInput: "רעיון לשיר: בוקר טוב שיר חדש. רגש חם, פשוט, ישראלי, בלי דרמה מוגזמת.",
+      actions: ["IDEA","LYRICS","STYLE","EXPORT"],
+      intent: "SUNO mode · idea → lyrics → style → export",
+      outputs: {
+        "IDEA": [
+          "רעיון:",
+          "בוקר חדש אחרי לילה ארוך",
+          "רגש: תקווה פשוטה",
+          "תמונה: אור קטן על החלון"
+        ],
+        "LYRICS": [
+          "Hook:",
+          "בוקר טוב, שיר חדש",
+          "משהו בי נפתח לאט",
+          "אור קטן חוזר אליי"
+        ],
+        "STYLE": [
+          "Style:",
+          "Hebrew pop · warm vocal",
+          "90 BPM · clean diction",
+          "subtle sus/add9 · radio ready"
+        ],
+        "EXPORT": [
+          "לפני יצוא:",
+          "בדוק מילים, סגנון, טון",
+          "אל תשלח גרסה לא נקייה",
+          "המשתמש מאשר"
+        ]
+      }
+    },
+
+    create: {
+      platform: "Product / image / story",
+      label: "רעיון הופך למסך מוצר ברור.",
+      defaultInput: "תבנה מסר מוצר קצר ל־DKey שיראה אמיתי, לא מצגת, ולא רעיון באוויר.",
+      actions: ["BRIEF","CONCEPT","IMAGE","REVIEW"],
+      intent: "Create mode · brief → concept → image → review",
+      outputs: {
+        "BRIEF": [
+          "DKey היא שכבת פעולה מעל המקלדת.",
+          "כותבים טבעי. בוחרים מצב.",
+          "מקבלים תוצאה מוכנה.",
+          "שום דבר לא נשלח בלי אישור."
+        ],
+        "CONCEPT": [
+          "קונספט:",
+          "מקלדת שלא מחליפה את האדם",
+          "אלא מסדרת את הדרך שלו",
+          "מול כל כלי וכל מודל"
+        ],
+        "IMAGE": [
+          "תמונה נכונה:",
+          "טלפון אמיתי, מקלדת פעילה",
+          "שכבות פעולה מעל המקשים",
+          "האדם נשאר בשליטה"
+        ],
+        "REVIEW": [
+          "בדיקת מסר:",
+          "האם מבינים מה זה?",
+          "האם זה נראה מוצר אמיתי?",
+          "האם אין הבטחות מיותרות?"
+        ]
+      }
+    },
+
+    safe: {
+      platform: "Privacy / approval / guard",
+      label: "בדיקה לפני פעולה.",
+      defaultInput: "בדוק את זה לפני שאני שולח. אל תשלח לבד.",
+      actions: ["CHECK","BLOCK","APPROVE","SEND?"],
+      intent: "Safe mode · check → block → approve → send manually",
+      outputs: {
+        "CHECK": [
+          "בדיקה:",
+          "האם יש מידע אישי?",
+          "האם יש סוד/API key?",
+          "האם הפעולה מאושרת?"
+        ],
+        "BLOCK": [
+          "חסימה:",
+          "אין auto-run",
+          "אין auto-send",
+          "אין פעולה בלי בחירה"
+        ],
+        "APPROVE": [
+          "אישור:",
+          "המשתמש רואה את התוצאה",
+          "מבין את ההשלכה",
+          "ורק אז ממשיך"
+        ],
+        "SEND?": [
+          "לפני שליחה:",
+          "האם זה מדויק?",
+          "האם זה בטוח?",
+          "האם זה באמת מה שהתכוונת?"
+        ]
+      }
+    }
+  };
+
+  let currentMode = document.body.dataset.mode || "dkey";
+  let currentAction = null;
+
+  function cleanText(t){
+    return (t || "").trim().replace(/\s+/g," ");
+  }
+
+  function detectIntent(raw){
+    const t = cleanText(raw);
+    if(!t) return "קלט טבעי של המשתמש";
+    if(t.length <= 68) return t;
+    return t.slice(0,68).trim() + "…";
+  }
+
+  function activeWorkflow(){
+    return workflows[currentMode] || workflows.dkey;
+  }
+
+  function setActionButtons(wf){
+    const buttons = Array.from(document.querySelectorAll(".actions button"));
+    if(!buttons.length) return;
+
+    const labels = ["▶", ...wf.actions];
+    buttons.forEach((btn, i) => {
+      if(labels[i]) btn.textContent = labels[i];
+      btn.classList.toggle("active", i === 2);
+    });
+
+    currentAction = wf.actions[1] || wf.actions[0];
+  }
+
+  function outputText(){
+    const wf = activeWorkflow();
+    const action = currentAction || wf.actions[0];
+    const lines = wf.outputs[action] || wf.outputs[wf.actions[0]];
+    const userIntent = detectIntent(input.value);
+
+    if(currentMode === "dkey"){
+      return [
+        "כוונת משתמש: " + userIntent,
+        ...lines
+      ].join("\n");
+    }
+
+    if(currentMode === "dev"){
+      return [
+        "כוונה: " + userIntent,
+        ...lines
+      ].join("\n");
+    }
+
+    return lines.join("\n");
+  }
+
+  function applyMode(mode, keepInput){
+    currentMode = workflows[mode] ? mode : "dkey";
+    document.body.dataset.mode = currentMode;
+
+    const wf = activeWorkflow();
+
+    if(appSub) appSub.textContent = wf.platform;
+    if(inputLabel) inputLabel.textContent = wf.label;
+    if(intent) intent.textContent = wf.intent;
+    if(statusPill) statusPill.textContent = "Human decides";
+
+    if(!keepInput){
+      input.value = wf.defaultInput;
+    }
+
+    document.querySelectorAll(".mode,.legend").forEach(el => {
+      const m = el.dataset.mode || cleanText(el.textContent).toLowerCase();
+      el.classList.toggle("active", m === currentMode);
+    });
+
+    setActionButtons(wf);
+    update();
+  }
+
+  function update(){
+    output.textContent = outputText();
+  }
+
+  document.querySelectorAll(".mode,.legend").forEach(el => {
+    el.addEventListener("click", () => {
+      const mode = el.dataset.mode || cleanText(el.textContent).toLowerCase();
+      applyMode(mode, false);
+    });
+  });
+
+  document.querySelectorAll(".actions button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const label = cleanText(btn.textContent);
+      if(label === "▶") return;
+      currentAction = label;
+      document.querySelectorAll(".actions button").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      update();
+    });
+  });
+
+  input.addEventListener("input", update);
+
+  applyMode(currentMode, true);
+})();
+</script>
+
 </body>
 </html>
