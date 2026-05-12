@@ -1722,113 +1722,44 @@ body.readingStory .showcaseToggle {
 }
 
 
-/* === DKEY STORE BADGES PLACEHOLDER v1 === */
+
+/* === DKEY STORE BADGE IMAGES v1 === */
 .storeBadges {
-  margin-top: 18px;
+  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-
-.storeBadge {
-  min-width: 176px;
-  min-height: 58px;
-  display: inline-flex;
-  align-items: center;
   gap: 12px;
-  padding: 10px 14px;
-  border-radius: 20px;
-  border: 1px solid rgba(16,24,40,.10);
-  background:
-    radial-gradient(circle at 16% 0%, rgba(16,200,109,.16), transparent 36%),
-    linear-gradient(180deg, #ffffff, #f8fbff);
-  box-shadow: 0 12px 28px rgba(16,24,40,.075);
-  color: #101828;
-  cursor: default;
-  user-select: none;
-}
-
-.storeBadgeIcon {
-  width: 34px;
-  height: 34px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  background: #101828;
-  color: #fff;
-  font-weight: 950;
-  font-size: 17px;
-  line-height: 1;
-}
-
-.storeBadge.android .storeBadgeIcon {
-  background: linear-gradient(145deg,#22df82,#05a958);
-}
-
-.storeBadge.apple .storeBadgeIcon {
-  background: linear-gradient(145deg,#1d2939,#101828);
-}
-
-.storeBadgeText {
-  display: grid;
-  gap: 2px;
+  align-items: center;
   direction: ltr;
-  text-align: left;
 }
 
-.storeBadgeText small {
-  color: #667085;
-  font-size: 11px;
-  font-weight: 850;
-  letter-spacing: .01em;
+.storeBadges a {
+  display: inline-flex;
+  width: 210px;
+  height: 62px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(16,24,40,.14);
+  transform: translateZ(0);
+  cursor: default;
 }
 
-.storeBadgeText strong {
-  color: #101828;
-  font-size: 16px;
-  font-weight: 950;
-  letter-spacing: -.02em;
-}
-
-.storeBadge[aria-disabled="true"] {
-  opacity: .94;
-}
-
-.storeBadgeNote {
-  flex-basis: 100%;
-  color: #667085;
-  font-size: 12px;
-  font-weight: 750;
+.storeBadges img {
+  display: block;
+  width: 210px;
+  height: 62px;
 }
 
 @media(max-width:640px){
   .storeBadges {
-    margin-top: 14px;
-    gap: 8px;
+    margin-top: 16px;
+    gap: 10px;
   }
 
-  .storeBadge {
-    min-width: 0;
-    flex: 1 1 148px;
-    min-height: 54px;
-    border-radius: 18px;
-    padding: 9px 11px;
-  }
-
-  .storeBadgeIcon {
-    width: 31px;
-    height: 31px;
-    border-radius: 11px;
-    font-size: 15px;
-  }
-
-  .storeBadgeText strong {
-    font-size: 14px;
-  }
-
-  .storeBadgeText small {
-    font-size: 10px;
+  .storeBadges a,
+  .storeBadges img {
+    width: 168px;
+    height: 50px;
   }
 }
 
@@ -1852,6 +1783,16 @@ body.readingStory .showcaseToggle {
         לא עוד כלי. לא עוד מודל. DKey היא הדרך שלך לעבוד עם כל מודל וכל אפליקציה:
         כתיבה טבעית, בחירת מצב, פעולה מדויקת, תוצאה מוכנה — ואישור שלך לפני כל שימוש.
       </p>
+
+<div class="storeBadges" aria-label="Download badges">
+  <a href="#" onclick="return false" aria-label="Google Play">
+    <img src="assets/badges/google-play-badge.svg" alt="Get it on Google Play">
+  </a>
+  <a href="#" onclick="return false" aria-label="App Store">
+    <img src="assets/badges/app-store-badge.svg" alt="Download on the App Store">
+  </a>
+</div>
+
 
       <div class="legendRow">
         <button class="legend active" data-mode="dkey"><i></i>DKey</button>
@@ -2667,47 +2608,6 @@ body.readingStory .showcaseToggle {
 })();
 </script>
 
-
-<script>
-/* === DKEY STORE BADGES PLACEHOLDER v1 === */
-(function(){
-  if (document.querySelector(".storeBadges")) return;
-
-  const html = `
-    <div class="storeBadges" aria-label="DKey download placeholders">
-      <div class="storeBadge android" aria-disabled="true" title="Android download placeholder">
-        <span class="storeBadgeIcon">↓</span>
-        <span class="storeBadgeText">
-          <small>COMING TO</small>
-          <strong>Android</strong>
-        </span>
-      </div>
-      <div class="storeBadge apple" aria-disabled="true" title="iPhone download placeholder">
-        <span class="storeBadgeIcon"></span>
-        <span class="storeBadgeText">
-          <small>PREVIEW FOR</small>
-          <strong>iPhone</strong>
-        </span>
-      </div>
-      <span class="storeBadgeNote">בינתיים זה סימן תצוגה בלבד — לא כפתור הורדה פעיל.</span>
-    </div>
-  `;
-
-  const target =
-    document.querySelector(".ctaRow") ||
-    document.querySelector(".heroActions") ||
-    document.querySelector(".lead") ||
-    document.querySelector(".story");
-
-  if (!target) return;
-
-  if (target.classList && (target.classList.contains("ctaRow") || target.classList.contains("heroActions"))) {
-    target.insertAdjacentHTML("afterend", html);
-  } else {
-    target.insertAdjacentHTML("afterend", html);
-  }
-})();
-</script>
 
 </body>
 </html>
