@@ -2100,3 +2100,326 @@ body{
 
 /* === /DKEY PHONE DESKTOP SAFE MODE v2 === */
 
+
+/* === DKEY REAL PHONE DESKTOP HERO v3 === */
+/* JS class for Chrome Android Desktop-site mode.
+   Goal: keep the premium side-by-side feeling, but show the real live phone UI. */
+
+html.dkey-phone-desktop-site,
+html.dkey-phone-desktop-site body{
+  overflow-x:hidden !important;
+}
+
+html.dkey-phone-desktop-site body{
+  background:
+    radial-gradient(circle at 18% 10%, rgba(16,200,109,.15), transparent 34%),
+    radial-gradient(circle at 84% 10%, rgba(139,92,246,.08), transparent 28%),
+    linear-gradient(180deg,#fff 0%,#effaf5 48%,#eaf7f1 100%) !important;
+}
+
+html.dkey-phone-desktop-site .topbar{
+  width:calc(100vw - 24px) !important;
+  min-height:58px !important;
+  margin:10px auto 0 !important;
+  padding:8px 12px !important;
+  border-radius:999px !important;
+}
+
+html.dkey-phone-desktop-site .nav{
+  display:flex !important;
+  gap:4px !important;
+}
+
+html.dkey-phone-desktop-site .nav a{
+  padding:7px 8px !important;
+  font-size:12px !important;
+}
+
+html.dkey-phone-desktop-site .brand .logo{
+  width:40px !important;
+  height:40px !important;
+  border-radius:14px !important;
+}
+
+html.dkey-phone-desktop-site .brand strong{
+  font-size:22px !important;
+}
+
+html.dkey-phone-desktop-site .brand small{
+  font-size:12px !important;
+}
+
+html.dkey-phone-desktop-site .hero.page{
+  width:calc(100vw - 24px) !important;
+  min-height:calc(100vh - 84px) !important;
+  padding:24px 0 28px !important;
+  display:grid !important;
+  grid-template-columns:minmax(320px,.94fr) minmax(360px,1.06fr) !important;
+  gap:24px !important;
+  align-items:center !important;
+  overflow:hidden !important;
+  text-align:right !important;
+}
+
+html.dkey-phone-desktop-site .hero.page::before{
+  left:26% !important;
+  top:53% !important;
+  width:52% !important;
+  height:68px !important;
+  border-top-width:5px !important;
+  opacity:.58 !important;
+}
+
+html.dkey-phone-desktop-site .heroCopy{
+  order:initial !important;
+  max-width:100% !important;
+  padding:0 !important;
+  align-self:center !important;
+  z-index:4 !important;
+}
+
+html.dkey-phone-desktop-site .heroCopy h1{
+  max-width:100% !important;
+  margin:0 0 14px !important;
+  font-size:clamp(36px,5.1vw,58px) !important;
+  line-height:1.08 !important;
+  letter-spacing:-.052em !important;
+}
+
+html.dkey-phone-desktop-site .heroCopy .lead{
+  margin:0 0 12px !important;
+  font-size:clamp(21px,3.05vw,33px) !important;
+  line-height:1.2 !important;
+}
+
+html.dkey-phone-desktop-site .heroMicroCopy{
+  max-width:520px !important;
+  margin:0 0 16px !important;
+  font-size:clamp(15px,1.75vw,20px) !important;
+  line-height:1.45 !important;
+}
+
+html.dkey-phone-desktop-site .actions{
+  margin-top:0 !important;
+  justify-content:flex-start !important;
+  gap:10px !important;
+}
+
+html.dkey-phone-desktop-site .button.primary{
+  min-width:210px !important;
+  min-height:56px !important;
+  border-radius:24px !important;
+  padding-inline:24px !important;
+  font-size:19px !important;
+}
+
+html.dkey-phone-desktop-site .button.primary::after{
+  font-size:30px !important;
+}
+
+html.dkey-phone-desktop-site .button.secondary{
+  min-height:50px !important;
+  padding-inline:20px !important;
+  font-size:15px !important;
+}
+
+html.dkey-phone-desktop-site .proofs{
+  margin-top:17px !important;
+  justify-content:flex-start !important;
+  gap:9px !important;
+}
+
+html.dkey-phone-desktop-site .proofs span{
+  min-height:40px !important;
+  padding:0 12px !important;
+  border-radius:16px !important;
+  font-size:13px !important;
+}
+
+html.dkey-phone-desktop-site .proofs span::before{
+  width:12px !important;
+  height:12px !important;
+  box-shadow:0 0 0 5px rgba(16,200,109,.08) !important;
+}
+
+html.dkey-phone-desktop-site .productStage{
+  order:initial !important;
+  min-height:440px !important;
+  width:100% !important;
+  align-self:center !important;
+  justify-content:center !important;
+  overflow:visible !important;
+  perspective:900px !important;
+  contain:none !important;
+}
+
+html.dkey-phone-desktop-site .productStage::before{
+  content:"Tap once · use everywhere" !important;
+  display:flex !important;
+  top:2px !important;
+  right:50% !important;
+  transform:translateX(50%) !important;
+  min-height:38px !important;
+  padding:0 20px 0 42px !important;
+  font-size:14px !important;
+  z-index:7 !important;
+}
+
+html.dkey-phone-desktop-site .productStage::after{
+  display:none !important;
+}
+
+html.dkey-phone-desktop-site .phone{
+  width:min(285px,31vw) !important;
+  border-radius:48px !important;
+  padding:8px !important;
+  transform:rotate(2.4deg) translateY(12px) !important;
+  box-shadow:
+    0 30px 62px rgba(16,24,40,.22),
+    0 8px 18px rgba(16,24,40,.14),
+    inset 0 0 0 2px rgba(255,255,255,.15) !important;
+}
+
+html.dkey-phone-desktop-site .screen{
+  border-radius:40px !important;
+  overflow:hidden !important;
+}
+
+html.dkey-phone-desktop-site .camera{
+  top:14px !important;
+  width:58px !important;
+  height:18px !important;
+}
+
+html.dkey-phone-desktop-site .status{
+  height:32px !important;
+  opacity:0 !important;
+}
+
+html.dkey-phone-desktop-site .appPanel{
+  height:40% !important;
+  margin-top:6px !important;
+  padding:0 17px !important;
+}
+
+html.dkey-phone-desktop-site .miniLogo{
+  width:42px !important;
+  height:42px !important;
+  border-radius:14px !important;
+}
+
+html.dkey-phone-desktop-site .appBrand{
+  gap:9px !important;
+}
+
+html.dkey-phone-desktop-site .appBrand strong{
+  font-size:20px !important;
+}
+
+html.dkey-phone-desktop-site .appBrand small{
+  font-size:12px !important;
+}
+
+html.dkey-phone-desktop-site .messageBox{
+  margin-top:18px !important;
+  min-height:66px !important;
+  border-radius:19px !important;
+  font-size:18px !important;
+  line-height:1.25 !important;
+}
+
+html.dkey-phone-desktop-site .keyboard{
+  position:absolute !important;
+  left:0 !important;
+  right:0 !important;
+  bottom:0 !important;
+  height:56% !important;
+  margin:0 !important;
+  padding:8px !important;
+  background:#f7f8fa !important;
+  display:grid !important;
+  grid-template-rows:34px 32px 24px 35px 1fr !important;
+  gap:6px !important;
+}
+
+/* restore live keyboard/action rows that were hidden by mastered hero overrides */
+html.dkey-phone-desktop-site .phone .toolsRow,
+html.dkey-phone-desktop-site .phone .actionRow,
+html.dkey-phone-desktop-site .phone .keyRows{
+  display:grid !important;
+}
+
+html.dkey-phone-desktop-site .phone .toolsRow{
+  grid-template-columns:repeat(7,1fr) !important;
+  gap:5px !important;
+}
+
+html.dkey-phone-desktop-site .phone .modeRow{
+  margin-top:0 !important;
+  display:grid !important;
+  grid-template-columns:1fr .85fr .95fr .95fr 1.1fr .95fr !important;
+  gap:5px !important;
+}
+
+html.dkey-phone-desktop-site .phone .actionRow{
+  grid-template-columns:.7fr .9fr 1.15fr 1fr 1fr 1.15fr !important;
+  gap:5px !important;
+}
+
+html.dkey-phone-desktop-site .phone .intentLine{
+  height:24px !important;
+  border-radius:999px !important;
+  padding:0 9px !important;
+  font-size:10px !important;
+}
+
+html.dkey-phone-desktop-site .phone .toolsRow button,
+html.dkey-phone-desktop-site .phone .mode,
+html.dkey-phone-desktop-site .phone .actionRow button{
+  min-height:30px !important;
+  border-radius:12px !important;
+  font-size:9px !important;
+  padding-inline:6px !important;
+}
+
+html.dkey-phone-desktop-site .phone .keyRows{
+  gap:5px !important;
+}
+
+html.dkey-phone-desktop-site .phone .keyRow{
+  gap:4px !important;
+}
+
+html.dkey-phone-desktop-site .phone .keyRow span{
+  min-height:32px !important;
+  border-radius:10px !important;
+  font-size:15px !important;
+}
+
+html.dkey-phone-desktop-site .phone .keyRow.bottom span{
+  font-size:10px !important;
+}
+
+html.dkey-phone-desktop-site #idea.section{
+  padding-top:54px !important;
+}
+
+/* if Chrome desktop-site produces a narrower CSS viewport */
+@media (min-width:861px) and (max-width:980px){
+  html.dkey-phone-desktop-site .hero.page{
+    grid-template-columns:minmax(280px,.88fr) minmax(320px,1.12fr) !important;
+    gap:18px !important;
+  }
+
+  html.dkey-phone-desktop-site .phone{
+    width:min(255px,31vw) !important;
+    transform:rotate(2deg) translateY(10px) !important;
+  }
+
+  html.dkey-phone-desktop-site .heroCopy h1{
+    font-size:clamp(34px,5.4vw,52px) !important;
+  }
+}
+
+/* === /DKEY REAL PHONE DESKTOP HERO v3 === */
+

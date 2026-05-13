@@ -225,5 +225,28 @@
   </main>
 
   <script src="assets/app.js"></script>
+
+<script>
+/* DKEY REAL PHONE DESKTOP DETECTOR v3 */
+(() => {
+  function syncPhoneDesktopMode(){
+    const ua = navigator.userAgent || "";
+    const isAndroid = /Android/i.test(ua);
+    const isTouch = (navigator.maxTouchPoints || 0) > 0;
+    const wideCssViewport = window.innerWidth >= 861 && window.innerWidth <= 1280;
+    const shortOrPhoneLike = window.innerHeight <= 980 || Math.min(screen.width, screen.height) <= 520;
+
+    document.documentElement.classList.toggle(
+      "dkey-phone-desktop-site",
+      Boolean(isAndroid && isTouch && wideCssViewport && shortOrPhoneLike)
+    );
+  }
+
+  syncPhoneDesktopMode();
+  window.addEventListener("resize", syncPhoneDesktopMode, {passive:true});
+  window.addEventListener("orientationchange", () => setTimeout(syncPhoneDesktopMode, 120), {passive:true});
+})();
+</script>
+
 </body>
 </html>
