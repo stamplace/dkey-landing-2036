@@ -1815,3 +1815,288 @@ body{
 
 /* === /DKEY DESKTOP MODE PHONE CALIBRATION v1 === */
 
+
+/* === DKEY PHONE DESKTOP SAFE MODE v2 === */
+/* Chrome Android “Desktop site” often reports desktop-like width.
+   This forces a readable product layout for physical phone screenshots. */
+@media (min-width:861px) and (max-width:1120px){
+  html,
+  body{
+    overflow-x:hidden !important;
+  }
+
+  .topbar{
+    width:calc(100vw - 24px) !important;
+    min-height:64px !important;
+    margin:10px auto 0 !important;
+    padding:9px 14px !important;
+    border-radius:34px !important;
+  }
+
+  .nav{
+    display:none !important;
+  }
+
+  .brand{
+    gap:10px !important;
+  }
+
+  .brand .logo{
+    width:46px !important;
+    height:46px !important;
+    border-radius:15px !important;
+  }
+
+  .brand strong{
+    font-size:25px !important;
+  }
+
+  .brand small{
+    font-size:13px !important;
+  }
+
+  .hero.page{
+    width:calc(100vw - 24px) !important;
+    min-height:auto !important;
+    padding:34px 0 46px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:28px !important;
+    overflow:hidden !important;
+    text-align:center !important;
+  }
+
+  .hero.page::before{
+    left:8% !important;
+    top:47% !important;
+    width:84% !important;
+    height:72px !important;
+    border-top-width:5px !important;
+    opacity:.55 !important;
+    transform:rotate(-8deg) !important;
+  }
+
+  .heroCopy{
+    order:1 !important;
+    width:100% !important;
+    max-width:850px !important;
+    padding:0 8px !important;
+    z-index:4 !important;
+  }
+
+  .heroCopy h1{
+    max-width:820px !important;
+    margin:0 auto 18px !important;
+    font-size:clamp(42px,8vw,68px) !important;
+    line-height:1.06 !important;
+    letter-spacing:-.055em !important;
+  }
+
+  .heroCopy .lead{
+    max-width:780px !important;
+    margin:0 auto 18px !important;
+    font-size:clamp(26px,4.8vw,42px) !important;
+    line-height:1.18 !important;
+  }
+
+  .heroMicroCopy{
+    max-width:720px !important;
+    margin:0 auto 24px !important;
+    font-size:clamp(18px,2.8vw,25px) !important;
+    line-height:1.45 !important;
+  }
+
+  .actions{
+    margin-top:0 !important;
+    justify-content:center !important;
+    align-items:center !important;
+    gap:12px !important;
+  }
+
+  .button.primary{
+    min-width:min(330px,86vw) !important;
+    min-height:64px !important;
+    border-radius:28px !important;
+    padding-inline:26px !important;
+    font-size:22px !important;
+  }
+
+  .button.primary::after{
+    font-size:34px !important;
+  }
+
+  .button.secondary{
+    min-height:54px !important;
+    padding-inline:24px !important;
+    font-size:17px !important;
+  }
+
+  .proofs{
+    margin-top:22px !important;
+    justify-content:center !important;
+    gap:10px !important;
+  }
+
+  .proofs span{
+    min-height:46px !important;
+    padding:0 14px !important;
+    border-radius:17px !important;
+    font-size:14px !important;
+  }
+
+  .proofs span::before{
+    width:13px !important;
+    height:13px !important;
+    box-shadow:0 0 0 5px rgba(16,200,109,.09) !important;
+  }
+
+  .productStage{
+    order:2 !important;
+    width:100% !important;
+    min-height:430px !important;
+    margin:0 auto !important;
+    padding-top:8px !important;
+    display:flex !important;
+    align-items:flex-start !important;
+    justify-content:center !important;
+    overflow:visible !important;
+    perspective:900px !important;
+  }
+
+  .productStage::before,
+  .productStage::after{
+    display:none !important;
+  }
+
+  .phone{
+    width:min(285px,56vw) !important;
+    border-radius:48px !important;
+    padding:8px !important;
+    transform:rotate(1.6deg) translateY(0) !important;
+    box-shadow:
+      0 30px 62px rgba(16,24,40,.22),
+      0 8px 18px rgba(16,24,40,.14),
+      inset 0 0 0 2px rgba(255,255,255,.15) !important;
+  }
+
+  .screen{
+    border-radius:40px !important;
+  }
+
+  .camera{
+    top:14px !important;
+    width:58px !important;
+    height:18px !important;
+  }
+
+  .status{
+    height:32px !important;
+    opacity:0 !important;
+  }
+
+  .appPanel{
+    margin-top:6px !important;
+    padding:0 18px !important;
+  }
+
+  .miniLogo{
+    width:43px !important;
+    height:43px !important;
+    border-radius:14px !important;
+  }
+
+  .appBrand strong{
+    font-size:21px !important;
+  }
+
+  .appBrand small{
+    font-size:12px !important;
+  }
+
+  .messageBox{
+    margin-top:20px !important;
+    min-height:68px !important;
+    border-radius:20px !important;
+    font-size:19px !important;
+    line-height:1.25 !important;
+  }
+
+  .keyboard{
+    margin:20px 18px 0 !important;
+  }
+
+  .intentLine{
+    height:30px !important;
+    border-radius:15px !important;
+    padding:0 13px !important;
+    font-size:11px !important;
+  }
+
+  .modeRow{
+    margin-top:10px !important;
+    gap:6px !important;
+  }
+
+  .mode{
+    min-height:30px !important;
+    border-radius:12px !important;
+    font-size:10px !important;
+    padding:0 9px !important;
+  }
+
+  .section{
+    padding:62px 0 !important;
+  }
+
+  #idea.section{
+    padding-top:58px !important;
+  }
+
+  .section h2,
+  .final h2{
+    font-size:clamp(38px,7.2vw,62px) !important;
+    line-height:1.06 !important;
+    letter-spacing:-.055em !important;
+  }
+
+  .sectionLead,
+  .final p{
+    max-width:780px !important;
+    margin-inline:auto !important;
+    font-size:clamp(17px,2.8vw,22px) !important;
+    line-height:1.55 !important;
+  }
+}
+
+/* tighter fallback for very narrow desktop-mode phones */
+@media (min-width:861px) and (max-width:980px){
+  .hero.page{
+    padding-top:28px !important;
+    gap:22px !important;
+  }
+
+  .heroCopy h1{
+    font-size:clamp(38px,8vw,56px) !important;
+  }
+
+  .heroCopy .lead{
+    font-size:clamp(24px,5vw,36px) !important;
+  }
+
+  .heroMicroCopy{
+    font-size:clamp(16px,3vw,21px) !important;
+  }
+
+  .phone{
+    width:min(260px,54vw) !important;
+  }
+
+  .productStage{
+    min-height:390px !important;
+  }
+}
+
+/* === /DKEY PHONE DESKTOP SAFE MODE v2 === */
+
