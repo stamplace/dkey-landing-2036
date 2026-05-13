@@ -1203,3 +1203,355 @@ body{
 }
 
 /* === /DKEY MASTERED HERO HTML v1 === */
+
+
+/* === DKEY HERO MOBILE CALIBRATION v2 === */
+
+/* desktop: keep premium product split, but reduce the “poster pasted into page” feeling */
+@media(min-width:861px){
+  .hero.page{
+    grid-template-columns:minmax(0,1fr) minmax(340px,.72fr) !important;
+    gap:42px !important;
+    min-height:calc(100vh - 118px) !important;
+    padding-top:44px !important;
+  }
+
+  .heroCopy{
+    align-self:center !important;
+  }
+
+  .productStage{
+    min-height:600px !important;
+    align-self:center !important;
+  }
+
+  .phone{
+    width:min(365px,30vw) !important;
+    transform:rotate(4deg) translateY(2px) !important;
+  }
+
+  .productStage::before{
+    top:34px !important;
+    right:4px !important;
+  }
+
+  .productStage::after{
+    top:50px !important;
+    right:280px !important;
+  }
+}
+
+/* mobile: text first, phone second, no giant empty phone crop */
+@media(max-width:860px){
+  html,
+  body{
+    overflow-x:hidden !important;
+  }
+
+  .topbar{
+    width:calc(100vw - 24px) !important;
+    min-height:72px !important;
+    margin:12px auto 0 !important;
+    padding:10px 14px !important;
+    justify-content:center !important;
+    border-radius:34px !important;
+  }
+
+  .brand{
+    gap:10px !important;
+  }
+
+  .brand .logo{
+    width:54px !important;
+    height:54px !important;
+    border-radius:17px !important;
+  }
+
+  .brand strong{
+    font-size:31px !important;
+    line-height:1 !important;
+  }
+
+  .brand small{
+    font-size:16px !important;
+  }
+
+  .nav{
+    display:none !important;
+  }
+
+  .hero.page{
+    width:calc(100vw - 22px) !important;
+    min-height:auto !important;
+    padding:26px 0 38px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    gap:24px !important;
+    text-align:center !important;
+    overflow:hidden !important;
+  }
+
+  .hero.page::before{
+    left:8% !important;
+    top:46% !important;
+    width:84% !important;
+    height:70px !important;
+    border-top-width:5px !important;
+    opacity:.70 !important;
+    transform:rotate(-8deg) !important;
+  }
+
+  .heroCopy{
+    order:1 !important;
+    width:100% !important;
+    max-width:100% !important;
+    padding:18px 4px 0 !important;
+    position:relative !important;
+    z-index:3 !important;
+  }
+
+  .heroCopy h1{
+    max-width:100% !important;
+    margin:0 auto 18px !important;
+    font-size:clamp(42px,12.5vw,58px) !important;
+    line-height:1.05 !important;
+    letter-spacing:-.055em !important;
+  }
+
+  .heroCopy .lead{
+    max-width:96% !important;
+    margin:0 auto 18px !important;
+    font-size:clamp(27px,7.4vw,39px) !important;
+    line-height:1.18 !important;
+  }
+
+  .heroMicroCopy{
+    max-width:94% !important;
+    margin:0 auto 24px !important;
+    font-size:clamp(19px,5.1vw,24px) !important;
+    line-height:1.45 !important;
+  }
+
+  .actions{
+    margin-top:0 !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    align-items:center !important;
+    gap:12px !important;
+  }
+
+  .button.primary{
+    width:min(360px,92vw) !important;
+    min-width:0 !important;
+    min-height:66px !important;
+    border-radius:28px !important;
+    padding-inline:26px !important;
+    font-size:24px !important;
+    box-shadow:
+      0 18px 42px rgba(16,200,109,.24),
+      0 8px 18px rgba(16,24,40,.10),
+      inset 0 1px 0 rgba(255,255,255,.44) !important;
+  }
+
+  .button.secondary{
+    width:min(280px,76vw) !important;
+    min-height:54px !important;
+    font-size:18px !important;
+  }
+
+  .proofs{
+    margin-top:22px !important;
+    justify-content:center !important;
+    gap:10px !important;
+  }
+
+  .proofs span{
+    min-height:46px !important;
+    padding:0 14px !important;
+    border-radius:17px !important;
+    font-size:14px !important;
+    gap:9px !important;
+  }
+
+  .proofs span::before{
+    width:13px !important;
+    height:13px !important;
+    box-shadow:0 0 0 5px rgba(16,200,109,.09) !important;
+  }
+
+  .productStage{
+    order:2 !important;
+    width:100% !important;
+    min-height:390px !important;
+    margin-top:4px !important;
+    padding-top:16px !important;
+    display:flex !important;
+    align-items:flex-start !important;
+    justify-content:center !important;
+    overflow:visible !important;
+    perspective:900px !important;
+  }
+
+  .productStage::before,
+  .productStage::after{
+    display:none !important;
+  }
+
+  .phone{
+    width:min(255px,72vw) !important;
+    border-radius:45px !important;
+    padding:7px !important;
+    transform:rotate(1.4deg) translateY(0) !important;
+    box-shadow:
+      0 28px 58px rgba(16,24,40,.22),
+      0 8px 18px rgba(16,24,40,.14),
+      inset 0 0 0 2px rgba(255,255,255,.15) !important;
+  }
+
+  .screen{
+    border-radius:37px !important;
+  }
+
+  .camera{
+    top:14px !important;
+    width:58px !important;
+    height:18px !important;
+  }
+
+  .status{
+    height:32px !important;
+    opacity:0 !important;
+  }
+
+  .appPanel{
+    margin-top:6px !important;
+    padding:0 17px !important;
+  }
+
+  .miniLogo{
+    width:43px !important;
+    height:43px !important;
+    border-radius:14px !important;
+  }
+
+  .appBrand{
+    gap:9px !important;
+  }
+
+  .appBrand strong{
+    font-size:20px !important;
+  }
+
+  .appBrand small{
+    font-size:12px !important;
+  }
+
+  .messageBox{
+    margin-top:20px !important;
+    min-height:68px !important;
+    border-radius:20px !important;
+    font-size:19px !important;
+    line-height:1.25 !important;
+  }
+
+  .keyboard{
+    margin:20px 17px 0 !important;
+  }
+
+  .intentLine{
+    height:30px !important;
+    border-radius:15px !important;
+    padding:0 13px !important;
+    font-size:11px !important;
+  }
+
+  .modeRow{
+    margin-top:10px !important;
+    gap:6px !important;
+  }
+
+  .mode{
+    min-height:30px !important;
+    border-radius:12px !important;
+    font-size:10px !important;
+    padding:0 9px !important;
+  }
+}
+
+/* very small phones: keep first screen readable */
+@media(max-width:390px){
+  .heroCopy h1{
+    font-size:clamp(38px,12vw,52px) !important;
+  }
+
+  .heroCopy .lead{
+    font-size:clamp(25px,7.3vw,36px) !important;
+  }
+
+  .productStage{
+    min-height:360px !important;
+  }
+
+  .phone{
+    width:min(235px,70vw) !important;
+  }
+
+  .proofs span{
+    font-size:13px !important;
+    padding:0 12px !important;
+  }
+}
+
+/* landscape/mobile screenshots: compact side-by-side without huge empty space */
+@media(max-height:560px) and (min-width:700px){
+  .hero.page{
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) 260px !important;
+    gap:24px !important;
+    align-items:center !important;
+    text-align:right !important;
+    padding:24px 0 34px !important;
+  }
+
+  .heroCopy{
+    order:initial !important;
+    padding:0 !important;
+  }
+
+  .heroCopy h1{
+    font-size:44px !important;
+  }
+
+  .heroCopy .lead{
+    font-size:28px !important;
+  }
+
+  .heroMicroCopy{
+    font-size:18px !important;
+    margin-bottom:18px !important;
+  }
+
+  .actions{
+    flex-direction:row !important;
+    justify-content:flex-start !important;
+  }
+
+  .proofs{
+    justify-content:flex-start !important;
+  }
+
+  .productStage{
+    min-height:360px !important;
+    order:initial !important;
+  }
+
+  .phone{
+    width:230px !important;
+    transform:rotate(2.5deg) !important;
+  }
+}
+
+/* === /DKEY HERO MOBILE CALIBRATION v2 === */
+
