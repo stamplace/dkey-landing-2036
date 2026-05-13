@@ -773,3 +773,433 @@ h1,h2,h3,p{
     animation:none!important;
   }
 }
+
+/* === DKEY MASTERED HERO HTML v1 === */
+:root{
+  --dkey-ink:#101828;
+  --dkey-muted:#475467;
+  --dkey-soft:#eef8f2;
+  --dkey-green:#10c86d;
+  --dkey-green-dark:#079455;
+  --dkey-line:rgba(16,200,109,.16);
+}
+
+body{
+  background:
+    radial-gradient(circle at 11% 6%, rgba(16,200,109,.18), transparent 34%),
+    radial-gradient(circle at 88% 8%, rgba(139,92,246,.10), transparent 28%),
+    linear-gradient(180deg,#fff 0%,#f5fbf8 46%,#eaf7f1 100%) !important;
+}
+
+.topbar{
+  width:min(1180px,calc(100vw - 32px)) !important;
+  margin:18px auto 0 !important;
+  padding:14px 18px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.72) !important;
+  border:1px solid rgba(16,24,40,.08) !important;
+  box-shadow:
+    0 18px 48px rgba(16,24,40,.08),
+    inset 0 1px 0 rgba(255,255,255,.75) !important;
+  backdrop-filter: blur(18px) saturate(1.15) !important;
+}
+
+.brand .logo,
+.miniLogo{
+  box-shadow:
+    0 16px 34px rgba(16,200,109,.24),
+    inset 0 1px 0 rgba(255,255,255,.45) !important;
+}
+
+.hero.page{
+  width:min(1180px,calc(100vw - 32px)) !important;
+  min-height:calc(100vh - 104px) !important;
+  margin:0 auto !important;
+  padding:58px 0 54px !important;
+  display:grid !important;
+  grid-template-columns:minmax(0,1.18fr) minmax(330px,.82fr) !important;
+  gap:54px !important;
+  align-items:center !important;
+  position:relative !important;
+  overflow:visible !important;
+}
+
+.hero.page::before{
+  content:"" !important;
+  position:absolute !important;
+  left:30% !important;
+  top:48% !important;
+  width:42% !important;
+  height:95px !important;
+  border-top:9px solid rgba(16,200,109,.13) !important;
+  border-radius:50% !important;
+  transform:rotate(-9deg) !important;
+  filter:blur(.2px) !important;
+  pointer-events:none !important;
+}
+
+.heroCopy{
+  max-width:735px !important;
+  position:relative !important;
+  z-index:2 !important;
+}
+
+.heroCopy .eyebrow{
+  display:none !important;
+}
+
+.heroCopy h1{
+  margin:0 0 28px !important;
+  max-width:760px !important;
+  color:var(--dkey-ink) !important;
+  font-size:clamp(46px,6.1vw,86px) !important;
+  line-height:1.08 !important;
+  letter-spacing:-.055em !important;
+  font-weight:950 !important;
+  text-wrap:balance !important;
+}
+
+.heroCopy .lead{
+  margin:0 0 22px !important;
+  color:var(--dkey-green-dark) !important;
+  font-size:clamp(28px,3.65vw,48px) !important;
+  line-height:1.18 !important;
+  letter-spacing:-.04em !important;
+  font-weight:950 !important;
+  text-wrap:balance !important;
+}
+
+.heroMicroCopy{
+  margin:0 0 34px !important;
+  max-width:680px !important;
+  color:var(--dkey-muted) !important;
+  font-size:clamp(21px,2.1vw,29px) !important;
+  line-height:1.5 !important;
+  font-weight:650 !important;
+  text-wrap:balance !important;
+}
+
+.actions{
+  margin-top:10px !important;
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:16px !important;
+  align-items:center !important;
+}
+
+.button.primary{
+  min-width:290px !important;
+  min-height:74px !important;
+  border-radius:31px !important;
+  padding-inline:34px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:16px !important;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255,255,255,.35), transparent 38%),
+    linear-gradient(135deg,#15d97a,#10bfa9) !important;
+  color:#052e1a !important;
+  font-size:24px !important;
+  font-weight:950 !important;
+  letter-spacing:-.025em !important;
+  box-shadow:
+    0 24px 54px rgba(16,200,109,.28),
+    0 10px 24px rgba(16,24,40,.12),
+    inset 0 1px 0 rgba(255,255,255,.42) !important;
+}
+
+.button.primary::after{
+  content:"›" !important;
+  font-size:40px !important;
+  line-height:1 !important;
+  font-weight:950 !important;
+}
+
+.button.secondary{
+  min-height:62px !important;
+  padding-inline:28px !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.72) !important;
+  border:1px solid rgba(16,24,40,.12) !important;
+  color:#101828 !important;
+  box-shadow:0 12px 30px rgba(16,24,40,.07) !important;
+}
+
+.proofs{
+  margin-top:34px !important;
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:14px !important;
+}
+
+.proofs span{
+  min-height:58px !important;
+  padding:0 24px !important;
+  border-radius:20px !important;
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:12px !important;
+  background:rgba(255,255,255,.78) !important;
+  border:1px solid rgba(16,200,109,.18) !important;
+  box-shadow:
+    0 12px 32px rgba(16,24,40,.07),
+    inset 0 1px 0 rgba(255,255,255,.7) !important;
+  color:#344054 !important;
+  font-size:18px !important;
+  font-weight:850 !important;
+}
+
+.proofs span::before{
+  content:"" !important;
+  width:18px !important;
+  height:18px !important;
+  border-radius:50% !important;
+  background:var(--dkey-green) !important;
+  box-shadow:0 0 0 6px rgba(16,200,109,.10) !important;
+}
+
+.productStage{
+  position:relative !important;
+  min-height:620px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  perspective:1200px !important;
+  isolation:isolate !important;
+}
+
+.productStage::before{
+  content:"Tap once · use everywhere" !important;
+  position:absolute !important;
+  z-index:5 !important;
+  top:20px !important;
+  right:22px !important;
+  min-height:48px !important;
+  padding:0 26px 0 48px !important;
+  display:flex !important;
+  align-items:center !important;
+  border-radius:999px !important;
+  background:rgba(255,255,255,.78) !important;
+  border:1px solid rgba(16,24,40,.08) !important;
+  color:var(--dkey-green-dark) !important;
+  font-size:19px !important;
+  font-weight:950 !important;
+  direction:ltr !important;
+  box-shadow:
+    0 14px 34px rgba(16,24,40,.10),
+    inset 0 1px 0 rgba(255,255,255,.80) !important;
+  backdrop-filter:blur(16px) !important;
+}
+
+.productStage::after{
+  content:"" !important;
+  position:absolute !important;
+  z-index:6 !important;
+  top:36px !important;
+  right:300px !important;
+  width:14px !important;
+  height:14px !important;
+  border-radius:50% !important;
+  background:var(--dkey-green) !important;
+  box-shadow:0 0 0 7px rgba(16,200,109,.10) !important;
+}
+
+.productStage .callout{
+  display:none !important;
+}
+
+.phone{
+  width:min(360px,78vw) !important;
+  height:auto !important;
+  aspect-ratio:300/560 !important;
+  border-radius:58px !important;
+  padding:10px !important;
+  background:
+    linear-gradient(135deg,#1f2937,#05070a 54%,#2d3748) !important;
+  box-shadow:
+    0 38px 80px rgba(16,24,40,.28),
+    0 12px 26px rgba(16,24,40,.18),
+    inset 0 0 0 2px rgba(255,255,255,.16) !important;
+  transform:rotate(5deg) translateY(8px) !important;
+  transform-origin:center !important;
+}
+
+.screen{
+  width:100% !important;
+  height:100% !important;
+  border-radius:48px !important;
+  background:
+    linear-gradient(180deg,#ffffff,#fbfcff) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(16,24,40,.08),
+    inset 0 1px 18px rgba(16,24,40,.045) !important;
+  overflow:hidden !important;
+}
+
+.camera{
+  top:18px !important;
+  width:66px !important;
+  height:20px !important;
+  border-radius:999px !important;
+  background:#05070a !important;
+}
+
+.status{
+  opacity:0 !important;
+  height:42px !important;
+}
+
+.appPanel{
+  margin-top:14px !important;
+  padding:0 24px !important;
+}
+
+.appHead{
+  align-items:center !important;
+}
+
+.appBrand strong{
+  font-size:26px !important;
+}
+
+.appBrand small{
+  font-size:15px !important;
+  color:#667085 !important;
+}
+
+.state{
+  display:none !important;
+}
+
+.messageBox{
+  margin-top:30px !important;
+  min-height:84px !important;
+  border-radius:22px !important;
+  background:#fff !important;
+  border:1px solid rgba(16,24,40,.10) !important;
+  box-shadow:0 8px 24px rgba(16,24,40,.045) !important;
+  font-size:24px !important;
+  font-weight:850 !important;
+}
+
+.keyboard{
+  margin:28px 24px 0 !important;
+  padding:0 !important;
+  background:transparent !important;
+}
+
+.intentLine{
+  height:34px !important;
+  border-radius:17px !important;
+  padding:0 18px !important;
+  display:flex !important;
+  align-items:center !important;
+  background:#06170f !important;
+  color:#bcf7d2 !important;
+  font-size:13px !important;
+  font-weight:750 !important;
+}
+
+.toolsRow,
+.actionRow,
+.keyRows{
+  display:none !important;
+}
+
+.modeRow{
+  margin-top:12px !important;
+  display:flex !important;
+  gap:8px !important;
+}
+
+.mode{
+  min-height:34px !important;
+  border-radius:14px !important;
+  background:#f2f4f7 !important;
+  color:#667085 !important;
+  font-size:12px !important;
+  font-weight:900 !important;
+}
+
+.mode.isActive,
+.mode.dev.isActive,
+.mode.dkey.isActive,
+.mode.suno.isActive{
+  background:rgba(16,200,109,.12) !important;
+  border:1px solid rgba(16,200,109,.28) !important;
+  color:var(--dkey-green-dark) !important;
+}
+
+@media(max-width:860px){
+  .topbar{
+    width:calc(100vw - 24px) !important;
+    margin-top:12px !important;
+  }
+
+  .nav{
+    display:none !important;
+  }
+
+  .hero.page{
+    width:calc(100vw - 24px) !important;
+    min-height:auto !important;
+    grid-template-columns:1fr !important;
+    gap:30px !important;
+    padding:42px 0 44px !important;
+    text-align:center !important;
+  }
+
+  .hero.page::before{
+    left:10% !important;
+    top:43% !important;
+    width:80% !important;
+  }
+
+  .heroCopy{
+    max-width:100% !important;
+  }
+
+  .heroCopy h1{
+    font-size:clamp(42px,12vw,66px) !important;
+  }
+
+  .heroCopy .lead{
+    font-size:clamp(27px,7vw,42px) !important;
+  }
+
+  .heroMicroCopy{
+    margin-inline:auto !important;
+    font-size:clamp(19px,5.2vw,26px) !important;
+  }
+
+  .actions,
+  .proofs{
+    justify-content:center !important;
+  }
+
+  .button.primary{
+    min-width:min(330px,92vw) !important;
+  }
+
+  .productStage{
+    min-height:570px !important;
+  }
+
+  .productStage::before{
+    top:2px !important;
+    right:50% !important;
+    transform:translateX(50%) !important;
+  }
+
+  .productStage::after{
+    display:none !important;
+  }
+
+  .phone{
+    width:min(330px,86vw) !important;
+    transform:rotate(2.5deg) translateY(18px) !important;
+  }
+}
+
+/* === /DKEY MASTERED HERO HTML v1 === */
