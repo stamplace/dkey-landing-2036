@@ -1555,3 +1555,263 @@ body{
 
 /* === /DKEY HERO MOBILE CALIBRATION v2 === */
 
+
+/* === DKEY DESKTOP MODE PHONE CALIBRATION v1 === */
+/* Physical phone using Chrome “Desktop site”: wide CSS viewport, but touch device. */
+@media (hover:none) and (pointer:coarse) and (min-width:861px) and (max-width:1280px){
+  body{
+    background:
+      radial-gradient(circle at 18% 10%, rgba(16,200,109,.16), transparent 34%),
+      radial-gradient(circle at 84% 10%, rgba(139,92,246,.08), transparent 28%),
+      linear-gradient(180deg,#fff 0%,#effaf5 48%,#eaf7f1 100%) !important;
+  }
+
+  .topbar{
+    width:calc(100vw - 28px) !important;
+    min-height:58px !important;
+    margin:10px auto 0 !important;
+    padding:8px 12px !important;
+    border-radius:999px !important;
+  }
+
+  .brand .logo{
+    width:42px !important;
+    height:42px !important;
+    border-radius:14px !important;
+  }
+
+  .brand strong{
+    font-size:22px !important;
+  }
+
+  .brand small{
+    font-size:12px !important;
+  }
+
+  .nav a{
+    padding:8px 10px !important;
+    font-size:13px !important;
+  }
+
+  .hero.page{
+    width:calc(100vw - 28px) !important;
+    min-height:calc(100vh - 82px) !important;
+    padding:26px 0 28px !important;
+    display:grid !important;
+    grid-template-columns:minmax(310px,.86fr) minmax(390px,1.14fr) !important;
+    gap:28px !important;
+    align-items:center !important;
+    overflow:hidden !important;
+  }
+
+  .hero.page::before{
+    left:30% !important;
+    top:52% !important;
+    width:48% !important;
+    height:70px !important;
+    border-top-width:5px !important;
+    opacity:.62 !important;
+  }
+
+  .heroCopy{
+    max-width:100% !important;
+    padding-inline:0 !important;
+    align-self:center !important;
+    z-index:4 !important;
+  }
+
+  .heroCopy h1{
+    max-width:100% !important;
+    margin-bottom:16px !important;
+    font-size:clamp(36px,5.15vw,58px) !important;
+    line-height:1.08 !important;
+    letter-spacing:-.052em !important;
+  }
+
+  .heroCopy .lead{
+    margin-bottom:14px !important;
+    font-size:clamp(22px,3.05vw,34px) !important;
+    line-height:1.2 !important;
+  }
+
+  .heroMicroCopy{
+    max-width:520px !important;
+    margin-bottom:18px !important;
+    font-size:clamp(16px,1.75vw,21px) !important;
+    line-height:1.45 !important;
+  }
+
+  .actions{
+    margin-top:0 !important;
+    gap:10px !important;
+  }
+
+  .button.primary{
+    min-width:210px !important;
+    min-height:56px !important;
+    border-radius:24px !important;
+    padding-inline:24px !important;
+    font-size:19px !important;
+  }
+
+  .button.primary::after{
+    font-size:30px !important;
+  }
+
+  .button.secondary{
+    min-height:50px !important;
+    padding-inline:20px !important;
+    font-size:15px !important;
+  }
+
+  .proofs{
+    margin-top:18px !important;
+    gap:10px !important;
+  }
+
+  .proofs span{
+    min-height:42px !important;
+    padding:0 13px !important;
+    border-radius:16px !important;
+    font-size:13px !important;
+  }
+
+  .proofs span::before{
+    width:12px !important;
+    height:12px !important;
+    box-shadow:0 0 0 5px rgba(16,200,109,.08) !important;
+  }
+
+  .productStage{
+    min-height:430px !important;
+    align-self:center !important;
+    justify-content:center !important;
+    overflow:visible !important;
+  }
+
+  .productStage::before{
+    top:10px !important;
+    right:50% !important;
+    transform:translateX(50%) !important;
+    min-height:38px !important;
+    padding:0 20px 0 42px !important;
+    font-size:15px !important;
+  }
+
+  .productStage::after{
+    display:none !important;
+  }
+
+  .phone{
+    width:min(285px,29vw) !important;
+    border-radius:48px !important;
+    padding:8px !important;
+    transform:rotate(2.5deg) translateY(12px) !important;
+    box-shadow:
+      0 28px 58px rgba(16,24,40,.22),
+      0 8px 18px rgba(16,24,40,.13),
+      inset 0 0 0 2px rgba(255,255,255,.15) !important;
+  }
+
+  .screen{
+    border-radius:40px !important;
+  }
+
+  .camera{
+    top:14px !important;
+    width:58px !important;
+    height:18px !important;
+  }
+
+  .status{
+    height:34px !important;
+    opacity:0 !important;
+  }
+
+  .appPanel{
+    margin-top:8px !important;
+    padding:0 18px !important;
+  }
+
+  .miniLogo{
+    width:44px !important;
+    height:44px !important;
+    border-radius:14px !important;
+  }
+
+  .appBrand strong{
+    font-size:21px !important;
+  }
+
+  .appBrand small{
+    font-size:12px !important;
+  }
+
+  .messageBox{
+    margin-top:20px !important;
+    min-height:70px !important;
+    border-radius:20px !important;
+    font-size:19px !important;
+    line-height:1.25 !important;
+  }
+
+  .keyboard{
+    margin:20px 18px 0 !important;
+  }
+
+  .intentLine{
+    height:30px !important;
+    border-radius:15px !important;
+    font-size:11px !important;
+    padding:0 13px !important;
+  }
+
+  .modeRow{
+    margin-top:10px !important;
+    gap:6px !important;
+  }
+
+  .mode{
+    min-height:30px !important;
+    border-radius:12px !important;
+    font-size:10px !important;
+    padding-inline:9px !important;
+  }
+
+  #idea.section{
+    padding-top:56px !important;
+  }
+
+  .section h2,
+  .final h2{
+    font-size:clamp(38px,6vw,62px) !important;
+  }
+}
+
+/* narrower “Desktop site” on phones: avoid side clipping */
+@media (hover:none) and (pointer:coarse) and (min-width:861px) and (max-width:980px){
+  .hero.page{
+    grid-template-columns:minmax(250px,.78fr) minmax(360px,1.22fr) !important;
+    gap:20px !important;
+  }
+
+  .phone{
+    width:250px !important;
+    transform:rotate(2deg) translateY(10px) !important;
+  }
+
+  .heroCopy h1{
+    font-size:clamp(34px,5.4vw,52px) !important;
+  }
+
+  .heroCopy .lead{
+    font-size:clamp(21px,3.2vw,30px) !important;
+  }
+
+  .heroMicroCopy{
+    font-size:16px !important;
+  }
+}
+
+/* === /DKEY DESKTOP MODE PHONE CALIBRATION v1 === */
+
