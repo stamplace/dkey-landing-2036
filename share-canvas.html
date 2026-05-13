@@ -133,7 +133,7 @@ canvas{
     <canvas id="c" width="1200" height="630"></canvas>
   </section>
 
-  <p class="note">כיול v3: בלי DKey ענק בתוך הכותרת, בלי חפיפות, כרטיס נקי לשיתוף.</p>
+  <p class="note">DKEY SHARE CANVAS LIVING CLEAN v4: קו אור עדין, תג מוצר, קופי אנושי יותר וכרטיס חי לשיתוף.</p>
 </div>
 
 <script>
@@ -253,7 +253,11 @@ canvas{
     rtl("רואים. בוחרים. מאשרים.",x+232,y+323,17,"750",ink);
 
     box(x+28,y+379,222,30,15,"#06170f");
-    ltr("approve manually",x+46,y+399,13,"700","#bcf7d2");
+    ctx.beginPath();
+    ctx.arc(x+48,y+394,5,0,Math.PI*2);
+    ctx.fillStyle = mode.color;
+    ctx.fill();
+    ltr("approve manually",x+62,y+399,13,"700","#bcf7d2");
 
     modes.forEach((m,i)=>{
       box(x+28+i*54,y+429,46,30,11,i===active?m.color+"22":"#f2f4f7",i===active?m.color+"66":null);
@@ -297,7 +301,7 @@ canvas{
     fitRtl("המקלדת שמחזירה לך שליטה",735,235,650,61,"950",ink);
     rtl("אתה כותב. אתה בוחר. אתה מאשר.",735,314,38,"900",greenDark);
     rtl("שכבת פעולה מעל המקלדת.",735,378,28,"700",muted);
-    rtl("בלי שליחה אוטומטית. בלי הרצה אוטומטית.",735,420,25,"600",muted);
+    rtl("אתה רואה. בוחר. מאשר.",735,420,28,"850",greenDark);
 
     const pills = [
       ["Human approval",78,462,198],
@@ -314,17 +318,51 @@ canvas{
       ltr(label,x+52,y+37,20,"850","#344054");
     });
 
-    const cta = ctx.createLinearGradient(78,542,390,600);
+    const cta = ctx.createLinearGradient(78,528,390,586);
     cta.addColorStop(0,"#10c86d");
     cta.addColorStop(1,"#14b8a6");
     ctx.save();
     ctx.shadowColor = "rgba(16,200,109,.30)";
     ctx.shadowBlur = 26;
     ctx.shadowOffsetY = 16;
-    box(78,535,308,72,31,cta);
+    box(78,525,308,72,31,cta);
     ctx.restore();
-    rtl("נסה דמו חי",270,581,30,"950","#052e1a");
-    ltr("›",334,581,42,"950","#052e1a");
+    rtl("נסה דמו חי",270,571,30,"950","#052e1a");
+    ltr("›",334,571,42,"950","#052e1a");
+
+    // DKEY SHARE CANVAS LIVING CLEAN v4
+    // subtle action trail: words → DKey phone
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(420,382);
+    ctx.bezierCurveTo(540,330,675,300,835,250);
+    const trail = ctx.createLinearGradient(420,382,835,250);
+    trail.addColorStop(0,"rgba(16,200,109,0)");
+    trail.addColorStop(.45,"rgba(16,200,109,.22)");
+    trail.addColorStop(1,"rgba(20,184,166,.02)");
+    ctx.strokeStyle = trail;
+    ctx.lineWidth = 10;
+    ctx.lineCap = "round";
+    ctx.shadowColor = "rgba(16,200,109,.22)";
+    ctx.shadowBlur = 20;
+    ctx.stroke();
+
+    const dotPhase = (Math.sin(t/850)+1)/2;
+    const dotX = 520 + dotPhase * 220;
+    const dotY = 350 - dotPhase * 58;
+    ctx.beginPath();
+    ctx.arc(dotX,dotY,5,0,Math.PI*2);
+    ctx.fillStyle = "rgba(16,200,109,.52)";
+    ctx.fill();
+    ctx.restore();
+
+    // small product tag beside the phone
+    box(790,42,310,44,22,"rgba(255,255,255,.82)","rgba(16,24,40,.08)");
+    ctx.beginPath();
+    ctx.arc(815,64,7,0,Math.PI*2);
+    ctx.fillStyle = green;
+    ctx.fill();
+    ltr("Tap once · use everywhere",835,71,18,"900",greenDark);
 
     phone(842,74,t);
 
