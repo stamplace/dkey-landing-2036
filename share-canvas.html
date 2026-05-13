@@ -133,7 +133,7 @@ canvas{
     <canvas id="c" width="1200" height="630"></canvas>
   </section>
 
-  <p class="note">DKEY SHARE CANVAS LIVING CLEAN v4: קו אור עדין, תג מוצר, קופי אנושי יותר וכרטיס חי לשיתוף.</p>
+  <p class="note">DKEY SHARE CANVAS POLISH v5: תג פנימי יותר, קו אור עדין יותר וכפתור רך יותר.</p>
 </div>
 
 <script>
@@ -322,8 +322,8 @@ canvas{
     cta.addColorStop(0,"#10c86d");
     cta.addColorStop(1,"#14b8a6");
     ctx.save();
-    ctx.shadowColor = "rgba(16,200,109,.30)";
-    ctx.shadowBlur = 26;
+    ctx.shadowColor = "rgba(16,200,109,.22)";
+    ctx.shadowBlur = 20;
     ctx.shadowOffsetY = 16;
     box(78,525,308,72,31,cta);
     ctx.restore();
@@ -331,6 +331,7 @@ canvas{
     ltr("›",334,571,42,"950","#052e1a");
 
     // DKEY SHARE CANVAS LIVING CLEAN v4
+    // DKEY SHARE CANVAS POLISH v5
     // subtle action trail: words → DKey phone
     ctx.save();
     ctx.beginPath();
@@ -338,13 +339,13 @@ canvas{
     ctx.bezierCurveTo(540,330,675,300,835,250);
     const trail = ctx.createLinearGradient(420,382,835,250);
     trail.addColorStop(0,"rgba(16,200,109,0)");
-    trail.addColorStop(.45,"rgba(16,200,109,.22)");
+    trail.addColorStop(.45,"rgba(16,200,109,.14)");
     trail.addColorStop(1,"rgba(20,184,166,.02)");
     ctx.strokeStyle = trail;
-    ctx.lineWidth = 10;
+    ctx.lineWidth = 7;
     ctx.lineCap = "round";
-    ctx.shadowColor = "rgba(16,200,109,.22)";
-    ctx.shadowBlur = 20;
+    ctx.shadowColor = "rgba(16,200,109,.14)";
+    ctx.shadowBlur = 14;
     ctx.stroke();
 
     const dotPhase = (Math.sin(t/850)+1)/2;
@@ -352,17 +353,17 @@ canvas{
     const dotY = 350 - dotPhase * 58;
     ctx.beginPath();
     ctx.arc(dotX,dotY,5,0,Math.PI*2);
-    ctx.fillStyle = "rgba(16,200,109,.52)";
+    ctx.fillStyle = "rgba(16,200,109,.38)";
     ctx.fill();
     ctx.restore();
 
     // small product tag beside the phone
-    box(790,42,310,44,22,"rgba(255,255,255,.82)","rgba(16,24,40,.08)");
+    box(760,58,310,44,22,"rgba(255,255,255,.86)","rgba(16,24,40,.08)");
     ctx.beginPath();
-    ctx.arc(815,64,7,0,Math.PI*2);
+    ctx.arc(785,80,7,0,Math.PI*2);
     ctx.fillStyle = green;
     ctx.fill();
-    ltr("Tap once · use everywhere",835,71,18,"900",greenDark);
+    ltr("Tap once · use everywhere",805,87,18,"900",greenDark);
 
     phone(842,74,t);
 
