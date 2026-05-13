@@ -5,116 +5,112 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DKey — Share Canvas Studio</title>
 <style>
-  *{box-sizing:border-box}
-  html,body{
-    margin:0;
-    min-height:100%;
-    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-    background:linear-gradient(180deg,#ffffff,#eef7f3);
-    color:#101828;
-  }
-  .wrap{
-    width:min(1120px,calc(100vw - 22px));
-    margin:0 auto;
-    padding:20px 0 32px;
-  }
-  .top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-    margin-bottom:14px;
-  }
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    direction:ltr;
-  }
-  .logo{
-    width:44px;
-    height:44px;
-    border-radius:15px;
-    background:linear-gradient(145deg,#22df82,#05a958);
-    position:relative;
-    box-shadow:0 12px 24px rgba(16,200,109,.22);
-  }
-  .logo:before{
-    content:"";
-    position:absolute;
-    left:13px;
-    top:12px;
-    width:5px;
-    height:22px;
-    border-radius:4px;
-    background:white;
-    box-shadow:9px -5px 0 white,18px 4px 0 white;
-  }
-  .logo:after{
-    content:"";
-    position:absolute;
-    right:6px;
-    top:6px;
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:white;
-  }
-  .brand strong{display:block;font-size:24px;line-height:1}
-  .brand small{display:block;color:#667085;margin-top:3px}
-  .tools{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-  }
-  button,a{
-    border:0;
-    color:inherit;
-    font:inherit;
-    text-decoration:none;
-  }
-  .btn{
-    min-height:46px;
-    padding:0 18px;
-    border-radius:999px;
-    background:#fff;
-    border:1px solid rgba(16,24,40,.10);
-    box-shadow:0 10px 24px rgba(16,24,40,.08);
-    font-weight:900;
-    cursor:pointer;
-  }
-  .btn.primary{
-    background:linear-gradient(135deg,#10c86d,#14b8a6);
-    color:#052e1a;
-    border:0;
-  }
-  .stage{
-    background:rgba(255,255,255,.78);
-    border:1px solid rgba(16,24,40,.08);
-    border-radius:30px;
-    padding:12px;
-    box-shadow:0 22px 70px rgba(16,24,40,.10);
-  }
-  canvas{
-    width:100%;
-    display:block;
-    aspect-ratio:1200/630;
-    border-radius:22px;
-    background:#fff;
-  }
-  .note{
-    margin:12px 4px 0;
-    color:#475467;
-    font-size:14px;
-    line-height:1.5;
-  }
-  @media(max-width:680px){
-    .top{flex-direction:column;align-items:flex-start}
-    .tools{width:100%}
-    .btn{flex:1}
-    .stage{padding:8px;border-radius:22px}
-    canvas{border-radius:16px}
-  }
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:linear-gradient(180deg,#fff,#eef7f3);
+  color:#101828;
+}
+.wrap{
+  width:min(1120px,calc(100vw - 22px));
+  margin:0 auto;
+  padding:20px 0 32px;
+}
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  direction:ltr;
+}
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:15px;
+  background:linear-gradient(145deg,#22df82,#05a958);
+  position:relative;
+  box-shadow:0 12px 24px rgba(16,200,109,.22);
+}
+.logo:before{
+  content:"";
+  position:absolute;
+  left:13px;
+  top:12px;
+  width:5px;
+  height:22px;
+  border-radius:4px;
+  background:white;
+  box-shadow:9px -5px 0 white,18px 4px 0 white;
+}
+.logo:after{
+  content:"";
+  position:absolute;
+  right:6px;
+  top:6px;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:white;
+}
+.brand strong{display:block;font-size:24px;line-height:1}
+.brand small{display:block;color:#667085;margin-top:3px}
+.tools{display:flex;flex-wrap:wrap;gap:10px}
+button,a{
+  border:0;
+  color:inherit;
+  font:inherit;
+  text-decoration:none;
+}
+.btn{
+  min-height:46px;
+  padding:0 18px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid rgba(16,24,40,.10);
+  box-shadow:0 10px 24px rgba(16,24,40,.08);
+  font-weight:900;
+  cursor:pointer;
+}
+.btn.primary{
+  background:linear-gradient(135deg,#10c86d,#14b8a6);
+  color:#052e1a;
+  border:0;
+}
+.stage{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(16,24,40,.08);
+  border-radius:30px;
+  padding:12px;
+  box-shadow:0 22px 70px rgba(16,24,40,.10);
+}
+canvas{
+  width:100%;
+  display:block;
+  aspect-ratio:1200/630;
+  border-radius:22px;
+  background:#fff;
+}
+.note{
+  margin:12px 4px 0;
+  color:#475467;
+  font-size:14px;
+  line-height:1.5;
+}
+@media(max-width:680px){
+  .top{flex-direction:column;align-items:flex-start}
+  .tools{width:100%}
+  .btn{flex:1}
+  .stage{padding:8px;border-radius:22px}
+  canvas{border-radius:16px}
+}
 </style>
 </head>
 <body>
@@ -137,9 +133,7 @@
     <canvas id="c" width="1200" height="630"></canvas>
   </section>
 
-  <p class="note">
-    גרסה מתוקנת: כרטיס שיתוף קצר, בטוח לוואטסאפ, בלי טקסט בורח ובלי חפיפות.
-  </p>
+  <p class="note">כיול v3: בלי DKey ענק בתוך הכותרת, בלי חפיפות, כרטיס נקי לשיתוף.</p>
 </div>
 
 <script>
@@ -175,7 +169,7 @@
     }
   }
 
-  function drawLogo(x,y,s=1){
+  function logo(x,y,s=1){
     const g = ctx.createLinearGradient(x,y,x+64*s,y+64*s);
     g.addColorStop(0,"#22df82");
     g.addColorStop(1,"#05a958");
@@ -217,7 +211,7 @@
     ctx.direction = "rtl";
     ctx.textAlign = "right";
     ctx.textBaseline = "alphabetic";
-    while(size > 22){
+    while(size > 24){
       ctx.font = `${weight} ${size}px system-ui,-apple-system,Segoe UI,Arial,sans-serif`;
       if(ctx.measureText(t).width <= maxWidth) break;
       size -= 2;
@@ -228,36 +222,42 @@
   }
 
   function phone(x,y,t){
-    const active = Math.floor(t / 1400) % 4;
-    const accents = ["#10c86d","#14b8a6","#f59e0b","#8b5cf6"];
-    const color = accents[active];
+    const active = Math.floor(t / 1500) % 4;
+    const modes = [
+      {name:"DKey", color:"#10c86d"},
+      {name:"DEV", color:"#14b8a6"},
+      {name:"SUNO", color:"#f59e0b"},
+      {name:"Create", color:"#8b5cf6"}
+    ];
+    const mode = modes[active];
 
     ctx.save();
     ctx.shadowColor = "rgba(16,24,40,.22)";
     ctx.shadowBlur = 30;
     ctx.shadowOffsetY = 24;
+
     box(x,y,278,478,48,"#111827");
     ctx.shadowColor = "transparent";
     box(x+10,y+10,258,458,39,"#fff");
     box(x+105,y+22,68,20,10,"#05070a");
 
-    drawLogo(x+30,y+74,.74);
-    ltr("DKey Active",x+88,y+100,22,"900");
-    ltr("one layer · any tool",x+88,y+123,14,"500","#667085");
+    logo(x+30,y+72,.74);
+    ltr("DKey Active",x+88,y+99,22,"900");
+    ltr("one layer · any tool",x+88,y+122,14,"500","#667085");
 
-    box(x+28,y+155,222,72,20,"#fff","rgba(16,24,40,.10)");
-    rtl("כתוב טבעי.",x+232,y+196,22,"850",ink);
+    box(x+28,y+153,222,72,20,"#fff","rgba(16,24,40,.10)");
+    rtl("כתוב טבעי.",x+232,y+194,22,"850",ink);
 
-    box(x+28,y+250,222,104,24,color+"18",color+"55");
-    rtl("תוצאה מוכנה",x+232,y+292,21,"900",color);
-    rtl("רואים. בוחרים. מאשרים.",x+232,y+326,17,"750",ink);
+    box(x+28,y+247,222,104,24,mode.color+"18",mode.color+"55");
+    rtl("תוצאה מוכנה",x+232,y+289,21,"900",mode.color);
+    rtl("רואים. בוחרים. מאשרים.",x+232,y+323,17,"750",ink);
 
-    box(x+28,y+382,222,30,15,"#06170f");
-    ltr("approve manually",x+46,y+402,13,"700","#bcf7d2");
+    box(x+28,y+379,222,30,15,"#06170f");
+    ltr("approve manually",x+46,y+399,13,"700","#bcf7d2");
 
-    ["DKey","DEV","SUNO","Create"].forEach((m,i)=>{
-      box(x+28+i*54,y+432,46,30,11,i===active?color+"22":"#f2f4f7",i===active?color+"66":null);
-      ltr(m,x+51+i*54,y+452,10,"900",i===active?color:"#667085","center");
+    modes.forEach((m,i)=>{
+      box(x+28+i*54,y+429,46,30,11,i===active?m.color+"22":"#f2f4f7",i===active?m.color+"66":null);
+      ltr(m.name,x+51+i*54,y+449,10,"900",i===active?m.color:"#667085","center");
     });
 
     ctx.restore();
@@ -270,42 +270,43 @@
 
     const bg = ctx.createLinearGradient(0,0,W,H);
     bg.addColorStop(0,"#ffffff");
-    bg.addColorStop(.58,"#f5fbf8");
+    bg.addColorStop(.58,"#f7fcf9");
     bg.addColorStop(1,"#e9f7f1");
     ctx.fillStyle = bg;
     ctx.fillRect(0,0,W,H);
 
-    let g = ctx.createRadialGradient(180+Math.sin(t/1700)*40,90,0,180,90,360);
+    let g = ctx.createRadialGradient(180+Math.sin(t/1800)*36,90,0,180,90,340);
     g.addColorStop(0,"rgba(16,200,109,.20)");
     g.addColorStop(1,"rgba(16,200,109,0)");
     ctx.fillStyle = g;
     ctx.fillRect(0,0,W,H);
 
-    g = ctx.createRadialGradient(980,90+Math.cos(t/1900)*34,0,980,90,300);
+    g = ctx.createRadialGradient(980,94+Math.cos(t/2000)*30,0,980,94,300);
     g.addColorStop(0,"rgba(139,92,246,.10)");
     g.addColorStop(1,"rgba(139,92,246,0)");
     ctx.fillStyle = g;
     ctx.fillRect(0,0,W,H);
 
-    // safe left content area: x 72..690 only
-    box(72,62+Math.sin(t/1000)*3,245,62,24,"rgba(255,255,255,.78)","rgba(16,24,40,.08)");
-    drawLogo(94,73+Math.sin(t/1000)*3,.58);
-    ltr("DKey",143,106+Math.sin(t/1000)*3,34,"950");
-    ltr("command layer",143,128+Math.sin(t/1000)*3,15,"600","#667085");
+    // brand only here — not inside headline
+    box(78,62+Math.sin(t/1000)*3,260,64,24,"rgba(255,255,255,.82)","rgba(16,24,40,.08)");
+    logo(98,75+Math.sin(t/1000)*3,.58);
+    ltr("DKey",148,108+Math.sin(t/1000)*3,34,"950");
+    ltr("command layer",148,130+Math.sin(t/1000)*3,15,"600","#667085");
 
-    ltr("DKey",78,245,86,"950",greenDark);
-    fitRtl("המקלדת שמחזירה לך שליטה",690,245,520,56,"950",ink);
-    rtl("אתה כותב. אתה בוחר. אתה מאשר.",690,318,36,"900",greenDark);
-    rtl("שכבת פעולה מעל המקלדת. בלי שליחה אוטומטית.",690,380,27,"650",muted);
+    // safe copy area: left side only
+    fitRtl("המקלדת שמחזירה לך שליטה",735,235,650,61,"950",ink);
+    rtl("אתה כותב. אתה בוחר. אתה מאשר.",735,314,38,"900",greenDark);
+    rtl("שכבת פעולה מעל המקלדת.",735,378,28,"700",muted);
+    rtl("בלי שליחה אוטומטית. בלי הרצה אוטומטית.",735,420,25,"600",muted);
 
     const pills = [
-      ["Human approval",78,424,198],
-      ["No auto-send",296,424,180],
-      ["No auto-run",496,424,160]
+      ["Human approval",78,462,198],
+      ["No auto-send",296,462,180],
+      ["No auto-run",496,462,160]
     ];
 
-    pills.forEach(([label,x,y,w],i)=>{
-      box(x,y,w,58,20,"rgba(255,255,255,.86)","rgba(16,200,109,.18)");
+    pills.forEach(([label,x,y,w])=>{
+      box(x,y,w,58,20,"rgba(255,255,255,.88)","rgba(16,200,109,.18)");
       ctx.beginPath();
       ctx.arc(x+30,y+29,10,0,Math.PI*2);
       ctx.fillStyle = green;
@@ -313,19 +314,19 @@
       ltr(label,x+52,y+37,20,"850","#344054");
     });
 
-    const cta = ctx.createLinearGradient(78,522,388,590);
+    const cta = ctx.createLinearGradient(78,542,390,600);
     cta.addColorStop(0,"#10c86d");
     cta.addColorStop(1,"#14b8a6");
     ctx.save();
     ctx.shadowColor = "rgba(16,200,109,.30)";
     ctx.shadowBlur = 26;
     ctx.shadowOffsetY = 16;
-    box(78,520,308,72,31,cta);
+    box(78,535,308,72,31,cta);
     ctx.restore();
-    rtl("נסה דמו חי",270,566,30,"950","#052e1a");
-    ltr("›",334,566,42,"950","#052e1a");
+    rtl("נסה דמו חי",270,581,30,"950","#052e1a");
+    ltr("›",334,581,42,"950","#052e1a");
 
-    phone(820,68,t);
+    phone(842,74,t);
 
     requestAnimationFrame(draw);
   }
