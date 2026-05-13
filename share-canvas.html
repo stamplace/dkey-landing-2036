@@ -5,49 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DKey — Share Canvas Studio</title>
 <style>
-  :root{
-    --ink:#101828;
-    --muted:#667085;
-    --green:#10c86d;
-    --green-dark:#079455;
-    --bg:#f6faf8;
-    --paper:#fff;
-  }
-
   *{box-sizing:border-box}
-
   html,body{
     margin:0;
     min-height:100%;
     font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-    color:var(--ink);
-    background:
-      radial-gradient(circle at 50% 0%,rgba(16,200,109,.14),transparent 32%),
-      radial-gradient(circle at 92% 12%,rgba(139,92,246,.10),transparent 28%),
-      linear-gradient(180deg,#fff,#eef7f3);
+    background:linear-gradient(180deg,#ffffff,#eef7f3);
+    color:#101828;
   }
-
   .wrap{
     width:min(1120px,calc(100vw - 22px));
     margin:0 auto;
-    padding:22px 0 34px;
+    padding:20px 0 32px;
   }
-
   .top{
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
     gap:12px;
-    margin-bottom:16px;
+    margin-bottom:14px;
   }
-
   .brand{
     display:flex;
     align-items:center;
     gap:12px;
     direction:ltr;
   }
-
   .logo{
     width:44px;
     height:44px;
@@ -56,7 +39,6 @@
     position:relative;
     box-shadow:0 12px 24px rgba(16,200,109,.22);
   }
-
   .logo:before{
     content:"";
     position:absolute;
@@ -68,7 +50,6 @@
     background:white;
     box-shadow:9px -5px 0 white,18px 4px 0 white;
   }
-
   .logo:after{
     content:"";
     position:absolute;
@@ -79,85 +60,60 @@
     border-radius:50%;
     background:white;
   }
-
-  .brand strong{
-    display:block;
-    font-size:24px;
-    line-height:1;
-    letter-spacing:-.04em;
-  }
-
-  .brand small{
-    display:block;
-    color:var(--muted);
-    margin-top:3px;
-  }
-
+  .brand strong{display:block;font-size:24px;line-height:1}
+  .brand small{display:block;color:#667085;margin-top:3px}
   .tools{
     display:flex;
     flex-wrap:wrap;
     gap:10px;
-    justify-content:flex-end;
   }
-
   button,a{
     border:0;
-    text-decoration:none;
     color:inherit;
     font:inherit;
+    text-decoration:none;
   }
-
   .btn{
     min-height:46px;
     padding:0 18px;
     border-radius:999px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    font-weight:900;
-    cursor:pointer;
     background:#fff;
     border:1px solid rgba(16,24,40,.10);
     box-shadow:0 10px 24px rgba(16,24,40,.08);
+    font-weight:900;
+    cursor:pointer;
   }
-
   .btn.primary{
     background:linear-gradient(135deg,#10c86d,#14b8a6);
     color:#052e1a;
     border:0;
-    box-shadow:0 18px 42px rgba(16,200,109,.26);
   }
-
   .stage{
     background:rgba(255,255,255,.78);
     border:1px solid rgba(16,24,40,.08);
-    border-radius:34px;
-    padding:14px;
+    border-radius:30px;
+    padding:12px;
     box-shadow:0 22px 70px rgba(16,24,40,.10);
   }
-
   canvas{
     width:100%;
     display:block;
     aspect-ratio:1200/630;
-    border-radius:26px;
+    border-radius:22px;
     background:#fff;
   }
-
   .note{
-    margin:14px 4px 0;
+    margin:12px 4px 0;
     color:#475467;
     font-size:14px;
-    line-height:1.55;
+    line-height:1.5;
   }
-
   @media(max-width:680px){
-    .top{align-items:flex-start;flex-direction:column}
-    .tools{width:100%;justify-content:stretch}
+    .top{flex-direction:column;align-items:flex-start}
+    .tools{width:100%}
     .btn{flex:1}
-    .stage{padding:8px;border-radius:24px}
-    canvas{border-radius:18px}
+    .stage{padding:8px;border-radius:22px}
+    canvas{border-radius:16px}
   }
 </style>
 </head>
@@ -168,13 +124,11 @@
       <span class="logo"></span>
       <span>
         <strong>DKey</strong>
-        <small>animated share canvas</small>
+        <small>share preview canvas</small>
       </span>
     </div>
-
     <div class="tools">
       <button class="btn primary" id="downloadPng">הורד תמונת שיתוף</button>
-      <button class="btn" id="recordWebm">הקלט 5 שניות</button>
       <a class="btn" href="index.html#top">חזרה לאתר</a>
     </div>
   </header>
@@ -184,8 +138,7 @@
   </section>
 
   <p class="note">
-    זה קנבס חי. לשיתוף בוואטסאפ משתמשים בתמונה סטטית מתוך הקנבס:
-    לוחצים “הורד תמונת שיתוף”, ואז אפשר להעלות אותה ל־assets/og כתמונת Preview.
+    גרסה מתוקנת: כרטיס שיתוף קצר, בטוח לוואטסאפ, בלי טקסט בורח ובלי חפיפות.
   </p>
 </div>
 
@@ -196,18 +149,10 @@
   const W = canvas.width;
   const H = canvas.height;
 
+  const ink = "#101828";
+  const muted = "#475467";
   const green = "#10c86d";
   const greenDark = "#079455";
-  const ink = "#101828";
-  const muted = "#667085";
-
-  const modes = [
-    {name:"DKey", color:"#10c86d", label:"choose action"},
-    {name:"DEV", color:"#14b8a6", label:"inspect → build"},
-    {name:"SUNO", color:"#f59e0b", label:"idea → lyrics"},
-    {name:"Create", color:"#8b5cf6", label:"brief → image"},
-    {name:"Safe", color:"#0ea5a6", label:"approve manually"}
-  ];
 
   function rr(x,y,w,h,r){
     ctx.beginPath();
@@ -219,7 +164,7 @@
     ctx.closePath();
   }
 
-  function fillRound(x,y,w,h,r,fill,stroke){
+  function box(x,y,w,h,r,fill,stroke){
     rr(x,y,w,h,r);
     ctx.fillStyle = fill;
     ctx.fill();
@@ -230,189 +175,168 @@
     }
   }
 
-  function logo(x,y,s=1){
+  function drawLogo(x,y,s=1){
     const g = ctx.createLinearGradient(x,y,x+64*s,y+64*s);
     g.addColorStop(0,"#22df82");
     g.addColorStop(1,"#05a958");
-    fillRound(x,y,64*s,64*s,18*s,g);
-    ctx.fillStyle = "#fff";
-    fillRound(x+18*s,y+20*s,7*s,34*s,4*s,"#fff");
-    fillRound(x+32*s,y+12*s,7*s,42*s,4*s,"#fff");
-    fillRound(x+46*s,y+28*s,7*s,26*s,4*s,"#fff");
+    box(x,y,64*s,64*s,18*s,g);
+    box(x+18*s,y+20*s,7*s,34*s,4*s,"#fff");
+    box(x+32*s,y+12*s,7*s,42*s,4*s,"#fff");
+    box(x+46*s,y+28*s,7*s,26*s,4*s,"#fff");
     ctx.beginPath();
     ctx.arc(x+53*s,y+14*s,6*s,0,Math.PI*2);
+    ctx.fillStyle = "#fff";
     ctx.fill();
   }
 
-  function text(t,x,y,size,weight="800",color=ink,align="left"){
-    ctx.font = `${weight} ${size}px system-ui, -apple-system, Segoe UI, Arial`;
-    ctx.fillStyle = color;
+  function ltr(t,x,y,size,weight="800",color=ink,align="left"){
+    ctx.save();
+    ctx.direction = "ltr";
     ctx.textAlign = align;
     ctx.textBaseline = "alphabetic";
-    ctx.direction = "ltr";
+    ctx.font = `${weight} ${size}px system-ui,-apple-system,Segoe UI,Arial,sans-serif`;
+    ctx.fillStyle = color;
     ctx.fillText(t,x,y);
+    ctx.restore();
   }
 
-  function heb(t,x,y,size,weight="800",color=ink,align="right"){
-    ctx.font = `${weight} ${size}px system-ui, -apple-system, Segoe UI, Arial`;
-    ctx.fillStyle = color;
+  function rtl(t,x,y,size,weight="800",color=ink,align="right"){
+    ctx.save();
+    ctx.direction = "rtl";
     ctx.textAlign = align;
     ctx.textBaseline = "alphabetic";
-    ctx.direction = "rtl";
+    ctx.font = `${weight} ${size}px system-ui,-apple-system,Segoe UI,Arial,sans-serif`;
+    ctx.fillStyle = color;
     ctx.fillText(t,x,y);
+    ctx.restore();
+  }
+
+  function fitRtl(t,x,y,maxWidth,startSize,weight,color){
+    let size = startSize;
+    ctx.save();
+    ctx.direction = "rtl";
+    ctx.textAlign = "right";
+    ctx.textBaseline = "alphabetic";
+    while(size > 22){
+      ctx.font = `${weight} ${size}px system-ui,-apple-system,Segoe UI,Arial,sans-serif`;
+      if(ctx.measureText(t).width <= maxWidth) break;
+      size -= 2;
+    }
+    ctx.fillStyle = color;
+    ctx.fillText(t,x,y);
+    ctx.restore();
   }
 
   function phone(x,y,t){
+    const active = Math.floor(t / 1400) % 4;
+    const accents = ["#10c86d","#14b8a6","#f59e0b","#8b5cf6"];
+    const color = accents[active];
+
     ctx.save();
-    ctx.shadowColor = "rgba(16,24,40,.24)";
-    ctx.shadowBlur = 34;
-    ctx.shadowOffsetY = 30;
-
-    fillRound(x,y,300,510,52,"#111827");
+    ctx.shadowColor = "rgba(16,24,40,.22)";
+    ctx.shadowBlur = 30;
+    ctx.shadowOffsetY = 24;
+    box(x,y,278,478,48,"#111827");
     ctx.shadowColor = "transparent";
-    fillRound(x+10,y+10,280,490,42,"#fff");
-    fillRound(x+118,y+22,64,20,11,"#05070a");
+    box(x+10,y+10,258,458,39,"#fff");
+    box(x+105,y+22,68,20,10,"#05070a");
 
-    logo(x+32,y+74,.82);
-    text("DKey Active",x+96,y+100,23,"900");
-    text("one layer · any tool",x+96,y+124,15,"500",muted);
+    drawLogo(x+30,y+74,.74);
+    ltr("DKey Active",x+88,y+100,22,"900");
+    ltr("one layer · any tool",x+88,y+123,14,"500","#667085");
 
-    const active = modes[Math.floor(t/1500)%modes.length];
-    fillRound(x+168,y+82,98,34,17,active.color + "22", active.color + "66");
-    text("Human",x+217,y+104,14,"900",active.color,"center");
+    box(x+28,y+155,222,72,20,"#fff","rgba(16,24,40,.10)");
+    rtl("כתוב טבעי.",x+232,y+196,22,"850",ink);
 
-    fillRound(x+30,y+156,240,78,20,"#fff","rgba(16,24,40,.12)");
-    heb("כתוב טבעי. בחר פעולה.",x+246,y+202,22,"850");
+    box(x+28,y+250,222,104,24,color+"18",color+"55");
+    rtl("תוצאה מוכנה",x+232,y+292,21,"900",color);
+    rtl("רואים. בוחרים. מאשרים.",x+232,y+326,17,"750",ink);
 
-    fillRound(x+30,y+258,240,112,24,active.color + "16", active.color + "44");
-    heb("תוצאה מוכנה",x+246,y+300,20,"900",active.color);
-    heb("רואים. בוחרים. מאשרים.",x+246,y+334,17,"700",ink);
+    box(x+28,y+382,222,30,15,"#06170f");
+    ltr("approve manually",x+46,y+402,13,"700","#bcf7d2");
 
-    fillRound(x+30,y+398,240,30,15,"#06170f");
-    text(`${active.name} · ${active.label}`,x+48,y+418,13,"650","#bcf7d2");
-
-    const labels = ["DKey","DEV","SUNO","Create","Safe"];
-    labels.forEach((l,i)=>{
-      const cx = x+30+i*49;
-      const is = l === active.name;
-      fillRound(cx,y+444,43,32,11,is ? active.color+"22" : "#f2f4f7", is ? active.color+"66" : "transparent");
-      text(l,cx+21,y+465,10,"900",is ? active.color : "#667085","center");
+    ["DKey","DEV","SUNO","Create"].forEach((m,i)=>{
+      box(x+28+i*54,y+432,46,30,11,i===active?color+"22":"#f2f4f7",i===active?color+"66":null);
+      ltr(m,x+51+i*54,y+452,10,"900",i===active?color:"#667085","center");
     });
-
-    for(let row=0; row<3; row++){
-      for(let i=0; i<9; i++){
-        fillRound(x+32+i*26,y+488+row*25,20,18,6,"#fff","rgba(16,24,40,.05)");
-      }
-    }
 
     ctx.restore();
   }
 
-  function draw(now){
-    const t = now || 0;
+  function draw(now=0){
+    const t = now;
+
     ctx.clearRect(0,0,W,H);
 
     const bg = ctx.createLinearGradient(0,0,W,H);
     bg.addColorStop(0,"#ffffff");
-    bg.addColorStop(.58,"#f3fbf7");
-    bg.addColorStop(1,"#eaf6f1");
+    bg.addColorStop(.58,"#f5fbf8");
+    bg.addColorStop(1,"#e9f7f1");
     ctx.fillStyle = bg;
     ctx.fillRect(0,0,W,H);
 
-    // soft moving glow
-    const gx = 180 + Math.sin(t/1700)*55;
-    const gy = 110 + Math.cos(t/2100)*38;
-    let rg = ctx.createRadialGradient(gx,gy,0,gx,gy,330);
-    rg.addColorStop(0,"rgba(16,200,109,.20)");
-    rg.addColorStop(1,"rgba(16,200,109,0)");
-    ctx.fillStyle = rg;
+    let g = ctx.createRadialGradient(180+Math.sin(t/1700)*40,90,0,180,90,360);
+    g.addColorStop(0,"rgba(16,200,109,.20)");
+    g.addColorStop(1,"rgba(16,200,109,0)");
+    ctx.fillStyle = g;
     ctx.fillRect(0,0,W,H);
 
-    const px = 970 + Math.cos(t/1900)*40;
-    const py = 115 + Math.sin(t/2400)*30;
-    rg = ctx.createRadialGradient(px,py,0,px,py,280);
-    rg.addColorStop(0,"rgba(139,92,246,.12)");
-    rg.addColorStop(1,"rgba(139,92,246,0)");
-    ctx.fillStyle = rg;
+    g = ctx.createRadialGradient(980,90+Math.cos(t/1900)*34,0,980,90,300);
+    g.addColorStop(0,"rgba(139,92,246,.10)");
+    g.addColorStop(1,"rgba(139,92,246,0)");
+    ctx.fillStyle = g;
     ctx.fillRect(0,0,W,H);
 
-    // floating pills
-    const yFloat = Math.sin(t/900)*4;
-    fillRound(78,62+yFloat,214,58,24,"rgba(255,255,255,.82)","rgba(16,24,40,.08)");
-    logo(96,72+yFloat,.58);
-    text("DKey",145,104+yFloat,32,"900");
-    text("command layer",145,126+yFloat,15,"500",muted);
+    // safe left content area: x 72..690 only
+    box(72,62+Math.sin(t/1000)*3,245,62,24,"rgba(255,255,255,.78)","rgba(16,24,40,.08)");
+    drawLogo(94,73+Math.sin(t/1000)*3,.58);
+    ltr("DKey",143,106+Math.sin(t/1000)*3,34,"950");
+    ltr("command layer",143,128+Math.sin(t/1000)*3,15,"600","#667085");
 
-    // main copy, huge and readable in WhatsApp thumbnail
-    text("DKey",78,238,92,"950",greenDark);
-    heb("המקלדת שמחזירה לך שליטה",720,238,58,"950",ink);
-    heb("אתה כותב. אתה בוחר. אתה נשאר נוכח.",720,310,35,"900",greenDark);
-    heb("שכבת פעולה מעל המקלדת — בלי שליחה אוטומטית ובלי הרצה אוטומטית.",720,370,26,"500","#344054");
+    ltr("DKey",78,245,86,"950",greenDark);
+    fitRtl("המקלדת שמחזירה לך שליטה",690,245,520,56,"950",ink);
+    rtl("אתה כותב. אתה בוחר. אתה מאשר.",690,318,36,"900",greenDark);
+    rtl("שכבת פעולה מעל המקלדת. בלי שליחה אוטומטית.",690,380,27,"650",muted);
 
-    const trust = [
-      ["Human approval",78],
-      ["No auto-send",280],
-      ["No auto-run",472],
-      ["Privacy stays yours",650]
+    const pills = [
+      ["Human approval",78,424,198],
+      ["No auto-send",296,424,180],
+      ["No auto-run",496,424,160]
     ];
-    trust.forEach(([label,x],i)=>{
-      const pulse = .78 + Math.sin(t/700+i)*.12;
-      fillRound(x,424,168+(label.length>13?38:0),58,20,`rgba(255,255,255,${pulse})`,"rgba(16,200,109,.18)");
+
+    pills.forEach(([label,x,y,w],i)=>{
+      box(x,y,w,58,20,"rgba(255,255,255,.86)","rgba(16,200,109,.18)");
       ctx.beginPath();
-      ctx.arc(x+30,453,10,0,Math.PI*2);
+      ctx.arc(x+30,y+29,10,0,Math.PI*2);
       ctx.fillStyle = green;
       ctx.fill();
-      text(label,x+52,461,20,"850","#344054");
+      ltr(label,x+52,y+37,20,"850","#344054");
     });
 
-    const ctaGrad = ctx.createLinearGradient(78,520,392,590);
-    ctaGrad.addColorStop(0,"#10c86d");
-    ctaGrad.addColorStop(1,"#14b8a6");
+    const cta = ctx.createLinearGradient(78,522,388,590);
+    cta.addColorStop(0,"#10c86d");
+    cta.addColorStop(1,"#14b8a6");
     ctx.save();
-    ctx.shadowColor = "rgba(16,200,109,.32)";
-    ctx.shadowBlur = 28;
-    ctx.shadowOffsetY = 18;
-    fillRound(78,520,314,72,31,ctaGrad);
+    ctx.shadowColor = "rgba(16,200,109,.30)";
+    ctx.shadowBlur = 26;
+    ctx.shadowOffsetY = 16;
+    box(78,520,308,72,31,cta);
     ctx.restore();
-    heb("נסה דמו חי",260,566,30,"950","#052e1a");
-    text("›",338,566,42,"950","#052e1a");
+    rtl("נסה דמו חי",270,566,30,"950","#052e1a");
+    ltr("›",334,566,42,"950","#052e1a");
 
-    phone(795,58,t);
+    phone(820,68,t);
 
     requestAnimationFrame(draw);
   }
 
-  draw(0);
+  draw();
 
   document.getElementById("downloadPng").addEventListener("click", () => {
     const a = document.createElement("a");
     a.download = "dkey-share-canvas.png";
     a.href = canvas.toDataURL("image/png");
     a.click();
-  });
-
-  document.getElementById("recordWebm").addEventListener("click", async () => {
-    if(!canvas.captureStream || !window.MediaRecorder){
-      alert("הדפדפן לא תומך בהקלטת קנבס. אפשר להשתמש בהורדת PNG.");
-      return;
-    }
-
-    const stream = canvas.captureStream(30);
-    const rec = new MediaRecorder(stream, {mimeType:"video/webm"});
-    const chunks = [];
-
-    rec.ondataavailable = e => chunks.push(e.data);
-    rec.onstop = () => {
-      const blob = new Blob(chunks,{type:"video/webm"});
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "dkey-share-canvas.webm";
-      a.click();
-      setTimeout(()=>URL.revokeObjectURL(a.href),2000);
-    };
-
-    rec.start();
-    setTimeout(()=>rec.stop(),5000);
   });
 })();
 </script>
