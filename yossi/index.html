@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#020617" />
+  <title>יוסי</title>
+  <meta name="description" content="יוסי" />
+  <meta property="og:title" content="יוסי" />
+  <meta property="og:description" content="👑💬" />
+  <meta property="og:type" content="website" />
+  <style>
+    :root{
+      --bg:#020617;
+      --gold:#fbbf24;
+      --green:#25D366;
+      --white:#fff7ed;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--white);overflow:hidden}
+    body:before{
+      content:"";position:fixed;inset:-20%;
+      background:
+        radial-gradient(circle at 50% 42%,rgba(251,191,36,.34),transparent 0 12%,transparent 30%),
+        radial-gradient(circle at 50% 50%,rgba(37,211,102,.18),transparent 0 19%,transparent 38%),
+        radial-gradient(circle at 20% 20%,rgba(59,130,246,.26),transparent 0 18%,transparent 34%),
+        radial-gradient(circle at 80% 82%,rgba(168,85,247,.20),transparent 0 20%,transparent 38%),
+        linear-gradient(135deg,#020617,#111827 55%,#030712);
+      animation:breath 7s ease-in-out infinite alternate;
+    }
+    body:after{
+      content:"";position:fixed;inset:0;pointer-events:none;opacity:.26;
+      background-image:radial-gradient(rgba(255,255,255,.9) 1px,transparent 1px);
+      background-size:33px 33px;
+      mask-image:radial-gradient(circle at center,#000,transparent 72%);
+    }
+    main{position:relative;z-index:2;min-height:100vh;display:grid;place-items:center;padding:24px}
+    .orb{
+      width:min(72vw,380px);aspect-ratio:1;border-radius:50%;
+      display:grid;place-items:center;position:relative;text-decoration:none;color:inherit;
+      background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.22);
+      box-shadow:0 40px 100px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.32),0 0 90px rgba(37,211,102,.22);
+      backdrop-filter:blur(16px);
+      animation:float 2.4s ease-in-out infinite, halo 1.7s ease-in-out infinite;
+    }
+    .orb:before{
+      content:"";position:absolute;inset:-18px;border-radius:inherit;
+      border:2px solid rgba(251,191,36,.38);
+      animation:ring 1.55s ease-out infinite;
+    }
+    .orb:after{
+      content:"";position:absolute;inset:-44px;border-radius:inherit;
+      background:conic-gradient(from 90deg,transparent,rgba(251,191,36,.55),transparent,rgba(37,211,102,.45),transparent);
+      filter:blur(22px);opacity:.75;z-index:-1;animation:spin 5s linear infinite;
+    }
+    .name{
+      font-size:clamp(62px,18vw,116px);font-weight:950;line-height:1;letter-spacing:-.08em;
+      background:linear-gradient(90deg,#fff7ad,var(--gold),#22c55e,#fff7ad);
+      background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+      filter:drop-shadow(0 18px 26px rgba(0,0,0,.45));
+      animation:gold 3.8s ease-in-out infinite;
+    }
+    .icons{position:absolute;bottom:18%;display:flex;gap:18px;font-size:clamp(30px,8vw,54px);filter:drop-shadow(0 12px 18px rgba(0,0,0,.42))}
+    .icons span{display:inline-block;animation:bounce 1.2s ease-in-out infinite}
+    .icons span:nth-child(2){animation-delay:.18s}
+    .tap{
+      position:fixed;bottom:30px;left:50%;transform:translateX(-50%);
+      width:56px;height:56px;border-radius:999px;background:var(--green);
+      display:grid;place-items:center;font-size:28px;text-decoration:none;
+      box-shadow:0 14px 40px rgba(37,211,102,.4),0 0 0 10px rgba(37,211,102,.12);
+      animation:pulse 1.25s ease-in-out infinite;
+    }
+    @keyframes breath{to{transform:scale(1.06) rotate(2deg);filter:saturate(1.25)}}
+    @keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-16px) scale(1.025)}}
+    @keyframes halo{0%,100%{box-shadow:0 40px 100px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.32),0 0 70px rgba(37,211,102,.19)}50%{box-shadow:0 52px 130px rgba(0,0,0,.62),inset 0 1px 0 rgba(255,255,255,.34),0 0 110px rgba(251,191,36,.27)}}
+    @keyframes ring{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.18);opacity:0}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes gold{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+    @keyframes bounce{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-10px) rotate(7deg)}}
+    @keyframes pulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.12)}}
+  </style>
+</head>
+<body>
+  <main>
+    <a class="orb" href="https://wa.me/972543139998?text=%D7%99%D7%95%D7%A1%D7%99%20%F0%9F%91%91" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+      <div class="name">יוסי</div>
+      <div class="icons" aria-hidden="true"><span>👑</span><span>💬</span></div>
+    </a>
+    <a class="tap" href="https://wa.me/972543139998?text=%D7%99%D7%95%D7%A1%D7%99%20%F0%9F%91%91" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
+  </main>
+</body>
+</html>
