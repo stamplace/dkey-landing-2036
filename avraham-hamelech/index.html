@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111827" />
+  <title>אברהם המלך 👑</title>
+  <meta name="description" content="דף מהיר לאברהם המלך — לחיצה אחת לוואטסאפ." />
+
+  <meta property="og:title" content="אברהם המלך 👑" />
+  <meta property="og:description" content="אחי, זה בשבילך. לחץ כאן ופתח וואטסאפ." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root {
+      --bg1: #0f172a;
+      --bg2: #111827;
+      --gold: #facc15;
+      --gold2: #f59e0b;
+      --text: #fff7ed;
+      --muted: rgba(255,255,255,.72);
+      --glass: rgba(255,255,255,.11);
+      --border: rgba(255,255,255,.22);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 18%, rgba(250,204,21,.26), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(34,197,94,.20), transparent 30%),
+        radial-gradient(circle at 55% 88%, rgba(59,130,246,.18), transparent 34%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at center, #000, transparent 75%);
+    }
+
+    .wrap {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      position: relative;
+    }
+
+    .card {
+      width: min(720px, 100%);
+      padding: clamp(28px, 6vw, 58px);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.07));
+      box-shadow: 0 28px 90px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.22);
+      backdrop-filter: blur(18px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: conic-gradient(from 180deg, transparent, rgba(250,204,21,.40), transparent, rgba(34,197,94,.28), transparent);
+      opacity: .55;
+      filter: blur(28px);
+      z-index: -1;
+      animation: spin 8s linear infinite;
+    }
+
+    .badge {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border: 1px solid rgba(250,204,21,.42);
+      border-radius: 999px;
+      background: rgba(250,204,21,.10);
+      color: #fde68a;
+      font-weight: 800;
+      letter-spacing: .2px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(46px, 9vw, 86px);
+      line-height: 1;
+      letter-spacing: -2px;
+      text-shadow: 0 8px 28px rgba(0,0,0,.38);
+    }
+
+    .king {
+      display: inline-block;
+      background: linear-gradient(90deg, #fff7ad, var(--gold), #fb923c, #fff7ad);
+      background-size: 280% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: goldFlow 4s ease-in-out infinite;
+    }
+
+    p {
+      margin: 22px auto 0;
+      max-width: 560px;
+      font-size: clamp(18px, 3.4vw, 24px);
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .cta-area {
+      margin-top: 34px;
+      min-height: 118px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-width: min(330px, 92vw);
+      padding: 20px 30px;
+      border-radius: 999px;
+      border: 0;
+      text-decoration: none;
+      color: #111827;
+      font-size: clamp(22px, 5vw, 34px);
+      font-weight: 950;
+      background: linear-gradient(135deg, #fde047, #f59e0b 55%, #22c55e);
+      box-shadow: 0 18px 50px rgba(245,158,11,.38), 0 0 0 10px rgba(250,204,21,.08);
+      transform: translateY(0) rotate(0deg);
+      animation: moveButton 1.35s ease-in-out infinite, glow 1.9s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    .cta:active { transform: scale(.97); }
+
+    .hint {
+      margin-top: 20px;
+      font-size: 15px;
+      color: rgba(255,255,255,.56);
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(250,204,21,.86);
+      box-shadow: 0 0 18px rgba(250,204,21,.8);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .star:nth-child(1) { top: 14%; right: 12%; animation-delay: 0s; }
+    .star:nth-child(2) { top: 28%; left: 14%; animation-delay: .7s; }
+    .star:nth-child(3) { bottom: 18%; right: 20%; animation-delay: 1.3s; }
+    .star:nth-child(4) { bottom: 28%; left: 18%; animation-delay: 2.1s; }
+
+    @keyframes moveButton {
+      0%, 100% { transform: translateX(0) translateY(0) rotate(0deg) scale(1); }
+      25% { transform: translateX(8px) translateY(-8px) rotate(1.3deg) scale(1.035); }
+      50% { transform: translateX(-7px) translateY(5px) rotate(-1.2deg) scale(1); }
+      75% { transform: translateX(5px) translateY(8px) rotate(.8deg) scale(1.025); }
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 18px 50px rgba(245,158,11,.35), 0 0 0 9px rgba(250,204,21,.07); }
+      50% { box-shadow: 0 24px 80px rgba(34,197,94,.34), 0 0 0 18px rgba(250,204,21,.12); }
+    }
+
+    @keyframes goldFlow {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); opacity: .75; }
+      50% { transform: translateY(-22px) scale(1.5); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card" aria-label="דף נחיתה לאברהם המלך">
+      <div class="stars" aria-hidden="true">
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+      </div>
+
+      <div class="badge">👑 הודעה אישית</div>
+      <h1>אברהם <span class="king">המלך</span></h1>
+      <p>אחי היקר, זה דף קטן ומהיר שנבנה במיוחד בשבילך. לחיצה אחת — והוואטסאפ נפתח ישר.</p>
+
+      <div class="cta-area">
+        <a class="cta" href="https://wa.me/972504401983?text=%D7%90%D7%91%D7%A8%D7%94%D7%9D%20%D7%94%D7%9E%D7%9C%D7%9A%20%F0%9F%91%91%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%93%D7%A3%20%D7%A9%D7%93%D7%A0%D7%99%D7%90%D7%9C%20%D7%A9%D7%9C%D7%97" target="_blank" rel="noopener noreferrer" aria-label="לחץ כאן לפתיחת וואטסאפ">
+          לחץ כאן
+          <span aria-hidden="true">💬</span>
+        </a>
+      </div>
+
+      <div class="hint">נפתח ב־WhatsApp למספר 050-440-1983</div>
+    </section>
+  </main>
+</body>
+</html>
