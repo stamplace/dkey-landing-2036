@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 320" role="img" aria-label="SARAH Creative Engine">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#f2dfaa"/><stop offset=".55" stop-color="#c8a96b"/><stop offset="1" stop-color="#8e743a"/></linearGradient>
+  </defs>
+  <rect width="980" height="320" fill="none"/>
+  <text x="490" y="142" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="92" letter-spacing="34" fill="#f7f1e8">SARAH</text>
+  <text x="490" y="218" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" letter-spacing="20" fill="url(#g)">CREATIVE ENGINE</text>
+  <path d="M345 258 H450 M530 258 H635" stroke="url(#g)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M490 244 l10 14 16 2-13 10 4 16-17-9-17 9 4-16-13-10 16-2z" fill="url(#g)"/>
+</svg>

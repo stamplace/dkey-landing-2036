@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" aria-label="מיתוג">
+  <rect width="128" height="128" rx="32" fill="#15120f"/>
+  <path d="M24 26h80v76H24z" fill="none" stroke="#c8a96b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M38 42h52M38 58h34M38 78h52" fill="none" stroke="#ede6dc" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+</svg>

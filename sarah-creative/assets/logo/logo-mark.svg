@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Sarah mark">
+  <defs>
+    <linearGradient id="gold" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f4e6ba"/><stop offset=".55" stop-color="#c8a96b"/><stop offset="1" stop-color="#806532"/></linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="#0b0b0d"/>
+  <path d="M118 318c42 68 200 78 230 6 37-89-166-65-147-148 13-57 127-62 180-8" fill="none" stroke="#f7f1e8" stroke-width="36" stroke-linecap="round"/>
+  <path d="M96 130C153 54 319 36 410 120" fill="none" stroke="url(#gold)" stroke-width="16" stroke-linecap="round"/>
+  <path d="M112 384C191 453 342 438 412 353" fill="none" stroke="url(#gold)" stroke-width="16" stroke-linecap="round"/>
+  <path d="M256 74 l12 31 31 12-31 12-12 31-12-31-31-12 31-12z" fill="url(#gold)"/>
+</svg>
