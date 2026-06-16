@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SARAH Creative Engine</title>
+  <meta name="description" content="שרה קריאייטיב — עיצוב חד לעסקים שרוצים להיראות אחרת." />
+  <meta name="theme-color" content="#0b0b0d" />
+  <style>
+    :root{--black:#0b0b0d;--cream:#ede6dc;--gold:#c8a96b;--line:rgba(237,230,220,.18)}
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    html,body{margin:0;max-width:100%;overflow-x:hidden;background:#0b0b0d;color:var(--cream);font-family:Heebo,Assistant,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .page{width:100%;overflow:hidden;background:#0b0b0d}
+    .screen{min-height:100dvh;width:100%;position:relative;display:flex;align-items:flex-end;padding:calc(22px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom));overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(circle at 72% 23%,rgba(237,230,220,.22),transparent 18%),radial-gradient(circle at 42% 62%,rgba(200,169,107,.24),transparent 30%),linear-gradient(135deg,#090909 0%,#17130f 45%,#0b0b0d 100%)}
+    .hero-bg:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,13,.25),rgba(11,11,13,.78) 72%,#0b0b0d)}
+    .desk{position:absolute;right:-28px;bottom:18%;width:86%;height:45%;border-radius:28px;background:linear-gradient(145deg,#2a2118,#0e0d0d 58%,#211b14);box-shadow:0 42px 100px rgba(0,0,0,.55);transform:perspective(720px) rotateX(55deg) rotateZ(-6deg);border:1px solid rgba(237,230,220,.12)}
+    .monitor{position:absolute;right:8%;bottom:43%;width:58%;height:25%;border-radius:20px;background:linear-gradient(135deg,#f2eadf,#17130f 52%,#c8a96b);box-shadow:0 30px 80px rgba(0,0,0,.55);border:10px solid #111;overflow:hidden}
+    .monitor:before{content:"Aa";position:absolute;left:22px;top:22px;font-family:Georgia,serif;font-size:54px;color:#101010}.monitor:after{content:"Brand Board";position:absolute;right:18px;bottom:18px;color:#ede6dc;font-size:13px;letter-spacing:.16em;direction:ltr}
+    .lamp{position:absolute;left:12%;bottom:42%;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,#fff8dd,#c8a96b 58%,transparent 60%);box-shadow:0 0 70px rgba(200,169,107,.45)}
+    .topline{position:absolute;z-index:3;top:calc(18px + env(safe-area-inset-top));left:18px;right:18px;display:flex;justify-content:space-between;direction:ltr;color:rgba(237,230,220,.78);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+    .brand-mini{font-family:Georgia,"Times New Roman",serif;font-size:22px;letter-spacing:.28em;color:#fff}
+    .content{position:relative;z-index:4;width:min(100%,440px);margin:0 auto}
+    .badge{display:inline-flex;border:1px solid rgba(237,230,220,.18);background:rgba(11,11,13,.52);backdrop-filter:blur(16px);border-radius:999px;padding:9px 13px;color:rgba(237,230,220,.88);font-size:13px;font-weight:850}
+    h1{margin:18px 0 0;direction:ltr;text-align:left;font-family:Georgia,"Times New Roman",serif;font-size:clamp(50px,15vw,78px);line-height:.92;font-weight:400;letter-spacing:.08em;color:#f6f1e9;text-shadow:0 22px 60px rgba(0,0,0,.60)}
+    .engine{direction:ltr;text-align:left;color:var(--gold);letter-spacing:.42em;font-size:12px;margin-top:8px;font-weight:700}
+    .hero-line{font-size:clamp(24px,6.5vw,34px);line-height:1.18;font-weight:950;letter-spacing:-.05em;margin:28px 0 12px;color:#fff}
+    p{margin:0;color:rgba(237,230,220,.74);font-size:16px;line-height:1.55;font-weight:520}
+    .cta{margin-top:22px;width:100%;min-height:62px;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;background:linear-gradient(135deg,#ead9a8,#c8a96b 52%,#f8edc7);color:#17120a;font-size:19px;font-weight:950;box-shadow:0 22px 55px rgba(200,169,107,.30),inset 0 1px 0 rgba(255,255,255,.55)}
+    .section{min-height:100dvh;padding:calc(34px + env(safe-area-inset-top)) 18px calc(34px + env(safe-area-inset-bottom));display:flex;align-items:center;background:radial-gradient(circle at 50% 0%,rgba(200,169,107,.15),transparent 25%),#0b0b0d}
+    .box{width:min(100%,430px);margin:0 auto}
+    .logo-card{border-radius:34px;background:linear-gradient(145deg,#f6efe4,#d7cdbc);color:#101010;padding:36px 24px;text-align:center;box-shadow:0 35px 90px rgba(0,0,0,.42)}
+    .logo{width:174px;height:174px;margin:0 auto 24px;border-radius:44px;border:1px solid rgba(200,169,107,.55);display:grid;place-items:center;background:linear-gradient(145deg,#fff9ef,#d9cdbb)}
+    .logo span{direction:ltr;font-family:Georgia,serif;font-size:92px;color:#101010;position:relative}.logo span:before{content:"";position:absolute;inset:-20px -28px;border-top:5px solid var(--gold);border-radius:50%;transform:rotate(-18deg)}.logo span:after{content:"";position:absolute;left:50%;bottom:11px;width:90px;height:2px;background:var(--gold);transform:translateX(-50%)}
+    h2{margin:0 0 14px;font-size:clamp(34px,10vw,54px);line-height:1.02;letter-spacing:-.06em;color:#f6f1e9}.logo-card h2{color:#101010;font-family:Georgia,serif;letter-spacing:.12em;direction:ltr}.logo-card p{color:#655b50;font-weight:750}
+    .grid{display:grid;gap:12px;margin-top:25px}.card{border:1px solid var(--line);background:rgba(255,255,255,.045);border-radius:22px;padding:18px}.card b{display:block;color:white;font-size:18px;margin-bottom:5px}.card span{color:rgba(237,230,220,.66);font-size:14px;line-height:1.45}
+    .visual{height:56dvh;min-height:390px;border-radius:32px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(237,230,220,.12),rgba(237,230,220,.04)),radial-gradient(circle at 30% 25%,rgba(200,169,107,.26),transparent 26%),#15120f;box-shadow:0 35px 90px rgba(0,0,0,.42);padding:22px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}.mock-screen{height:58%;border-radius:22px;background:linear-gradient(135deg,#111,#27231d 46%,#ede6dc);border:1px solid rgba(255,255,255,.16);position:relative;overflow:hidden}.mock-screen:before{content:"Aa";position:absolute;left:24px;top:22px;font-family:Georgia,serif;font-size:64px;color:#c8a96b}.mock-screen:after{content:"Brand Board";position:absolute;right:22px;bottom:20px;color:#0b0b0d;font-weight:900;letter-spacing:.06em}.strips{display:grid;gap:10px}.strip{height:13px;border-radius:999px;background:linear-gradient(90deg,#ede6dc,#c8a96b,#0b0b0d)}
+    .quote{font-size:clamp(34px,10vw,58px);line-height:1.04;letter-spacing:-.06em;font-weight:950;margin-bottom:18px;color:#fff}.footer{padding:30px 18px 42px;text-align:center;color:rgba(237,230,220,.5);font-size:12px}
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="screen">
+      <div class="hero-bg"></div><div class="desk"></div><div class="monitor"></div><div class="lamp"></div>
+      <div class="topline"><span class="brand-mini">SARAH</span><span>Creative Engine</span></div>
+      <div class="content"><div class="badge">אסטרטגיה · עיצוב · נראות שמוכרת</div><h1>SARAH</h1><div class="engine">CREATIVE ENGINE</div><div class="hero-line">קריאייטיב חד לעסקים שרוצים להיראות אחרת.</div><p>שרה לוקחת רעיון, עסק או מוצר — ומתרגמת אותו לנראות נקייה, מדויקת, ומוכנה לפעולה.</p><span class="cta">דברו עם שרה בוואטסאפ</span></div>
+    </section>
+    <section class="section"><div class="box logo-card"><div class="logo"><span>S</span></div><h2>SARAH</h2><p>מותג שקט. עין חדה. נוכחות שמרגישים.</p></div></section>
+    <section class="section"><div class="box"><h2>לא עוד עיצוב גנרי.</h2><p>שפה ויזואלית שחושבת קדימה — צבע, טיפוגרפיה, מסר ונכס דיגיטלי שמרגיש מותג.</p><div class="grid"><div class="card"><b>אסטרטגיה חזותית</b><span>כיוון ברור לפני שמתחילים לעצב.</span></div><div class="card"><b>מיתוג ונכסים</b><span>לוגו, שפה, מוקאפים ונכסי מכירה.</span></div><div class="card"><b>דפים וקמפיינים</b><span>קריאייטיב שמוביל לפעולה — לא רק נראה יפה.</span></div></div></div></section>
+    <section class="section"><div class="box"><div class="visual"><div class="mock-screen"></div><div class="strips"><div class="strip"></div><div class="strip"></div><div class="strip"></div></div></div><h2 style="margin-top:24px">מהרעיון למסך.</h2><p>דף, מודעה או נכס — בנוי כדי שאנשים יעצרו, יבינו וילחצו.</p></div></section>
+    <section class="section"><div class="box"><div class="quote">עיצוב טוב לא עוצר ביופי. הוא גורם לאנשים לעצור.</div><p>יש לך עסק, מוצר או רעיון? שרה תדע איך הוא צריך להיראות.</p><span class="cta">שלחו הודעה לשרה</span></div></section>
+    <footer class="footer">SARAH Creative Engine · creative direction · visual identity · landing assets</footer>
+  </main>
+</body>
+</html>
