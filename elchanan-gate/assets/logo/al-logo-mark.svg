@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="א.ל">
+  <defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fff0bd"/><stop offset=".5" stop-color="#d6b66f"/><stop offset="1" stop-color="#8f6b24"/></linearGradient></defs>
+  <path d="M128 14 C180 14 220 40 238 74 C225 153 178 216 128 240 C78 216 31 153 18 74 C36 40 76 14 128 14Z" fill="#111319" stroke="url(#g)" stroke-width="9"/>
+  <path d="M54 126 H202 V164 H54Z" fill="none" stroke="#f5e6bd" stroke-width="8"/>
+  <path d="M78 126 V164 M103 112 V164 M128 104 V164 M153 112 V164 M178 126 V164" stroke="#f5e6bd" stroke-width="7" stroke-linecap="round"/>
+  <text x="128" y="102" text-anchor="middle" direction="rtl" unicode-bidi="bidi-override" font-size="58" font-weight="900" font-family="Heebo, Assistant, Arial" fill="#fff">א.ל</text>
+</svg>
