@@ -3,96 +3,325 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>א.ל פרוייקטים והתקנות</title>
-  <meta name="description" content="שערים חשמליים — התקנה, תיקון ושירות." />
-  <meta name="theme-color" content="#07090d" />
+  <title>א.ל פרוייקטים והתקנות — שערים חשמליים</title>
+  <meta name="description" content="שערים חשמליים לבית ולעסק — התקנה, תיקון ושירות." />
+  <meta name="theme-color" content="#09090a" />
+  <meta property="og:title" content="א.ל פרוייקטים והתקנות" />
+  <meta property="og:description" content="שערים חשמליים לבית ולעסק — מראה נקי וביצוע מדויק." />
+  <meta property="og:image" content="./assets/social/og-cover-fast.jpg" />
+
+  <link rel="preload" as="image" href="./assets/hero/gate-closed-fast.webp" fetchpriority="high">
+
   <style>
     :root{
-      --bg:#07090d;
-      --cream:#f5ead5;
-      --muted:rgba(245,234,213,.74);
-      --gold:#d2b06c;
-      --gold2:#fff0bd;
-      --line:rgba(245,234,213,.16);
-      --glass:rgba(7,9,13,.52);
-      --green:#25d366;
+      --black:#09090a;
+      --cream:#f4ead8;
+      --muted:rgba(244,234,216,.72);
+      --gold:#d6b66e;
+      --line:rgba(244,234,216,.16);
     }
+
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-    html,body{margin:0;max-width:100%;overflow-x:hidden;background:var(--bg);color:var(--cream);font-family:Heebo,Assistant,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
-    body{min-height:100dvh} a{color:inherit;text-decoration:none}
-    .page{width:100%;overflow:hidden;background:var(--bg)}
-    .screen{position:relative;min-height:100dvh;width:100%;display:flex;align-items:flex-end;overflow:hidden;padding:calc(18px + env(safe-area-inset-top)) 18px calc(26px + env(safe-area-inset-bottom))}
-    .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;filter:saturate(.96) contrast(1.05) brightness(.92);transform:scale(1.01);transition:opacity .95s ease, transform 1.8s ease, filter 1.4s ease}
-    .photo.open{opacity:0;filter:saturate(1) contrast(1.04) brightness(.96);transform:scale(1.02)}
-    .opened .photo.closed{opacity:0;transform:scale(1.035)}
-    .opened .photo.open{opacity:1;transform:scale(1)}
-    .screen::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,9,13,.12) 0%,rgba(7,9,13,.18) 37%,rgba(7,9,13,.60) 66%,rgba(7,9,13,.94) 100%)}
-    .screen::after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;z-index:1;background:radial-gradient(circle at 50% 100%,rgba(210,176,108,.21),transparent 56%)}
-    .brand{position:absolute;top:calc(18px + env(safe-area-inset-top));left:18px;right:18px;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:12px;direction:rtl}
-    .brand img{width:148px;max-width:47vw;height:auto;display:block;filter:drop-shadow(0 10px 30px rgba(0,0,0,.4))}
-    .brand span{direction:rtl;font-size:12px;color:rgba(245,234,213,.72);letter-spacing:.02em;font-weight:850;padding:8px 11px;border:1px solid rgba(245,234,213,.13);background:rgba(7,9,13,.32);border-radius:999px;backdrop-filter:blur(12px)}
-    .content{position:relative;z-index:2;width:min(100%,410px);margin:0 auto;text-align:right}
-    .eyebrow{display:inline-flex;align-items:center;border:1px solid var(--line);background:rgba(7,9,13,.46);backdrop-filter:blur(14px);color:rgba(245,234,213,.82);padding:8px 13px;border-radius:999px;font-size:13px;font-weight:880;margin-bottom:14px;box-shadow:0 14px 34px rgba(0,0,0,.25)}
-    h1{margin:0;max-width:370px;color:#fff;font-size:clamp(38px,10.6vw,56px);font-weight:950;line-height:1.02;letter-spacing:-.07em;text-shadow:0 14px 44px rgba(0,0,0,.72);text-wrap:balance}
-    .lead{margin:14px 0 0;max-width:350px;color:var(--muted);font-size:clamp(16px,4.55vw,19px);line-height:1.48;font-weight:680;text-shadow:0 8px 30px rgba(0,0,0,.74)}
-    .cta{margin:22px auto 0;width:min(100%,360px);min-height:60px;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;background:linear-gradient(135deg,var(--gold2),var(--gold) 52%,#fff4cf);color:#151007;font-size:18px;font-weight:950;box-shadow:0 24px 58px rgba(210,176,108,.30),inset 0 1px 0 rgba(255,255,255,.62);cursor:pointer}
-    .cta .dot{width:31px;height:31px;display:grid;place-items:center;border-radius:50%;background:#0f1510;color:#fff;font-size:17px}
-    .status{min-height:18px;margin-top:12px;text-align:center;font-size:13px;font-weight:760;color:rgba(245,234,213,.62)}
-    .section{min-height:100dvh;display:flex;align-items:center;padding:calc(34px + env(safe-area-inset-top)) 18px calc(34px + env(safe-area-inset-bottom));background:radial-gradient(circle at 50% 0%,rgba(210,176,108,.13),transparent 28%),#07090d}
-    .box{width:min(100%,430px);margin:0 auto}
-    h2{margin:0 0 14px;color:#fff;font-size:clamp(34px,9.7vw,52px);line-height:1.04;letter-spacing:-.065em;font-weight:950;text-wrap:balance}
-    .text{color:rgba(245,234,213,.72);font-size:16px;line-height:1.65;font-weight:560;margin:0}
-    .services{display:grid;gap:14px;margin-top:26px}
-    .service{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);border-radius:24px;padding:17px;background:rgba(245,234,213,.045);box-shadow:0 22px 60px rgba(0,0,0,.22)}
-    .service img{width:46px;height:46px;flex:none}.service b{display:block;color:#fff;font-size:18px;margin-bottom:4px}.service span{display:block;color:rgba(245,234,213,.66);font-size:14px;line-height:1.45}
-    .showcase{position:relative;min-height:69dvh;border-radius:34px;overflow:hidden;border:1px solid var(--line);box-shadow:0 34px 90px rgba(0,0,0,.48);background:#111}
-    .showcase img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.98) contrast(1.04)}
-    .showcase::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,rgba(7,9,13,.88) 86%)}
-    .showcase-copy{position:absolute;z-index:2;left:20px;right:20px;bottom:22px}
-    .quote{margin:0 0 18px;color:#fff;font-size:clamp(36px,10.2vw,58px);line-height:1.04;letter-spacing:-.07em;font-weight:950;text-wrap:balance}
-    .footer{padding:28px 18px 44px;text-align:center;color:rgba(245,234,213,.44);font-size:12px;direction:rtl}
-    @media(max-height:720px){.brand img{width:126px}.eyebrow{font-size:12px;margin-bottom:10px}h1{font-size:clamp(33px,9.2vw,44px)}.lead{font-size:14.8px;line-height:1.42}.cta{min-height:54px;margin-top:17px}}
+
+    html,body{
+      margin:0;
+      background:var(--black);
+      color:var(--cream);
+      font-family:Heebo,Assistant,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .page{
+      min-height:100dvh;
+      background:#09090a;
+    }
+
+    .hero{
+      position:relative;
+      min-height:100dvh;
+      overflow:hidden;
+      display:flex;
+      align-items:flex-end;
+      padding:calc(20px + env(safe-area-inset-top)) 18px calc(26px + env(safe-area-inset-bottom));
+      isolation:isolate;
+    }
+
+    .hero-img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center center;
+      filter:saturate(.98) contrast(1.05) brightness(.92);
+      transform:scale(1.01);
+      z-index:-3;
+    }
+
+    .hero-img.open{
+      opacity:0;
+      transition:opacity .9s ease, transform 1.2s ease;
+    }
+
+    body.gate-open .hero-img.open{
+      opacity:1;
+      transform:scale(1);
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-2;
+      background:
+        linear-gradient(180deg,
+          rgba(9,9,10,.02) 0%,
+          rgba(9,9,10,.06) 28%,
+          rgba(9,9,10,.42) 62%,
+          rgba(9,9,10,.90) 100%);
+    }
+
+    .top{
+      position:absolute;
+      top:calc(22px + env(safe-area-inset-top));
+      left:18px;
+      right:18px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      z-index:2;
+    }
+
+    .logo{
+      width:136px;
+      max-width:42vw;
+      height:auto;
+      filter:drop-shadow(0 14px 28px rgba(0,0,0,.5));
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      min-height:43px;
+      padding:0 17px;
+      border-radius:999px;
+      background:rgba(9,9,10,.46);
+      backdrop-filter:blur(13px);
+      border:1px solid rgba(244,234,216,.14);
+      color:rgba(244,234,216,.78);
+      font-size:14px;
+      font-weight:900;
+      box-shadow:0 18px 44px rgba(0,0,0,.28);
+      white-space:nowrap;
+    }
+
+    .content{
+      width:min(100%,410px);
+      margin:0 auto;
+      position:relative;
+      z-index:2;
+      padding-bottom:2px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      min-height:38px;
+      padding:0 15px;
+      border-radius:999px;
+      background:rgba(9,9,10,.48);
+      backdrop-filter:blur(14px);
+      border:1px solid var(--line);
+      color:rgba(244,234,216,.78);
+      font-size:13px;
+      font-weight:900;
+      margin-bottom:14px;
+      box-shadow:0 12px 30px rgba(0,0,0,.28);
+    }
+
+    h1{
+      margin:0;
+      max-width:350px;
+      font-size:clamp(43px,12vw,61px);
+      line-height:.98;
+      letter-spacing:-.075em;
+      font-weight:950;
+      color:#fff;
+      text-shadow:0 16px 48px rgba(0,0,0,.82);
+    }
+
+    .lead{
+      margin:15px 0 0;
+      max-width:365px;
+      color:var(--muted);
+      font-size:clamp(16.5px,4.65vw,20px);
+      line-height:1.45;
+      font-weight:720;
+      text-shadow:0 10px 34px rgba(0,0,0,.82);
+    }
+
+    .cta{
+      width:100%;
+      min-height:61px;
+      margin-top:22px;
+      border:0;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      background:linear-gradient(135deg,#fff0bd,#d6b66e 50%,#fff7d8);
+      color:#14110b;
+      font-size:18px;
+      font-weight:950;
+      letter-spacing:-.025em;
+      box-shadow:0 24px 58px rgba(214,182,110,.30), inset 0 1px 0 rgba(255,255,255,.58);
+    }
+
+    .cta-dot{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#0b0b0d;
+      color:#fff7d8;
+      flex:none;
+      font-size:20px;
+    }
+
+    .section{
+      padding:54px 18px;
+      background:
+        radial-gradient(circle at 50% 0%,rgba(214,182,110,.12),transparent 30%),
+        #09090a;
+    }
+
+    .box{
+      width:min(100%,430px);
+      margin:0 auto;
+    }
+
+    .service-grid{
+      display:grid;
+      gap:14px;
+    }
+
+    .service{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:17px;
+      border-radius:24px;
+      background:rgba(244,234,216,.045);
+      border:1px solid var(--line);
+    }
+
+    .service img{
+      width:44px;
+      height:44px;
+      flex:none;
+    }
+
+    .service b{
+      display:block;
+      font-size:18px;
+      color:#fff;
+      margin-bottom:4px;
+    }
+
+    .service span{
+      display:block;
+      font-size:14px;
+      line-height:1.45;
+      color:rgba(244,234,216,.64);
+    }
+
+    .photo-card{
+      margin-top:16px;
+      border-radius:32px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:0 34px 90px rgba(0,0,0,.48);
+      background:#111;
+    }
+
+    .photo-card img{
+      display:block;
+      width:100%;
+      height:auto;
+    }
+
+    .footer{
+      padding:28px 18px 44px;
+      text-align:center;
+      color:rgba(244,234,216,.42);
+      font-size:12px;
+      direction:ltr;
+    }
+
+    @media (max-height:720px){
+      .logo{width:118px}
+      .chip{min-height:38px;font-size:13px;padding:0 14px}
+      .eyebrow{font-size:12px;margin-bottom:10px}
+      h1{font-size:clamp(38px,10.5vw,52px)}
+      .lead{font-size:15.5px;line-height:1.38}
+      .cta{min-height:56px;margin-top:18px}
+    }
   </style>
 </head>
+
 <body>
   <main class="page">
-    <section class="screen" id="gateHero">
-      <img class="photo closed" src="./assets/hero/gate-closed.png" alt="שער חשמלי יוקרתי סגור" />
-      <img class="photo open" src="./assets/hero/gate-open.png" alt="שער חשמלי פתוח לבית וסטודיו" />
-      <div class="brand"><img src="./assets/logo/al-logo-primary.svg" alt="א.ל פרוייקטים והתקנות"><span>שערים חשמליים</span></div>
+    <section class="hero" id="hero">
+      <img class="hero-img closed" src="./assets/hero/gate-closed-fast.webp" alt="שער חשמלי יוקרתי סגור" loading="eager" decoding="async" fetchpriority="high">
+      <img class="hero-img open" id="openImage" data-src="./assets/hero/gate-open-fast.webp" alt="שער חשמלי יוקרתי פתוח" loading="lazy" decoding="async">
+
+      <div class="top">
+        <div class="chip">שערים חשמליים</div>
+        <img class="logo" src="./assets/logo/al-logo-primary.svg" alt="א.ל פרוייקטים והתקנות">
+      </div>
+
       <div class="content">
         <div class="eyebrow">התקנה · תיקון · שירות</div>
-        <h1 id="heroTitle">פתח את השער.</h1>
-        <p class="lead" id="heroLead">א.ל פרוייקטים והתקנות — שערים חשמליים לבית ולעסק, במראה נקי ובביצוע מדויק.</p>
-        <button class="cta" id="openGate" type="button"><span class="dot">💬</span><span id="btnText">פתח וקבל הצעת מחיר</span></button>
-        <div class="status" id="status"></div>
+        <h1 id="title">פתח את השער.</h1>
+        <p class="lead" id="lead">א.ל פרוייקטים והתקנות — שערים חשמליים לבית ולעסק, במראה נקי ובביצוע מדויק.</p>
+        <a class="cta" id="mainCta" href="#">
+          <span id="ctaText">פתח וקבל הצעת מחיר</span>
+          <span class="cta-dot">💬</span>
+        </a>
       </div>
     </section>
 
     <section class="section">
-      <div class="box">
-        <h2>שער שנראה נכון. עובד נכון.</h2>
-        <p class="text">הדף הזה בנוי כמו כרטיס מכירה קטן: תמונה חזקה, פעולה אחת, ופנייה ישירה לוואטסאפ.</p>
-        <div class="services">
-          <div class="service"><img src="./assets/icons/icon-install.svg" alt=""><div><b>התקנת שערים</b><span>שער כנפיים, שער נגרר, מנועים, מסילות וקודנים.</span></div></div>
-          <div class="service"><img src="./assets/icons/icon-repair.svg" alt=""><div><b>תיקון ושדרוג</b><span>איתור תקלות, החלפת מנועים, כיוון, חידוש ושירות.</span></div></div>
-          <div class="service"><img src="./assets/icons/icon-service.svg" alt=""><div><b>שירות מהיר</b><span>פנייה קצרה, שיחה ישירה, והבנה מה צריך בשטח.</span></div></div>
+      <div class="box service-grid">
+        <div class="service">
+          <img src="./assets/icons/icon-install.svg" alt="">
+          <div><b>התקנה</b><span>שערים חשמליים לבית, חניה, עסק וכניסות פרטיות.</span></div>
+        </div>
+        <div class="service">
+          <img src="./assets/icons/icon-repair.svg" alt="">
+          <div><b>תיקון</b><span>מנועים, קודנים, מסילות, תקלות פתיחה וסגירה.</span></div>
+        </div>
+        <div class="service">
+          <img src="./assets/icons/icon-service.svg" alt="">
+          <div><b>שירות</b><span>מענה מהיר, עבודה נקייה, וגימור שנראה טוב בעין.</span></div>
+        </div>
+
+        <div class="photo-card">
+          <img src="./assets/showcase/gate-detail-fast.webp" alt="פרטי שער ומנגנון" loading="lazy" decoding="async">
+        </div>
+
+        <div class="photo-card">
+          <img src="./assets/showcase/gate-studio-fast.webp" alt="שער וכניסה יוקרתית" loading="lazy" decoding="async">
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="box"><div class="showcase"><img src="./assets/showcase/gate-detail.png" alt="מנוע וקודן לשער חשמלי"><div class="showcase-copy"><h2>הפרטים עושים אמון.</h2><p class="text">מנוע, קודן, מסילה וגימור — הלקוח רואה מקצועיות לפני שהוא מדבר.</p></div></div></div>
-    </section>
-
-    <section class="section">
-      <div class="box"><div class="showcase"><img src="./assets/showcase/gate-studio.png" alt="סטודיו מוזיקה חם"><div class="showcase-copy"><h2>ויש גם נשמה.</h2><p class="text">אלחנן מביא גם וייב של מוזיקה וקול — אבל הדף נשאר עסקי, נקי ומכירתי.</p></div></div></div>
-    </section>
-
-    <section class="section">
-      <div class="box"><div class="quote">רוצה שער כזה אצלך?</div><p class="text">לחיצה אחת — הודעה מסודרת לא.ל פרוייקטים והתקנות.</p><a class="cta js-wa" href="#"><span class="dot">💬</span><span>דברו עם א.ל בוואטסאפ</span></a></div>
-    </section>
-    <footer class="footer">א.ל פרוייקטים והתקנות · שערים חשמליים · התקנה · תיקון · שירות</footer>
+    <footer class="footer">A.L Projects & Installations · Electric gates</footer>
   </main>
 
   <script>
@@ -100,24 +329,37 @@
     const target = (params.get('to') || '').replace(/[^0-9]/g, '');
     const msg = 'שלום, הגעתי דרך הדף של א.ל פרוייקטים והתקנות. אני מתעניין בשער חשמלי / תיקון / הצעת מחיר. אפשר לקבל פרטים?';
     const wa = target ? 'https://wa.me/' + target + '?text=' + encodeURIComponent(msg) : 'https://wa.me/?text=' + encodeURIComponent(msg);
-    const hero = document.getElementById('gateHero');
-    const btn = document.getElementById('openGate');
-    const title = document.getElementById('heroTitle');
-    const lead = document.getElementById('heroLead');
-    const btnText = document.getElementById('btnText');
-    const status = document.getElementById('status');
+
+    const openImg = document.getElementById('openImage');
+    const title = document.getElementById('title');
+    const lead = document.getElementById('lead');
+    const cta = document.getElementById('mainCta');
+    const ctaText = document.getElementById('ctaText');
+
     let opened = false;
-    document.querySelectorAll('.js-wa').forEach(a => { a.href = wa; a.target = '_blank'; a.rel = 'noopener'; });
-    btn.addEventListener('click', () => {
-      if (opened) { location.href = wa; return; }
-      opened = true;
-      hero.classList.add('opened');
-      title.textContent = 'רוצה שער כזה אצלך?';
-      lead.textContent = 'הודעה קצרה, תמונה ברורה, ושיחה ישירה להצעת מחיר.';
-      btnText.textContent = 'דברו עם א.ל בוואטסאפ';
-      status.textContent = 'השער נפתח...';
-      setTimeout(() => { status.textContent = 'מעביר אותך לשיחה'; }, 900);
-      setTimeout(() => { location.href = wa; }, 1750);
+
+    function loadOpenImage(){
+      if (!openImg.src && openImg.dataset.src) openImg.src = openImg.dataset.src;
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(loadOpenImage, 650);
+    });
+
+    cta.addEventListener('click', (e) => {
+      if (!opened) {
+        e.preventDefault();
+        loadOpenImage();
+        document.body.classList.add('gate-open');
+        opened = true;
+        title.textContent = 'רוצה שער כזה אצלך?';
+        lead.textContent = 'שלחו הודעה, ונחזור עם כיוון, זמינות והצעת מחיר.';
+        ctaText.textContent = 'שלחו הודעה בוואטסאפ';
+        return;
+      }
+      cta.href = wa;
+      cta.target = '_blank';
+      cta.rel = 'noopener';
     });
   </script>
 </body>
