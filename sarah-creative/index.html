@@ -4,45 +4,369 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>SARAH Creative Engine</title>
-  <meta name="description" content="שרה קריאייטיב — קריאייטיב חד לעסקים שרוצים להיראות אחרת." />
-  <meta property="og:title" content="SARAH Creative Engine" />
-  <meta property="og:description" content="קריאייטיב חד לעסקים שרוצים להיראות אחרת." />
-  <meta property="og:image" content="./assets/social/og-cover.jpg" />
+  <meta name="description" content="שרה קריאייטיב — עיצוב שמרגיש מותג." />
   <meta name="theme-color" content="#0b0b0d" />
+
   <style>
-    :root{--black:#0b0b0d;--cream:#ede6dc;--gold:#c8a96b;--muted:#b9aea0;--line:rgba(237,230,220,.18)}
+    :root{
+      --black:#0b0b0d;
+      --cream:#f3eadf;
+      --muted:rgba(243,234,223,.72);
+      --gold:#d1b06f;
+      --line:rgba(243,234,223,.16);
+      --glass:rgba(11,11,13,.52);
+    }
+
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-    html,body{margin:0;max-width:100%;overflow-x:hidden;background:var(--black);color:var(--cream);font-family:Heebo,Assistant,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
-    a{text-decoration:none;color:inherit}.page{background:var(--black);overflow:hidden}.screen{position:relative;min-height:100dvh;display:flex;align-items:flex-end;padding:calc(18px + env(safe-area-inset-top)) 18px calc(22px + env(safe-area-inset-bottom));overflow:hidden}
-    .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.96) contrast(1.05)}
-    .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,13,.35),rgba(11,11,13,.18) 34%,rgba(11,11,13,.86) 76%,#0b0b0d)}
-    .top{position:absolute;z-index:3;top:calc(18px + env(safe-area-inset-top));left:18px;right:18px;display:flex;align-items:center;justify-content:space-between;direction:ltr}.top img{width:168px;max-width:46vw;height:auto}.tiny{color:rgba(237,230,220,.78);font-size:11px;letter-spacing:.22em;text-transform:uppercase;direction:ltr;text-align:right}
-    .content{position:relative;z-index:4;width:min(100%,430px);margin:0 auto}.badge{display:inline-flex;padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(11,11,13,.42);backdrop-filter:blur(14px);font-weight:850;font-size:13px;color:rgba(237,230,220,.88)}
-    h1{margin:17px 0 8px;font-size:clamp(34px,9.8vw,54px);line-height:1.02;letter-spacing:-.06em;color:#fff;text-wrap:balance}.lead{color:rgba(237,230,220,.78);font-size:17px;line-height:1.5;font-weight:650;max-width:350px}.cta{margin-top:22px;min-height:62px;border-radius:999px;background:linear-gradient(135deg,#ead9a8,#c8a96b 52%,#f8edc7);color:#141009;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:950;box-shadow:0 20px 55px rgba(200,169,107,.32),inset 0 1px 0 rgba(255,255,255,.55)}
-    .section{position:relative;min-height:100dvh;display:flex;align-items:center;padding:calc(34px + env(safe-area-inset-top)) 18px calc(34px + env(safe-area-inset-bottom));background:radial-gradient(circle at 50% 0%,rgba(200,169,107,.13),transparent 27%),#0b0b0d}.box{width:min(100%,430px);margin:0 auto}.logo-panel{border:1px solid var(--line);border-radius:34px;padding:26px 20px;background:linear-gradient(180deg,rgba(237,230,220,.08),rgba(237,230,220,.03));box-shadow:0 35px 90px rgba(0,0,0,.35);text-align:center}.logo-panel img{width:min(100%,330px);height:auto;margin:auto;display:block}
-    h2{font-size:clamp(34px,10vw,56px);line-height:1.03;letter-spacing:-.06em;margin:0 0 14px;color:#fff}.text{color:rgba(237,230,220,.74);font-size:16px;line-height:1.6;font-weight:550}.services{display:grid;gap:14px;margin-top:26px}.service{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);border-radius:24px;background:rgba(237,230,220,.045);padding:17px}.service img{width:48px;height:48px;flex:none}.service b{display:block;color:#fff;font-size:18px;margin-bottom:4px}.service span{color:rgba(237,230,220,.67);line-height:1.45;font-size:14px}.showcase-card{position:relative;overflow:hidden;border-radius:34px;min-height:68dvh;border:1px solid var(--line);box-shadow:0 35px 90px rgba(0,0,0,.45)}.showcase-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.showcase-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 20%,rgba(11,11,13,.82) 80%)}.showcase-copy{position:absolute;z-index:2;left:20px;right:20px;bottom:20px}.quote{font-size:clamp(35px,10vw,59px);line-height:1.03;letter-spacing:-.06em;font-weight:950;color:#fff;margin-bottom:18px}.footer{padding:28px 18px 44px;text-align:center;color:rgba(237,230,220,.45);font-size:12px}
+
+    html,body{
+      margin:0;
+      max-width:100%;
+      overflow-x:hidden;
+      background:var(--black);
+      color:var(--cream);
+      font-family:Heebo,Assistant,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .page{
+      width:100%;
+      overflow:hidden;
+      background:var(--black);
+    }
+
+    .hero{
+      min-height:100dvh;
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      overflow:hidden;
+      padding:calc(18px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom));
+    }
+
+    .hero-photo{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center center;
+      filter:saturate(.98) contrast(1.04) brightness(.92);
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg,
+          rgba(11,11,13,.08) 0%,
+          rgba(11,11,13,.10) 34%,
+          rgba(11,11,13,.52) 61%,
+          rgba(11,11,13,.92) 100%);
+      z-index:1;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:38%;
+      background:radial-gradient(circle at 50% 100%,rgba(209,176,111,.20),transparent 52%);
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      width:min(100%,430px);
+      margin:0 auto;
+      padding-bottom:4px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      border:1px solid var(--line);
+      background:rgba(11,11,13,.44);
+      backdrop-filter:blur(14px);
+      color:rgba(243,234,223,.84);
+      padding:8px 13px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:850;
+      margin-bottom:16px;
+      box-shadow:0 12px 32px rgba(0,0,0,.24);
+    }
+
+    h1{
+      margin:0;
+      max-width:395px;
+      font-size:clamp(42px,12vw,64px);
+      line-height:.98;
+      letter-spacing:-.075em;
+      color:#fff;
+      font-weight:950;
+      text-wrap:balance;
+      text-shadow:0 12px 44px rgba(0,0,0,.72);
+    }
+
+    .lead{
+      margin:16px 0 0;
+      max-width:360px;
+      color:var(--muted);
+      font-size:clamp(17px,4.9vw,21px);
+      line-height:1.42;
+      font-weight:720;
+      text-shadow:0 8px 28px rgba(0,0,0,.8);
+    }
+
+    .cta{
+      margin-top:22px;
+      min-height:62px;
+      width:100%;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      background:linear-gradient(135deg,#fff0bd,#d1b06f 48%,#fff6d6);
+      color:#16110a;
+      font-size:19px;
+      font-weight:950;
+      box-shadow:0 24px 58px rgba(209,176,111,.32), inset 0 1px 0 rgba(255,255,255,.6);
+    }
+
+    .section{
+      min-height:100dvh;
+      display:flex;
+      align-items:center;
+      padding:calc(34px + env(safe-area-inset-top)) 18px calc(34px + env(safe-area-inset-bottom));
+      background:
+        radial-gradient(circle at 50% 0%,rgba(209,176,111,.13),transparent 28%),
+        #0b0b0d;
+    }
+
+    .box{
+      width:min(100%,430px);
+      margin:0 auto;
+    }
+
+    h2{
+      margin:0 0 14px;
+      font-size:clamp(36px,10vw,56px);
+      line-height:1.02;
+      letter-spacing:-.065em;
+      color:#fff;
+      font-weight:950;
+      text-wrap:balance;
+    }
+
+    .text{
+      color:rgba(243,234,223,.74);
+      font-size:16px;
+      line-height:1.65;
+      font-weight:560;
+    }
+
+    .brand-card{
+      border:1px solid var(--line);
+      border-radius:34px;
+      padding:30px 22px;
+      background:
+        linear-gradient(180deg,rgba(243,234,223,.08),rgba(243,234,223,.035)),
+        radial-gradient(circle at 50% 0%,rgba(209,176,111,.18),transparent 42%);
+      box-shadow:0 34px 90px rgba(0,0,0,.42);
+      text-align:center;
+    }
+
+    .brand-card img{
+      width:min(100%,310px);
+      height:auto;
+      display:block;
+      margin:0 auto 18px;
+    }
+
+    .services{
+      display:grid;
+      gap:14px;
+      margin-top:26px;
+    }
+
+    .service{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:17px;
+      background:rgba(243,234,223,.045);
+      box-shadow:0 22px 60px rgba(0,0,0,.22);
+    }
+
+    .service img{
+      width:46px;
+      height:46px;
+      flex:none;
+    }
+
+    .service b{
+      display:block;
+      color:#fff;
+      font-size:18px;
+      margin-bottom:4px;
+    }
+
+    .service span{
+      display:block;
+      color:rgba(243,234,223,.66);
+      font-size:14px;
+      line-height:1.45;
+    }
+
+    .showcase{
+      position:relative;
+      min-height:68dvh;
+      border-radius:34px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow:0 34px 90px rgba(0,0,0,.48);
+    }
+
+    .showcase img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:saturate(.95) contrast(1.04);
+    }
+
+    .showcase::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg,transparent 28%,rgba(11,11,13,.86) 86%);
+    }
+
+    .showcase-copy{
+      position:absolute;
+      z-index:2;
+      left:20px;
+      right:20px;
+      bottom:22px;
+    }
+
+    .quote{
+      margin:0 0 18px;
+      font-size:clamp(38px,11vw,62px);
+      line-height:1.02;
+      letter-spacing:-.07em;
+      font-weight:950;
+      color:#fff;
+      text-wrap:balance;
+    }
+
+    .footer{
+      padding:28px 18px 44px;
+      text-align:center;
+      color:rgba(243,234,223,.44);
+      font-size:12px;
+      direction:ltr;
+    }
   </style>
 </head>
+
 <body>
   <main class="page">
-    <section class="screen">
-      <img class="photo" src="./assets/hero/hero-office-pro.png" alt="סטודיו קריאייטיב יוקרתי" />
-      <div class="shade"></div>
-      <header class="top"><img src="./assets/logo/logo-primary.svg" alt="SARAH Creative Engine" /><div class="tiny">Creative<br>Direction</div></header>
-      <div class="content"><div class="badge">אסטרטגיה · עיצוב · נראות שמוכרת</div><h1>קריאייטיב חד לעסקים שרוצים להיראות אחרת.</h1><p class="lead">שרה לוקחת רעיון, עסק או מוצר — ומתרגמת אותו לנראות נקייה, מדויקת, ומוכנה לפעולה.</p><a class="cta js-wa" href="#">דברו עם שרה בוואטסאפ</a></div>
+
+    <section class="hero">
+      <img class="hero-photo" src="./assets/hero/hero-office-pro.png" alt="סטודיו קריאייטיב יוקרתי" />
+      <div class="hero-content">
+        <div class="eyebrow">מיתוג · דפי נחיתה · נכסים שמוכרים</div>
+        <h1>עיצוב שמרגיש מותג.</h1>
+        <p class="lead">שרה הופכת רעיון, עסק או מוצר לנראות חדה, נקייה ומוכנה לפעולה.</p>
+        <a class="cta js-wa" href="#">דברו עם שרה בוואטסאפ</a>
+      </div>
     </section>
-    <section class="section"><div class="box logo-panel"><img src="./assets/logo/logo-primary.svg" alt="Sarah logo" /><p class="text">מותג שקט. עין חדה. נוכחות שמרגישים.</p></div></section>
-    <section class="section"><div class="box"><h2>לא עוד עיצוב גנרי.</h2><p class="text">שפה ויזואלית שחושבת קדימה — צבע, טיפוגרפיה, מסר ונכס דיגיטלי שמרגיש מותג.</p><div class="services"><div class="service"><img src="./assets/icons/icon-strategy.svg" alt=""><div><b>אסטרטגיה חזותית</b><span>כיוון ברור לפני שמתחילים לעצב.</span></div></div><div class="service"><img src="./assets/icons/icon-branding.svg" alt=""><div><b>מיתוג ונכסים</b><span>לוגו, שפה, מוקאפים ונכסי מכירה.</span></div></div><div class="service"><img src="./assets/icons/icon-landing.svg" alt=""><div><b>דפים וקמפיינים</b><span>קריאייטיב שמוביל לפעולה — לא רק נראה יפה.</span></div></div></div></div></section>
-    <section class="section"><div class="box"><div class="showcase-card"><img src="./assets/showcase/showcase-brand.webp" alt="מיתוג ונכסי מותג"><div class="showcase-copy"><h2>מהרעיון לנראות.</h2><p class="text">דף, מודעה או נכס — בנוי כדי שאנשים יעצרו, יבינו וילחצו.</p></div></div></div></section>
-    <section class="section"><div class="box"><div class="quote">עיצוב טוב לא עוצר ביופי. הוא גורם לאנשים לעצור.</div><p class="text">יש לך עסק, מוצר או רעיון? שרה תדע איך הוא צריך להיראות.</p><a class="cta js-wa" href="#">שלחו הודעה לשרה</a></div></section>
+
+    <section class="section">
+      <div class="box brand-card">
+        <img src="./assets/logo/logo-primary.svg" alt="SARAH Creative Engine" />
+        <p class="text">עין חדה, שפה נקייה, ונראות שמרגישה עסק רציני מהרגע הראשון.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="box">
+        <h2>מה שרה בונה?</h2>
+        <p class="text">לא “עוד עיצוב”. מערכת נראות: מסר, צבע, טיפוגרפיה, נכסים ודף שמוביל לפעולה.</p>
+
+        <div class="services">
+          <div class="service">
+            <img src="./assets/icons/icon-strategy.svg" alt="">
+            <div>
+              <b>כיוון קריאייטיבי</b>
+              <span>מחדדים מה העסק צריך לשדר לפני שמעצבים.</span>
+            </div>
+          </div>
+
+          <div class="service">
+            <img src="./assets/icons/icon-branding.svg" alt="">
+            <div>
+              <b>מיתוג ונכסים</b>
+              <span>לוגו, שפה חזותית, מוקאפים וחומרי מכירה.</span>
+            </div>
+          </div>
+
+          <div class="service">
+            <img src="./assets/icons/icon-landing.svg" alt="">
+            <div>
+              <b>דפים וקמפיינים</b>
+              <span>נראות שמובילה לקליק, הודעה או פנייה.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="box">
+        <div class="showcase">
+          <img src="./assets/showcase/showcase-brand.webp" alt="מיתוג ונכסי מותג">
+          <div class="showcase-copy">
+            <h2>מהרעיון לנראות.</h2>
+            <p class="text">כל נכס צריך לעצור את העין — ואז לגרום לה להבין.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="box">
+        <div class="quote">עיצוב טוב לא צועק. הוא מדייק.</div>
+        <p class="text">יש לך עסק, מוצר או רעיון? שרה תדע איך הוא צריך להיראות.</p>
+        <a class="cta js-wa" href="#">שלחו הודעה לשרה</a>
+      </div>
+    </section>
+
     <footer class="footer">SARAH Creative Engine · visual identity · landing assets</footer>
   </main>
+
   <script>
     const params = new URLSearchParams(location.search);
     const target = (params.get('to') || '').replace(/[^0-9]/g, '');
     const text = 'היי שרה, ראיתי את הדף שלך. אני רוצה לבנות מיתוג / דף / נכסים לעסק שלי שייראו מקצועי ויעבדו באמת. אפשר לדבר?';
     const url = target ? 'https://wa.me/' + target + '?text=' + encodeURIComponent(text) : 'https://wa.me/?text=' + encodeURIComponent(text);
-    document.querySelectorAll('.js-wa').forEach((btn) => { btn.href = url; btn.target = '_blank'; btn.rel = 'noopener'; });
+    document.querySelectorAll('.js-wa').forEach((btn) => {
+      btn.href = url;
+      btn.target = '_blank';
+      btn.rel = 'noopener';
+    });
   </script>
 </body>
 </html>
