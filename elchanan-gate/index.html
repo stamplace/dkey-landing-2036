@@ -9,358 +9,39 @@
   <meta property="og:title" content="א.ל פרוייקטים והתקנות" />
   <meta property="og:description" content="שערים חשמליים לבית ולעסק — מראה נקי וביצוע מדויק." />
   <meta property="og:image" content="./assets/social/og-cover-fast.jpg" />
-
   <link rel="preload" as="image" href="./assets/hero/gate-closed-fast.webp" fetchpriority="high">
-
   <style>
-    :root{
-      --black:#09090a;
-      --cream:#f4ead8;
-      --muted:rgba(244,234,216,.72);
-      --gold:#d6b66e;
-      --line:rgba(244,234,216,.16);
-    }
-
+    :root{--black:#09090a;--cream:#f4ead8;--muted:rgba(244,234,216,.72);--gold:#d6b66e;--line:rgba(244,234,216,.16)}
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-
-    html,body{
-      margin:0;
-      background:var(--black);
-      color:var(--cream);
-      font-family:Heebo,Assistant,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-      overflow-x:hidden;
-    }
-
-    a{color:inherit;text-decoration:none}
-
-    .page{
-      min-height:100dvh;
-      background:#09090a;
-    }
-
-    .hero{
-      position:relative;
-      min-height:100dvh;
-      overflow:hidden;
-      display:flex;
-      align-items:flex-end;
-      padding:calc(20px + env(safe-area-inset-top)) 18px calc(26px + env(safe-area-inset-bottom));
-      isolation:isolate;
-    }
-
-    .hero-img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center center;
-      filter:saturate(.98) contrast(1.05) brightness(.92);
-      transform:scale(1.01);
-      z-index:-3;
-    }
-
-    .hero-img.open{
-      opacity:0;
-      transition:opacity .9s ease, transform 1.2s ease;
-    }
-
-    body.gate-open .hero-img.open{
-      opacity:1;
-      transform:scale(1);
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:-2;
-      background:
-        linear-gradient(180deg,
-          rgba(9,9,10,.02) 0%,
-          rgba(9,9,10,.06) 28%,
-          rgba(9,9,10,.42) 62%,
-          rgba(9,9,10,.90) 100%);
-    }
-
-    .top{
-      position:absolute;
-      top:calc(22px + env(safe-area-inset-top));
-      left:18px;
-      right:18px;
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:16px;
-      z-index:2;
-    }
-
-    .logo{
-      width:136px;
-      max-width:42vw;
-      height:auto;
-      filter:drop-shadow(0 14px 28px rgba(0,0,0,.5));
-    }
-
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      min-height:43px;
-      padding:0 17px;
-      border-radius:999px;
-      background:rgba(9,9,10,.46);
-      backdrop-filter:blur(13px);
-      border:1px solid rgba(244,234,216,.14);
-      color:rgba(244,234,216,.78);
-      font-size:14px;
-      font-weight:900;
-      box-shadow:0 18px 44px rgba(0,0,0,.28);
-      white-space:nowrap;
-    }
-
-    .content{
-      width:min(100%,410px);
-      margin:0 auto;
-      position:relative;
-      z-index:2;
-      padding-bottom:2px;
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      min-height:38px;
-      padding:0 15px;
-      border-radius:999px;
-      background:rgba(9,9,10,.48);
-      backdrop-filter:blur(14px);
-      border:1px solid var(--line);
-      color:rgba(244,234,216,.78);
-      font-size:13px;
-      font-weight:900;
-      margin-bottom:14px;
-      box-shadow:0 12px 30px rgba(0,0,0,.28);
-    }
-
-    h1{
-      margin:0;
-      max-width:350px;
-      font-size:clamp(43px,12vw,61px);
-      line-height:.98;
-      letter-spacing:-.075em;
-      font-weight:950;
-      color:#fff;
-      text-shadow:0 16px 48px rgba(0,0,0,.82);
-    }
-
-    .lead{
-      margin:15px 0 0;
-      max-width:365px;
-      color:var(--muted);
-      font-size:clamp(16.5px,4.65vw,20px);
-      line-height:1.45;
-      font-weight:720;
-      text-shadow:0 10px 34px rgba(0,0,0,.82);
-    }
-
-    .cta{
-      width:100%;
-      min-height:61px;
-      margin-top:22px;
-      border:0;
-      border-radius:999px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:12px;
-      background:linear-gradient(135deg,#fff0bd,#d6b66e 50%,#fff7d8);
-      color:#14110b;
-      font-size:18px;
-      font-weight:950;
-      letter-spacing:-.025em;
-      box-shadow:0 24px 58px rgba(214,182,110,.30), inset 0 1px 0 rgba(255,255,255,.58);
-    }
-
-    .cta-dot{
-      width:42px;
-      height:42px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background:#0b0b0d;
-      color:#fff7d8;
-      flex:none;
-      font-size:20px;
-    }
-
-    .section{
-      padding:54px 18px;
-      background:
-        radial-gradient(circle at 50% 0%,rgba(214,182,110,.12),transparent 30%),
-        #09090a;
-    }
-
-    .box{
-      width:min(100%,430px);
-      margin:0 auto;
-    }
-
-    .service-grid{
-      display:grid;
-      gap:14px;
-    }
-
-    .service{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-      padding:17px;
-      border-radius:24px;
-      background:rgba(244,234,216,.045);
-      border:1px solid var(--line);
-    }
-
-    .service img{
-      width:44px;
-      height:44px;
-      flex:none;
-    }
-
-    .service b{
-      display:block;
-      font-size:18px;
-      color:#fff;
-      margin-bottom:4px;
-    }
-
-    .service span{
-      display:block;
-      font-size:14px;
-      line-height:1.45;
-      color:rgba(244,234,216,.64);
-    }
-
-    .photo-card{
-      margin-top:16px;
-      border-radius:32px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      box-shadow:0 34px 90px rgba(0,0,0,.48);
-      background:#111;
-    }
-
-    .photo-card img{
-      display:block;
-      width:100%;
-      height:auto;
-    }
-
-    .footer{
-      padding:28px 18px 44px;
-      text-align:center;
-      color:rgba(244,234,216,.42);
-      font-size:12px;
-      direction:ltr;
-    }
-
-    @media (max-height:720px){
-      .logo{width:118px}
-      .chip{min-height:38px;font-size:13px;padding:0 14px}
-      .eyebrow{font-size:12px;margin-bottom:10px}
-      h1{font-size:clamp(38px,10.5vw,52px)}
-      .lead{font-size:15.5px;line-height:1.38}
-      .cta{min-height:56px;margin-top:18px}
-    }
+    html,body{margin:0;background:var(--black);color:var(--cream);font-family:Heebo,Assistant,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}.page{min-height:100dvh;background:#09090a}
+    .hero{position:relative;min-height:100dvh;overflow:hidden;display:flex;align-items:flex-end;padding:calc(20px + env(safe-area-inset-top)) 18px calc(26px + env(safe-area-inset-bottom));isolation:isolate}
+    .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;filter:saturate(.98) contrast(1.05) brightness(.92);transform:scale(1.01);z-index:-3}
+    .hero-img.open{opacity:0;transition:opacity .75s ease,transform 1s ease}body.gate-open .hero-img.open{opacity:1;transform:scale(1)}
+    .hero:before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(9,9,10,.02),rgba(9,9,10,.06) 28%,rgba(9,9,10,.40) 62%,rgba(9,9,10,.91))}
+    .top{position:absolute;top:calc(22px + env(safe-area-inset-top));left:18px;right:18px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;z-index:2}.logo{width:142px;max-width:44vw;height:auto;filter:drop-shadow(0 14px 28px rgba(0,0,0,.5))}
+    .chip,.eyebrow{display:inline-flex;align-items:center;border-radius:999px;background:rgba(9,9,10,.48);backdrop-filter:blur(14px);border:1px solid var(--line);color:rgba(244,234,216,.78);font-weight:900;box-shadow:0 14px 36px rgba(0,0,0,.28);white-space:nowrap}.chip{min-height:43px;padding:0 17px;font-size:14px}.eyebrow{min-height:38px;padding:0 15px;font-size:13px;margin-bottom:14px}
+    .content{width:min(100%,410px);margin:0 auto;position:relative;z-index:2}.content h1{margin:0;max-width:350px;font-size:clamp(43px,12vw,61px);line-height:.98;letter-spacing:-.075em;font-weight:950;color:#fff;text-shadow:0 16px 48px rgba(0,0,0,.82)}.lead{margin:15px 0 0;max-width:365px;color:var(--muted);font-size:clamp(16.5px,4.65vw,20px);line-height:1.45;font-weight:720;text-shadow:0 10px 34px rgba(0,0,0,.82)}
+    .cta{width:100%;min-height:61px;margin-top:22px;border:0;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#fff0bd,#d6b66e 50%,#fff7d8);color:#14110b;font-size:18px;font-weight:950;letter-spacing:-.025em;box-shadow:0 24px 58px rgba(214,182,110,.30),inset 0 1px 0 rgba(255,255,255,.58)}.cta-dot{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#0b0b0d;color:#fff7d8;flex:none;font-size:20px}
+    .section{padding:54px 18px;background:radial-gradient(circle at 50% 0%,rgba(214,182,110,.12),transparent 30%),#09090a}.box{width:min(100%,430px);margin:0 auto}.service-grid{display:grid;gap:14px}.service{display:flex;gap:14px;align-items:flex-start;padding:17px;border-radius:24px;background:rgba(244,234,216,.045);border:1px solid var(--line)}.service img{width:44px;height:44px;flex:none}.service b{display:block;font-size:18px;color:#fff;margin-bottom:4px}.service span{display:block;font-size:14px;line-height:1.45;color:rgba(244,234,216,.64)}.photo-card{margin-top:16px;border-radius:32px;overflow:hidden;border:1px solid var(--line);box-shadow:0 34px 90px rgba(0,0,0,.48);background:#111}.photo-card img{display:block;width:100%;height:auto}.footer{padding:28px 18px 44px;text-align:center;color:rgba(244,234,216,.42);font-size:12px;direction:ltr}
+    @media (max-height:720px){.logo{width:118px}.chip{min-height:38px;font-size:13px;padding:0 14px}.eyebrow{font-size:12px;margin-bottom:10px}.content h1{font-size:clamp(38px,10.5vw,52px)}.lead{font-size:15.5px;line-height:1.38}.cta{min-height:56px;margin-top:18px}}
   </style>
 </head>
-
 <body>
-  <main class="page">
-    <section class="hero" id="hero">
-      <img class="hero-img closed" src="./assets/hero/gate-closed-fast.webp" alt="שער חשמלי יוקרתי סגור" loading="eager" decoding="async" fetchpriority="high">
-      <img class="hero-img open" id="openImage" data-src="./assets/hero/gate-open-fast.webp" alt="שער חשמלי יוקרתי פתוח" loading="lazy" decoding="async">
-
-      <div class="top">
-        <div class="chip">שערים חשמליים</div>
-        <img class="logo" src="./assets/logo/al-logo-primary.svg" alt="א.ל פרוייקטים והתקנות">
-      </div>
-
-      <div class="content">
-        <div class="eyebrow">התקנה · תיקון · שירות</div>
-        <h1 id="title">פתח את השער.</h1>
-        <p class="lead" id="lead">א.ל פרוייקטים והתקנות — שערים חשמליים לבית ולעסק, במראה נקי ובביצוע מדויק.</p>
-        <a class="cta" id="mainCta" href="#">
-          <span id="ctaText">פתח וקבל הצעת מחיר</span>
-          <span class="cta-dot">💬</span>
-        </a>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="box service-grid">
-        <div class="service">
-          <img src="./assets/icons/icon-install.svg" alt="">
-          <div><b>התקנה</b><span>שערים חשמליים לבית, חניה, עסק וכניסות פרטיות.</span></div>
-        </div>
-        <div class="service">
-          <img src="./assets/icons/icon-repair.svg" alt="">
-          <div><b>תיקון</b><span>מנועים, קודנים, מסילות, תקלות פתיחה וסגירה.</span></div>
-        </div>
-        <div class="service">
-          <img src="./assets/icons/icon-service.svg" alt="">
-          <div><b>שירות</b><span>מענה מהיר, עבודה נקייה, וגימור שנראה טוב בעין.</span></div>
-        </div>
-
-        <div class="photo-card">
-          <img src="./assets/showcase/gate-detail-fast.webp" alt="פרטי שער ומנגנון" loading="lazy" decoding="async">
-        </div>
-
-        <div class="photo-card">
-          <img src="./assets/showcase/gate-studio-fast.webp" alt="שער וכניסה יוקרתית" loading="lazy" decoding="async">
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">A.L Projects & Installations · Electric gates</footer>
-  </main>
-
+  <main class="page"><section class="hero" id="hero">
+    <img class="hero-img closed" src="./assets/hero/gate-closed-fast.webp" alt="שער חשמלי יוקרתי סגור" loading="eager" decoding="async" fetchpriority="high">
+    <img class="hero-img open" id="openImage" data-src="./assets/hero/gate-open-fast.webp" alt="שער חשמלי יוקרתי פתוח" loading="lazy" decoding="async">
+    <div class="top"><div class="chip">שערים חשמליים</div><img class="logo" src="./assets/logo/al-logo-primary.svg" alt="א.ל פרוייקטים והתקנות"></div>
+    <div class="content"><div class="eyebrow">התקנה · תיקון · שירות</div><h1 id="title">פתח את השער.</h1><p class="lead" id="lead">א.ל פרוייקטים והתקנות — שערים חשמליים לבית ולעסק, במראה נקי ובביצוע מדויק.</p><a class="cta" id="mainCta" href="#"><span id="ctaText">פתח וקבל הצעת מחיר</span><span class="cta-dot">💬</span></a></div>
+  </section><section class="section"><div class="box service-grid">
+    <div class="service"><img src="./assets/icons/icon-install.svg" alt=""><div><b>התקנה</b><span>שערים חשמליים לבית, חניה, עסק וכניסות פרטיות.</span></div></div>
+    <div class="service"><img src="./assets/icons/icon-repair.svg" alt=""><div><b>תיקון</b><span>מנועים, קודנים, מסילות, תקלות פתיחה וסגירה.</span></div></div>
+    <div class="service"><img src="./assets/icons/icon-service.svg" alt=""><div><b>שירות</b><span>מענה מהיר, עבודה נקייה, וגימור שנראה טוב בעין.</span></div></div>
+    <div class="photo-card"><img src="./assets/showcase/gate-detail-fast.webp" alt="פרטי שער ומנגנון" loading="lazy" decoding="async"></div>
+    <div class="photo-card"><img src="./assets/showcase/gate-studio-fast.webp" alt="שער וכניסה יוקרתית" loading="lazy" decoding="async"></div>
+  </div></section><footer class="footer">A.L Projects & Installations · Electric gates</footer></main>
   <script>
-    const params = new URLSearchParams(location.search);
-    const target = (params.get('to') || '').replace(/[^0-9]/g, '');
-    const msg = 'שלום, הגעתי דרך הדף של א.ל פרוייקטים והתקנות. אני מתעניין בשער חשמלי / תיקון / הצעת מחיר. אפשר לקבל פרטים?';
-    const wa = target ? 'https://wa.me/' + target + '?text=' + encodeURIComponent(msg) : 'https://wa.me/?text=' + encodeURIComponent(msg);
-
-    const openImg = document.getElementById('openImage');
-    const title = document.getElementById('title');
-    const lead = document.getElementById('lead');
-    const cta = document.getElementById('mainCta');
-    const ctaText = document.getElementById('ctaText');
-
-    let opened = false;
-
-    function loadOpenImage(){
-      if (!openImg.src && openImg.dataset.src) openImg.src = openImg.dataset.src;
-    }
-
-    window.addEventListener('load', () => {
-      setTimeout(loadOpenImage, 650);
-    });
-
-    cta.addEventListener('click', (e) => {
-      if (!opened) {
-        e.preventDefault();
-        loadOpenImage();
-        document.body.classList.add('gate-open');
-        opened = true;
-        title.textContent = 'רוצה שער כזה אצלך?';
-        lead.textContent = 'שלחו הודעה, ונחזור עם כיוון, זמינות והצעת מחיר.';
-        ctaText.textContent = 'שלחו הודעה בוואטסאפ';
-        return;
-      }
-      cta.href = wa;
-      cta.target = '_blank';
-      cta.rel = 'noopener';
-    });
+    const params=new URLSearchParams(location.search);const target=(params.get('to')||'').replace(/[^0-9]/g,'');const msg='שלום, הגעתי דרך הדף של א.ל פרוייקטים והתקנות. אני מתעניין בשער חשמלי / תיקון / הצעת מחיר. אפשר לקבל פרטים?';const wa=target?'https://wa.me/'+target+'?text='+encodeURIComponent(msg):'https://wa.me/?text='+encodeURIComponent(msg);const openImg=document.getElementById('openImage'),title=document.getElementById('title'),lead=document.getElementById('lead'),cta=document.getElementById('mainCta'),ctaText=document.getElementById('ctaText');let opened=false;function loadOpenImage(){if(!openImg.src&&openImg.dataset.src)openImg.src=openImg.dataset.src}window.addEventListener('load',()=>setTimeout(loadOpenImage,650));cta.addEventListener('click',e=>{if(!opened){e.preventDefault();loadOpenImage();document.body.classList.add('gate-open');opened=true;title.textContent='רוצה שער כזה אצלך?';lead.textContent='שלחו הודעה, ונחזור עם כיוון, זמינות והצעת מחיר.';ctaText.textContent='שלחו הודעה בוואטסאפ';return}cta.href=wa;cta.target='_blank';cta.rel='noopener'});
   </script>
 </body>
 </html>

@@ -1,31 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 210" role="img" aria-label="א.ל פרוייקטים והתקנות">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 230" role="img" aria-label="א.ל פרוייקטים והתקנות">
   <defs>
     <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0" stop-color="#fff3c4"/>
-      <stop offset="0.48" stop-color="#d5b56f"/>
-      <stop offset="1" stop-color="#fff8dd"/>
+      <stop offset="0" stop-color="#fff5ca"/>
+      <stop offset="0.5" stop-color="#d6b66e"/>
+      <stop offset="1" stop-color="#fff8df"/>
     </linearGradient>
   </defs>
-
-  <rect x="18" y="18" width="604" height="174" rx="42" fill="rgba(0,0,0,.18)" stroke="url(#g)" stroke-width="7"/>
-
-  <path d="M122 120V82h66v38M98 120h116M112 120v34M200 120v34M141 82V62h28v20"
-        fill="none" stroke="url(#g)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <text x="426" y="92"
-        direction="rtl"
-        text-anchor="middle"
-        font-family="Arial, Heebo, Assistant, sans-serif"
-        font-size="58"
-        font-weight="900"
-        fill="url(#g)">א.ל</text>
-
-  <text x="426" y="136"
-        direction="rtl"
-        text-anchor="middle"
-        font-family="Arial, Heebo, Assistant, sans-serif"
-        font-size="24"
-        font-weight="800"
-        letter-spacing=".5"
-        fill="#f5e8c2">פרוייקטים והתקנות</text>
+  <rect x="18" y="18" width="684" height="194" rx="48" fill="rgba(0,0,0,.22)" stroke="url(#g)" stroke-width="7"/>
+  <path d="M118 132V88h78v44M92 132h130M108 132v38M206 132v38M148 88V65h30v23" fill="none" stroke="url(#g)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="470" y="98" direction="rtl" text-anchor="middle" font-family="Arial, Heebo, Assistant, sans-serif" font-size="62" font-weight="900" fill="url(#g)">א.ל</text>
+  <text x="470" y="145" direction="rtl" text-anchor="middle" font-family="Arial, Heebo, Assistant, sans-serif" font-size="26" font-weight="850" fill="#f6e9c7">פרוייקטים והתקנות</text>
 </svg>

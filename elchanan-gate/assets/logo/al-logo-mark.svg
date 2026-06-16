@@ -1,13 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-label="א.ל">
-  <defs>
-    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0" stop-color="#fff3c4"/>
-      <stop offset=".5" stop-color="#d1b06f"/>
-      <stop offset="1" stop-color="#fff8dd"/>
-    </linearGradient>
-  </defs>
+  <defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fff5ca"/><stop offset=".5" stop-color="#d6b66e"/><stop offset="1" stop-color="#fff8df"/></linearGradient></defs>
   <rect x="18" y="18" width="184" height="184" rx="48" fill="#09090a" stroke="url(#g)" stroke-width="8"/>
-  <text x="110" y="126" text-anchor="middle" direction="rtl"
-        font-family="Arial, Heebo, Assistant, sans-serif"
-        font-size="70" font-weight="900" fill="url(#g)">א.ל</text>
+  <text x="110" y="128" text-anchor="middle" direction="rtl" font-family="Arial, Heebo, Assistant, sans-serif" font-size="72" font-weight="900" fill="url(#g)">א.ל</text>
 </svg>
