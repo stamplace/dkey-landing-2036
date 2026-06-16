@@ -24,7 +24,7 @@
     const scene=document.getElementById('scene');
     const btn=document.getElementById('openGate');
     const status=document.getElementById('status');
-    const whatsappUrl='REPLACE_WITH_WHATSAPP_URL';
+    const whatsappUrl='https://wa.me/972506363767?text=%D7%90%D7%9C%D7%97%D7%A0%D7%9F%20%D7%90%D7%97%D7%99%2C%20%D7%9C%D7%97%D7%A6%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%94%D7%A9%D7%A2%D7%A8%20%F0%9F%98%84%E2%9A%A1';
     let opening=false;
     btn.addEventListener('click',e=>{e.preventDefault();if(opening)return;opening=true;scene.classList.add('opened');btn.querySelector('span').textContent='השער נפתח...';status.textContent='מחבר אותך ל-WhatsApp';setTimeout(()=>{if(whatsappUrl.startsWith('https://wa.me/')) window.location.href=whatsappUrl; else status.textContent='צריך להכניס מספר WhatsApp בקוד';},1550)});
   </script>
