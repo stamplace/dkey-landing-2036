@@ -107,7 +107,7 @@
       <section class="bottom">
         <a id="wa" class="cta" href="#">אני רוצה להשתתף 💬</a>
         <a id="share" class="cta secondary" href="#">שלחו את הדף בקבוצה</a>
-        <div class="note">הכפתור פותח וואטסאפ עם הודעה מוכנה. אם תרצו שאחבר אותו ישירות למספר של שרה — צריך רק את המספר שלה.</div>
+        <div class="note">הכפתור פותח וואטסאפ ישירות לשרה עם הודעה מוכנה ונעימה.</div>
       </section>
     </div>
   </main>
@@ -124,11 +124,12 @@
       'משפחה יקרה ✈️',
       'עשינו לשרה דף קטן כדי לעזור לה לקנות כרטיס לניו־יורק.',
       'מי שרוצה להשתתף אפילו קצת — זה הקישור:',
-      location.href
+      location.href.split('?')[0]
     ].join('\n');
 
-    const sarahPhone = new URLSearchParams(location.search).get('phone');
-    const cleanPhone = sarahPhone ? sarahPhone.replace(/[^0-9]/g,'') : '';
+    const defaultSarahPhone = '972534457194';
+    const sarahPhone = new URLSearchParams(location.search).get('phone') || defaultSarahPhone;
+    const cleanPhone = sarahPhone.replace(/[^0-9]/g,'');
     const waUrl = cleanPhone
       ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(messageToSarah)}`
       : `https://wa.me/?text=${encodeURIComponent(messageToSarah)}`;
